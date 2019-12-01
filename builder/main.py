@@ -28,6 +28,9 @@ if upload_protocol.startswith("svl"):
     upload_program = join(FRAMEWORK_DIR, "tools", "artemis", sys_pf.system().lower(), "artemis_svl")
     if sys_pf.system() == "Windows":
         upload_program += ".exe"
+    elif sys_pf.system().lower() in ["Darwin"]:
+        upload_program = join(FRAMEWORK_DIR, "tools", "artemis", "macosx", "artemis_svl")
+
 
     # env.Replace(
     #     UPLOADER=upload_program,
