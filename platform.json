@@ -1,0 +1,43 @@
+{
+  "name": "apollo3blue",
+  "title": "Apollo 3 Blue",
+  "description": "The Apollo MCU Family is an ultra-low power, highly integrated microcontroller platform based on Ambiq Micro’s patented Sub-threshold Power Optimized Technology (SPOT™) and designed for battery-powered and portable, mobile devices.",
+  "url": "https://www.ambiqmicro.com/mcu/",
+  "homepage": "http://platformio.org/platforms/apollo3blue",
+  "license": "Apache-2.0",
+  "engines": {
+    "platformio": "<5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nigelb/platform-apollo3blue.git"
+  },
+  "version": "0.0.1",
+  "packageRepositories": [
+    {
+      "framework-arduinoapollo3": [
+        {
+          "url": "https://github.com/sparkfun/Arduino_Apollo3/archive/v1.0.20_ble-beta.tar.gz",
+          "version": "1.0.20"
+        }
+      ]
+    }
+  ],
+  "frameworks": {
+    "arduino": {
+      "package": "framework-arduinoapollo3",
+      "script": "builder/frameworks/arduino.py"
+    }
+  },
+  "packages": {
+    "toolchain-gccarmnoneeabi": {
+      "type": "toolchain",
+      "version": "~1.70201.0"
+    },
+    "framework-arduinoapollo3": {
+      "type": "framework",
+      "optional": true,
+      "version": "~1.0.20"
+    }
+  }
+}
