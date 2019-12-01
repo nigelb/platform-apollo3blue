@@ -32,7 +32,7 @@
   "packages": {
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
-      "version": "~1.70201.0"
+      "version": ">=1.7"
     },
     "framework-arduinoapollo3": {
       "type": "framework",
