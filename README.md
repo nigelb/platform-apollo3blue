@@ -14,7 +14,7 @@ Clone [SparkFun's Arduino framework](https://github.com/sparkfun/Arduino_Apollo3
     ~/.platformio> cd packages
     ~/.platformio>/packages> git clone https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3
 
-Create a `package.json` file in the directory you just cloned `.platformio>/packages/framework-arduinoapollo3/` with the following contents:
+Create a `package.json` file in the directory you just cloned `.platformio/packages/framework-arduinoapollo3/` with the following contents:
 
 ```json
 {
