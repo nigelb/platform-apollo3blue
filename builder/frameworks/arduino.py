@@ -30,14 +30,16 @@ SDK_DIR = join(CORE_DIR, "am_sdk_ap3")
 CMSIS_DIR = join(SDK_DIR, "CMSIS")
 THIRD_PARTY_DIR = join(SDK_DIR, "third_party")
 EXACTLE_DIR = join(THIRD_PARTY_DIR, "exactle")
+LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant"))
 
 env.Append(
     ASFLAGS=[
-        "-x assembler-with-cpp",
         "-c", "-g", "-MMD",
+        "-x", "assembler-with-cpp",
+
     ],
 
     CFLAGS=[
@@ -106,6 +108,14 @@ env.Append(
         join(EXACTLE_DIR, "sw", "profiles", "gatt"),
         join(EXACTLE_DIR, "sw", "profiles", "gap"),
 
+        join(LIBRARY_DIR, "EEPROM", "src"),
+        join(LIBRARY_DIR, "PDM", "src"),
+        join(LIBRARY_DIR, "RTC", "src"),
+        join(LIBRARY_DIR, "Servo", "src"),
+        join(LIBRARY_DIR, "SoftwareSerial", "src"),
+        join(LIBRARY_DIR, "SPI", "src"),
+        join(LIBRARY_DIR, "Wire", "src"),
+
     ],
 
     LINKFLAGS=[
@@ -145,15 +155,61 @@ libs.append(env.BuildLibrary(
 ))
 
 libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "apollo3_sdk"),
+    join("$BUILD_DIR", "apollo3_sdk_mcu"),
     join(SDK_DIR, "mcu"),
+    # join(SDK_DIR, "devices")]
+))
 
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "apollo3_sdk_devices"),
+    join(SDK_DIR, "devices"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "apollo3_sdk_utils"),
+    join(SDK_DIR, "utils"),
 ))
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "variant"),
     join(BOARD_VARIANTS_DIR),
 
+))
+
+# Libraries
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "EERPOM"),
+    join(LIBRARY_DIR, "EERPOM", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "PDM"),
+    join(LIBRARY_DIR, "PDM", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "RTC"),
+    join(LIBRARY_DIR, "RTC", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "Servo"),
+    join(LIBRARY_DIR, "Servo", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "SoftwareSerial"),
+    join(LIBRARY_DIR, "SoftwareSerial", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "SPI"),
+    join(LIBRARY_DIR, "SPI", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "Wire"),
+    join(LIBRARY_DIR, "Wire", "src"),
 ))
 
 env.Prepend(LIBS=libs)
