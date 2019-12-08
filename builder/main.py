@@ -28,11 +28,14 @@ if upload_protocol.startswith("svl"):
     upload_program = join(FRAMEWORK_DIR, "tools", "artemis", sys_pf.system().lower(), "artemis_svl")
     if sys_pf.system() == "Windows":
         upload_program += ".exe"
-print("============================================")
+
+    elif sys_pf.system().lower() in ["Darwin"]:
+        upload_program = join(FRAMEWORK_DIR, "tools", "artemis", "macosx", "artemis_svl")
 
 upload_speed = env.subst("$UPLOAD_SPEED")
 if len(upload_speed) == 0:
     upload_speed = "921600"
+
 
     # env.Replace(
     #     UPLOADER=upload_program,
