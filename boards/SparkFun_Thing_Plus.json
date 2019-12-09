@@ -3,7 +3,7 @@
     "cpu": "cortex-m4",
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
-    "variant": "SparkFun_Artemis_Thing_Plus",
+    "variant": "artemis_thing_tlus",
     "extra_flags": "-DARDUINO_AM_AP3_SFE_THING_PLUS",
     "linker_script": "artemis_sbl_svl_app.ld"
   },

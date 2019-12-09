@@ -3,7 +3,7 @@
     "cpu": "cortex-m4",
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
-    "variant": "SparkFun_RedBoard_Artemis_Nano",
+    "variant": "redboard_artemis_nano",
     "extra_flags": "-DARDUINO_AM_AP3_SFE_BB_ARTEMIS_NANO",
     "linker_script": "artemis_sbl_svl_app.ld"
 

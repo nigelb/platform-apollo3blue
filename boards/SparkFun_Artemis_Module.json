@@ -3,7 +3,7 @@
     "cpu": "cortex-m4",
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
-    "variant": "SparkFun_Artemis",
+    "variant": "artemis",
     "extra_flags": "-DARDUINO_SFE_ARTEMIS",
     "linker_script": "artemis_sbl_svl_app.ld"
 
