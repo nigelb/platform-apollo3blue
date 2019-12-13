@@ -10,7 +10,7 @@
   "frameworks": [
     "arduino"
   ],
-  "name": "SparkFun Artemis Thing Plus",
+  "name": "SparkFun Edge2",
   "upload": {
     "maximum_ram_size": 356352,
     "maximum_size": 960000,
