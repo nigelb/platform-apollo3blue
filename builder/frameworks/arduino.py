@@ -119,7 +119,8 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-Os",
+        "-T%s" % join(VARIANTS_DIR, board.get("build.variant"), "linker_scripts", "gcc", board.get("build.linker_script")),
+        # "-Os",
         "-mthumb",
         "-mcpu=%s" % board.get("build.cpu"),
         "-mfpu=fpv4-sp-d16",
@@ -134,7 +135,7 @@ env.Append(
         "-Wl,--unresolved-symbols=report-all",
         "-Wl,--warn-common",
         "-Wl,--warn-section-align",
-        "-T%s" % join(VARIANTS_DIR, board.get("build.variant"), "linker_scripts", "gcc", board.get("build.linker_script")),
+
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map")
     ],
 
@@ -178,8 +179,8 @@ libs.append(env.BuildLibrary(
 
 # Libraries
 libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "EERPOM"),
-    join(LIBRARY_DIR, "EERPOM", "src"),
+    join("$BUILD_DIR", "EEPROM"),
+    join(LIBRARY_DIR, "EEPROM", "src"),
 ))
 
 libs.append(env.BuildLibrary(
