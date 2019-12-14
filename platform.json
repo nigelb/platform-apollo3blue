@@ -3,7 +3,7 @@
   "title": "Apollo 3 Blue",
   "description": "The Apollo MCU Family is an ultra-low power, highly integrated microcontroller platform based on Ambiq Micro’s patented Sub-threshold Power Optimized Technology (SPOT™) and designed for battery-powered and portable, mobile devices.",
   "url": "https://www.ambiqmicro.com/mcu/",
-  "homepage": "http://platformio.org/platforms/apollo3blue",
+  "homepage": "",
   "license": "Apache-2.0",
   "engines": {
     "platformio": "<5"
