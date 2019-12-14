@@ -53,6 +53,53 @@ You should have a number of Artemis boards show up in your board list:
     .
     .
     .    
+Or query the platform directly:
+
+    $> platformio platform show apollo3blue
+    
+    apollo3blue ~ Apollo 3 Blue
+    ===========================
+    The Apollo MCU Family is an ultra-low power, highly integrated microcontroller platform based on Ambiq Micro’s patented Sub-threshold Power Optimized Technology (SPOT™) and designed for battery-powered and portable, mobile devices.
+    
+    Version: 0.0.1
+    Repository: https://github.com/nigelb/platform-apollo3blue.git
+    Vendor: https://www.ambiqmicro.com/mcu/
+    License: Apache-2.0
+    Frameworks: arduino
+    
+    Packages
+    --------
+    
+    Package toolchain-gccarmnoneeabi
+    --------------------------------
+    Type: toolchain
+    Requirements: >=1.7
+    Installed: Yes
+    Version: 1.70201.0
+    Original version: 7.2.1
+    Description: gcc-arm-embedded
+    
+    Package framework-arduinoapollo3
+    --------------------------------
+    Type: framework
+    Requirements: ~1.0.20
+    Installed: Yes
+    Version: 1.0.20
+    Original version: None
+    Description: Arduino Wiring-based Framework (Apollo3 Core)
+    
+    Boards
+    ------
+    ID                             MCU       Frequency    Flash     RAM    Name
+    -----------------------------  --------  -----------  --------  -----  ------------------------------
+    SparkFun_Artemis_Module        AMA3B1KK  48MHz        937.50KB  348KB  SparkFun Artemis Module
+    SparkFun_Artemis_Nano          AMA3B1KK  48MHz        937.50KB  348KB  SparkFun RedBoard Artemis Nano
+    SparkFun_Edge                  AMA3B1KK  48MHz        937.50KB  348KB  SparkFun Edge
+    SparkFun_Edge2                 AMA3B1KK  48MHz        937.50KB  348KB  SparkFun Edge2
+    SparkFun_RedBoard_Artemis      AMA3B1KK  48MHz        937.50KB  348KB  SparkFun RedBoard Artemis
+    SparkFun_RedBoard_Artemis_ATP  AMA3B1KK  48MHz        937.50KB  348KB  SparkFun RedBoard Artemis ATP
+    SparkFun_Thing_Plus            AMA3B1KK  48MHz        937.50KB  348KB  SparkFun Artemis Thing Plus
+
 
 ## Create a project
 We can now create a project and compile the source:
