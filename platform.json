@@ -19,8 +19,8 @@
     {
       "framework-arduinoapollo3": [
         {
-          "url": "https://github.com/sparkfun/Arduino_Apollo3/archive/v1.0.20_ble-beta.tar.gz",
-          "version": "1.0.20"
+          "url": "https://github.com/sparkfun/Arduino_Apollo3/archive/v1.0.22_ble-beta.tar.gz",
+          "version": "1.0.22"
         }
       ]
     }
