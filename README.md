@@ -142,6 +142,7 @@ void loop()
 Then we can compile:
 
 ```
+~/SparkFun_Artemis_Nano> platformio run -v
 Processing SparkFun_Artemis_Nano (platform: apollo3blue; board: SparkFun_Artemis_Nano; framework: arduino)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Verbose mode can be enabled via `-v, --verbose` option
@@ -223,3 +224,108 @@ arm-none-eabi-objcopy -O binary .pio/build/SparkFun_Artemis_Nano/program .pio/bu
 
 ```
   
+## Uploading
+Find the Serial port for your connected device. In thsi example it is on `/dev/ttyUSB0`.
+Edit the `platformio.ini` file and add the `upload_port` and `upload_speed` fields. Starting with:
+
+```ini
+;PlatformIO Project Configuration File
+;
+;   Build options: build flags, source filter
+;   Upload options: custom upload port, speed and extra flags
+;   Library options: dependencies, extra library storages
+;   Advanced options: extra scripting
+;
+; Please visit documentation for the other options and examples
+; https://docs.platformio.org/page/projectconf.html
+
+[env:SparkFun_Artemis_Nano]
+platform = apollo3blue
+board = SparkFun_Artemis_Nano
+framework = arduino
+```
+
+and endng up with:
+```ini
+;PlatformIO Project Configuration File
+;
+;   Build options: build flags, source filter
+;   Upload options: custom upload port, speed and extra flags
+;   Library options: dependencies, extra library storages
+;   Advanced options: extra scripting
+;
+; Please visit documentation for the other options and examples
+; https://docs.platformio.org/page/projectconf.html
+
+[env:SparkFun_Artemis_Nano]
+platform = apollo3blue
+board = SparkFun_Artemis_Nano
+framework = arduino
+upload_port = /dev/ttyUSB0
+upload_speed = 115200
+```
+
+The we can upload the firmware:
+```bash
+~/SparkFun_Artemis_Nano> platformio run -t upload -v
+Processing SparkFun_Artemis_Nano (platform: apollo3blue; board: SparkFun_Artemis_Nano; framework: arduino; upload_port: /dev/ttyUSB0; upload_speed: 115200)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CONFIGURATION: https://docs.platformio.org/page/boards/apollo3blue/SparkFun_Artemis_Nano.html
+PLATFORM: Apollo 3 Blue 0.0.1 > SparkFun RedBoard Artemis Nano
+HARDWARE: AMA3B1KK 48MHz, 348KB RAM, 937.50KB Flash
+PACKAGES: toolchain-gccarmnoneeabi 1.70201.0 (7.2.1), framework-arduinoapollo3 1.0.20
+LDF: Library Dependency Finder -> http://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+DATA:    [===       ]  31.7% (used 113092 bytes from 356352 bytes)
+PROGRAM: [=         ]   5.4% (used 51708 bytes from 960000 bytes)
+text       data     bss     dec     hex filename
+  51572     136  112956  164664   28338 .pio/build/SparkFun_Artemis_Nano/program
+AVAILABLE: svl
+CURRENT: upload_protocol = svl
+/home/user/.platformio/packages/framework-arduinoapollo3/tools/artemis/linux/artemis_svl /dev/ttyUSB0 -b 115200 -f .pio/build/SparkFun_Artemis_Nano/firmware.bin -v
+
+
+Artemis SVL Bootloader
+
+phase:  setup
+        cleared startup blip
+        Got SVL Bootloader Version: 3
+        Sending 'enter bootloader' command
+
+phase:  bootload
+        have 51708 bytes to send in 26 frames
+        sending frame #1, length: 2048
+        sending frame #2, length: 2048
+        sending frame #3, length: 2048
+        sending frame #4, length: 2048
+        sending frame #5, length: 2048
+        sending frame #6, length: 2048
+        sending frame #7, length: 2048
+        sending frame #8, length: 2048
+        sending frame #9, length: 2048
+        sending frame #10, length: 2048
+        sending frame #11, length: 2048
+        sending frame #12, length: 2048
+        sending frame #13, length: 2048
+        sending frame #14, length: 2048
+        sending frame #15, length: 2048
+        sending frame #16, length: 2048
+        sending frame #17, length: 2048
+        sending frame #18, length: 2048
+        sending frame #19, length: 2048
+        sending frame #20, length: 2048
+        sending frame #21, length: 2048
+        sending frame #22, length: 2048
+        sending frame #23, length: 2048
+        sending frame #24, length: 2048
+        sending frame #25, length: 2048
+        sending frame #26, length: 508
+
+         Upload complete
+================================================================================ [SUCCESS] Took 9.46 seconds ================================================================================
+```
