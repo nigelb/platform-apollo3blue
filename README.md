@@ -20,7 +20,7 @@ Create a `package.json` file in the directory you just cloned `.platformio/packa
 {
     "name": "framework-arduinoapollo3",
     "description": "Arduino Wiring-based Framework (Apollo3 Core)",
-    "version": "1.0.20",
+    "version": "1.0.22",
     "url": "https://github.com/sparkfun/Arduino_Apollo3"
 }
 ```
