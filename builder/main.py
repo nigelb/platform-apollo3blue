@@ -36,7 +36,10 @@ upload_speed = env.subst("$UPLOAD_SPEED")
 if len(upload_speed) == 0:
     upload_speed = "921600"
 
-
+upload_port = env.subst("$UPLOAD_PORT")
+if len(upload_port) == 0:
+    env.AutodetectUploadPort()
+    
     # env.Replace(
     #     UPLOADER=upload_program,
     #     UPLOADERFLAGS=[
