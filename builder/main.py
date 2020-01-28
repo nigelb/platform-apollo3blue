@@ -29,7 +29,7 @@ if upload_protocol.startswith("svl"):
     if sys_pf.system() == "Windows":
         upload_program += ".exe"
 
-    elif sys_pf.system().lower() in ["Darwin"]:
+    elif sys_pf.system().lower() in ["darwin"]:
         upload_program = join(FRAMEWORK_DIR, "tools", "artemis", "macosx", "artemis_svl")
 
 upload_speed = env.subst("$UPLOAD_SPEED")
