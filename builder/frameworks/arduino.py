@@ -88,7 +88,7 @@ env.Append(
         join(CMSIS_DIR, "AmbiqMicro", "Include"),
         join(CMSIS_DIR, "ARM", "Include"),
         join(THIRD_PARTY_DIR, "uecc", "micro-ecc"),
-        join(EXACTLE_DIR, "sw", "hci", "ambi"),
+        join(EXACTLE_DIR, "sw", "hci", "ambiq"),
         join(EXACTLE_DIR, "sw", "hci", "include"),
         join(EXACTLE_DIR, "sw", "hci", "ambiq", "apollo3"),
         join(EXACTLE_DIR, "sw", "apps", "app"),
