@@ -79,9 +79,9 @@ env.Append(
     ARFLAGS=[],
     ASFLAGS=[],
     CCFLAGS=[],
-    CXXFLAGS=["-std=gnu++11"],
+    CXXFLAGS=[],
     LINKFLAGS=[],
-    CPPDEFINES=["PART_apollo3", "AM_PACKAGE_BGA", "AM_PART_APOLLO3", "ARDUINO_ARCH_APOLLO3"],
+    CPPDEFINES=[ "ARDUINO_ARCH_APOLLO3"],
     LIBS=[],
     BUILDERS=dict(
         ElfToBin=Builder(
