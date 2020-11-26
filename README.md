@@ -265,7 +265,7 @@ upload_port = /dev/ttyUSB0
 upload_speed = 115200
 ```
 
-The we can upload the firmware:
+Then we can upload the firmware:
 ```bash
 ~/SparkFun_Artemis_Nano> platformio run -t upload -v
 Processing SparkFun_Artemis_Nano (platform: apollo3blue; board: SparkFun_Artemis_Nano; framework: arduino; upload_port: /dev/ttyUSB0; upload_speed: 115200)
