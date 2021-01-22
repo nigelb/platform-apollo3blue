@@ -13,7 +13,7 @@
   "name": "SparkFun Edge2",
   "upload": {
     "maximum_ram_size": 393216,
-    "maximum_size": 960000,
+    "maximum_size": 983040,
     "protocol": "svl",
     "protocols": [
       "svl"
