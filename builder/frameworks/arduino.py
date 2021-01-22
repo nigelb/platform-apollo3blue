@@ -108,6 +108,7 @@ env.Append(
         "-T%s" % join(TOOLS_DIR, "uploaders", "asb", board.get("build.linker_script")),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-symbols"),
+        join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
         ## "-Os",
         #"-mthumb",
         #"-mcpu=%s" % board.get("build.cpu"),

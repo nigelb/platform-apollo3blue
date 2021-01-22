@@ -25,7 +25,7 @@ FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
 if upload_protocol.startswith("svl"):
-    upload_program = join(FRAMEWORK_DIR, "tools", "artemis", sys_pf.system().lower(), "artemis_svl")
+    upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", "svl", "dist", sys_pf.system().lower(), "svl")
     if sys_pf.system() == "Windows":
         upload_program += ".exe"
 
