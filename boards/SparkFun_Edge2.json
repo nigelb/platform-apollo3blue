@@ -3,16 +3,16 @@
     "cpu": "cortex-m4",
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
-    "variant": "edge",
+    "variant": "TARGET_SFE_EDGE2",
     "extra_flags": "-DSFE_EDGE2",
-    "linker_script": "ambiq_sbl_app.ld"
+    "linker_script": "0xC000.ld"
   },
   "frameworks": [
     "arduino"
   ],
   "name": "SparkFun Edge2",
   "upload": {
-    "maximum_ram_size": 356352,
+    "maximum_ram_size": 393216,
     "maximum_size": 960000,
     "protocol": "svl",
     "protocols": [
