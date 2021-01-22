@@ -30,6 +30,7 @@ Checkout [platform-apollo3blue](https://github.com/nigelb/platform-apollo3blue):
     ~> cd ~/.platformio
     ~/.platformio> cd platforms
     ~/.platformio/platforms> git clone https://github.com/nigelb/platform-apollo3blue.git apollo3blue
+    git checkout --track origin/Core_V2
     
 ## Verify the Install
 You should have a number of Artemis boards show up in your board list:
