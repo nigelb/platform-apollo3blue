@@ -1,0 +1,24 @@
+{
+  "build": {
+    "cpu": "cortex-m4",
+    "f_cpu": "48000000L",
+    "mcu": "AMA3B1KK",
+    "variant": "artemis_thing_plus",
+    "extra_flags": "-DARDUINO_AM_AP3_SFE_THING_PLUS",
+    "linker_script": "artemis_sbl_svl_app.ld"
+  },
+  "frameworks": [
+    "arduino"
+  ],
+  "name": "SparkFun Artemis Thing Plus",
+  "upload": {
+    "maximum_ram_size": 356352,
+    "maximum_size": 960000,
+    "protocol": "svl",
+    "protocols": [
+      "svl"
+    ]
+  },
+  "url": "https://www.sparkfun.com/products/15574",
+  "vendor": "SparkFun"
+}
