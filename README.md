@@ -12,7 +12,7 @@ Locate your .platformio directory which it typically in your home directory:
 Clone [SparkFun's Arduino framework](https://github.com/sparkfun/Arduino_Apollo3):
 
     ~/.platformio> cd packages
-    ~/.platformio>/packages> git clone https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3
+    ~/.platformio>/packages> git clone --recurse-submodules https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3
 
 Create a `package.json` file in the directory you just cloned `.platformio/packages/framework-arduinoapollo3/` with the following contents:
 
@@ -20,7 +20,7 @@ Create a `package.json` file in the directory you just cloned `.platformio/packa
 {
     "name": "framework-arduinoapollo3",
     "description": "Arduino Wiring-based Framework (Apollo3 Core)",
-    "version": "1.0.22",
+    "version": "2.0.2",
     "url": "https://github.com/sparkfun/Arduino_Apollo3"
 }
 ```
@@ -30,6 +30,8 @@ Checkout [platform-apollo3blue](https://github.com/nigelb/platform-apollo3blue):
     ~> cd ~/.platformio
     ~/.platformio> cd platforms
     ~/.platformio/platforms> git clone https://github.com/nigelb/platform-apollo3blue.git apollo3blue
+    ~/.platformio/platforms> cd apollo3blue
+    ~/.platformio/platforms/apollo3blue> git checkout --track origin/Core_V2
     
 ## Verify the Install
 You should have a number of Artemis boards show up in your board list:
