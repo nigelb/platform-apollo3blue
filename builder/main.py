@@ -24,33 +24,50 @@ upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
-if upload_protocol.startswith("svl"):
-    upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", "svl", "dist", sys_pf.system().lower(), "svl")
-    if sys_pf.system() == "Windows":
-        upload_program += ".exe"
-
-    elif sys_pf.system().lower() in ["darwin"]:
-        upload_program = join(FRAMEWORK_DIR, "tools", "artemis", "macosx", "artemis_svl")
-
-upload_speed = env.subst("$UPLOAD_SPEED")
-if len(upload_speed) == 0:
-    upload_speed = "921600"
 
 upload_port = env.subst("$UPLOAD_PORT")
 if len(upload_port) == 0:
     env.AutodetectUploadPort()
-    
-    # env.Replace(
-    #     UPLOADER=upload_program,
-    #     UPLOADERFLAGS=[
-    #         "$UPLOAD_PORT",
-    #         "-b", "921600",
-    #         "-f", "$SOURCES",
-    #         "-v",
-    #     ],
-    #     UPLOADCMD="$UPLOADER $UPLOADERFLAGS"
-    # )
 
+system_type = sys_pf.system().lower()
+if system_type in ["darwin"]:
+    system_type = "macosx"
+
+upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, upload_protocol)
+if  system_type == "windows":
+    upload_program += ".exe"
+
+if upload_protocol == "svl":
+    upload_speed = env.subst("$UPLOAD_SPEED")
+    if len(upload_speed) == 0:
+        upload_speed = "921600"
+
+    uploader_flags=[
+        "$UPLOAD_PORT",
+        "-b", upload_speed,
+        "-f", "$SOURCES",
+        "-v",
+    ]
+
+elif upload_protocol == "asb":
+    upload_speed = env.subst("$UPLOAD_SPEED")
+    if len(upload_speed) == 0:
+        upload_speed = "115200"
+
+    uploader_flags=[
+        "--bin", "$SOURCES",
+        "--load-address-blob", "0x20000", 
+        "--magic-num", "0xCB", 
+        "-o", "${SOURCES}",
+        "--version", "0x0", 
+        "--load-address-wired", "0xC000", 
+        "-i", "6", 
+        "--options", "0x1", 
+        "-b", upload_speed, 
+        "-port", "$UPLOAD_PORT", "-r", "2", "-v"
+    ]
+
+    
 # A full list with the available variables
 # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
 env.Replace(
@@ -66,12 +83,7 @@ env.Replace(
     ARFLAGS=["rc"],
 
     UPLOADER=upload_program,
-    UPLOADERFLAGS=[
-        "$UPLOAD_PORT",
-        "-b", upload_speed,
-        "-f", "$SOURCES",
-        "-v",
-    ],
+    UPLOADERFLAGS=uploader_flags,
     UPLOADCMD="$UPLOADER $UPLOADERFLAGS"
 )
 
