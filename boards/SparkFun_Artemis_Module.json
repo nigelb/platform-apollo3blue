@@ -4,7 +4,7 @@
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
     "variant": "TARGET_SFE_ARTEMIS_MODULE",
-    "cpp_defines": ["ARDUINO_APOLLO3_SFE_ARTEMIS_MODULE"],
+    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_MODULE",
     "asb_linker_script": "0xC000.ld",
     "svl_linker_script": "0x10000.ld"
 

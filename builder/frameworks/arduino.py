@@ -43,7 +43,6 @@ BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant").replace("TARG
 
 upload_protocol = board.get("upload.protocol")
 linker_script = board.get("build.%s_linker_script"%upload_protocol)
-variant_defines = board.get("build.cpp_defines")
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
@@ -92,7 +91,7 @@ env.Append(
         "ARDUINO_ARCH_APOLLO3",
         "MBED_NO_GLOBAL_USING_DIRECTIVE",
         "CORDIO_ZERO_COPY_HCI",
-    ] + variant_defines,
+    ] ,
 
     CPPPATH=[
         CORE_DIR,
