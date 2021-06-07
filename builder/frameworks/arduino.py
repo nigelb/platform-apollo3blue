@@ -31,14 +31,14 @@ MBED_DIR = join(FRAMEWORK_DIR, "cores", "mbed-os")
 BRIDGE_DIR = join(CORE_DIR, "mbed-bridge") 
 TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "TARGET_Apollo3")
 SDK_DIR    = join(TARGETS_DIR, "sdk")
-SDK_TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "sdk")
+#SDK_TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "sdk")
 CMSIS_DIR = join(SDK_DIR, "CMSIS") 
 
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant").replace("TARGET_", "", 1))
-BOARD_TARGET_DIR = join(TARGETS_DIR, board.get("build.variant"))
+#BOARD_TARGET_DIR = join(TARGETS_DIR, board.get("build.variant"))
 
 
 upload_protocol = board.get("upload.protocol")
@@ -47,6 +47,7 @@ variant_defines = board.get("build.cpp_defines")
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
+# Set paramaters for CheckUploadSize in platformio/builder/tools/pioupload.py
 env.Replace(
     SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
     SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
@@ -57,7 +58,6 @@ env.Append(
     ASFLAGS=[
         "-c", "-g", "-MMD",
         "-x", "assembler-with-cpp",
-
     ],
 
     CFLAGS=[
