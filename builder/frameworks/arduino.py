@@ -40,8 +40,25 @@ VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant").replace("TARGET_", "", 1))
 BOARD_TARGET_DIR = join(TARGETS_DIR, board.get("build.variant"))
 
+BoardDefines = {
+        "SparkFun_RedBoard_Artemis_ATP": ["ARDUINO_APOLLO3_SFE_ARTEMIS_ATP"]
+}
+
+upload_protocol = board.get("upload.protocol")
+linker_script = board.get("build.%s_linker_script"%upload_protocol)
+
+__DEFINES = []
+
+if board.get("build.variant") in BoardDefines:
+    __DEFINES = BoardDefines[board.get("build.variant")]
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
+
+env.Replace(
+    SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
+    SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
+    SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
+)
 
 env.Append(
     ASFLAGS=[
@@ -51,8 +68,9 @@ env.Append(
     ],
 
     CFLAGS=[
+        "-MMD", 
         "-include", join(BOARD_VARIANTS_DIR, "mbed", "mbed_config.h"),
-        "-include", join(CORE_DIR, "sdk", "ArduinoSDK.h"),
+        #"-include", join(CORE_DIR, "sdk", "ArduinoSDK.h"),
         "-iprefix{}/".format(BASE_CORE_DIR),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
@@ -60,9 +78,11 @@ env.Append(
     ],
 
     CPPFLAGS=[
+#        "-w", "-x", "c++", "-E", "-CC"
     ],
 
     CXXFLAGS=[
+        "-MMD", 
         "-include", join(BOARD_VARIANTS_DIR, "mbed", "mbed_config.h"),
         "-include", join(CORE_DIR, "sdk", "ArduinoSDK.h"),
         "-iprefix{}/".format(BASE_CORE_DIR),
@@ -79,57 +99,29 @@ env.Append(
         "ARDUINO_ARCH_APOLLO3",
         "MBED_NO_GLOBAL_USING_DIRECTIVE",
         "CORDIO_ZERO_COPY_HCI",
-    ],
+    ]+__DEFINES,
+
     CPPPATH=[
         CORE_DIR,
         BOARD_VARIANTS_DIR,
         BRIDGE_DIR,
-        join(BRIDGE_DIR, "cort-api"),
-##        MBED_DIR,
-        #join(MBED_DIR, "cmsis", "TARGET_CORTEX_M"),
-        #join(MBED_DIR, "hal"),
-        #join(MBED_DIR, "rtos"),
-        #join(MBED_DIR, "platform", "cxxsupport"),
-        #join(BRIDGE_DIR, "core-api"),
-        #join(TARGETS_DIR, "device"),
-        #join(SDK_DIR, "mcu", "apollo3"),
-        #join(CMSIS_DIR, "AmbiqMicro", "Include"),
-##        BOARD_TARGET_DIR,
-        #join(BOARD_TARGET_DIR, "bsp"),
-        #join(SDK_DIR, "mcu", "apollo3"),
-        #join(SDK_DIR, "mcu", "apollo3", "hal"),
-        #join(SDK_DIR, "mcu", "apollo3", "regs"),
-        #join(SDK_TARGETS_DIR, "utils"),
-        #join(SDK_TARGETS_DIR, "devices"),
-
+        join(BRIDGE_DIR, "core-api"),
+        join(BRIDGE_DIR, "core-api", "api", "depricated"),
     ],
 
     LINKFLAGS=[
-        "-T%s" % join(TOOLS_DIR, "uploaders", "asb", board.get("build.linker_script")),
+        "-T%s" % join(TOOLS_DIR, "uploaders", upload_protocol, linker_script),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-symbols"),
+        "-Wl,--no-whole-archive", "-Wl,--whole-archive",
         join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
-        ## "-Os",
-        #"-mthumb",
-        #"-mcpu=%s" % board.get("build.cpu"),
-        #"-mfpu=fpv4-sp-d16",
-        #"-mfloat-abi=hard",
-        #"--specs=nano.specs",
-        #"-mfloat-abi=hard",
-        #"-nostdlib",
-        #"-fno-exceptions",
-        #"-static",
-        #"-Wl,--gc-sections,--entry,Reset_Handler",
-        #"-Wl,--check-sections",
-        #"-Wl,--unresolved-symbols=report-all",
-        #"-Wl,--warn-common",
-        #"-Wl,--warn-section-align",
+        "-Wl,--no-whole-archive",
+        "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
+        "--specs=nano.specs",
 
-        "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map")
     ],
 
-    #LIBS=["m", "arm_cortexM4lf_math", "gcc", "stdc++", "nosys", "c", "libmbed-os.a"],
-    LIBS=["stdc++", "supc++", "libmbed-os.a"],
+    LIBS=["stdc++", "supc++", "libmbed-os.a", "arm_cortexM4lf_math"],
 
     LIBPATH=[
         join(BOARD_VARIANTS_DIR, "mbed"),
@@ -139,13 +131,9 @@ env.Append(
 
 libs = []
 
-print("------------------->", BRIDGE_DIR)
-print("------------------->", env)
-
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "varient"),
     BOARD_VARIANTS_DIR
-    #BRIDGE_DIR,
 ))
 
 libs.append(env.BuildLibrary(
@@ -153,34 +141,11 @@ libs.append(env.BuildLibrary(
     BRIDGE_DIR,
 ))
 
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "apollo3_sdk_mcu"),
-#    join(SDK_DIR, "mcu"),
-#    # join(SDK_DIR, "devices")]
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "apollo3_sdk_devices"),
-#    join(SDK_DIR, "devices"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "apollo3_sdk_utils"),
-#    join(SDK_DIR, "utils"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "variant"),
-#    join(BOARD_VARIANTS_DIR),
-#
-#))
-
 # Libraries
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "EEPROM"),
-#    join(LIBRARY_DIR, "EEPROM", "src"),
-#))
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "EEPROM"),
+    join(LIBRARY_DIR, "EEPROM", "src"),
+))
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "PDM"),
