@@ -40,17 +40,10 @@ VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant").replace("TARGET_", "", 1))
 BOARD_TARGET_DIR = join(TARGETS_DIR, board.get("build.variant"))
 
-BoardDefines = {
-        "SparkFun_RedBoard_Artemis_ATP": ["ARDUINO_APOLLO3_SFE_ARTEMIS_ATP"]
-}
 
 upload_protocol = board.get("upload.protocol")
 linker_script = board.get("build.%s_linker_script"%upload_protocol)
-
-__DEFINES = []
-
-if board.get("build.variant") in BoardDefines:
-    __DEFINES = BoardDefines[board.get("build.variant")]
+variant_defines = board.get("build.cpp_defines")
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
@@ -99,7 +92,7 @@ env.Append(
         "ARDUINO_ARCH_APOLLO3",
         "MBED_NO_GLOBAL_USING_DIRECTIVE",
         "CORDIO_ZERO_COPY_HCI",
-    ]+__DEFINES,
+    ] + variant_defines,
 
     CPPPATH=[
         CORE_DIR,
@@ -132,7 +125,7 @@ env.Append(
 libs = []
 
 libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "varient"),
+    join("$BUILD_DIR", "variant"),
     BOARD_VARIANTS_DIR
 ))
 
