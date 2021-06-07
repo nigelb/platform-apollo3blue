@@ -5,7 +5,7 @@ This is an experimantal platform to allow the use of [SparkFun's Arduino framewo
 As this is experimental, it requires a manual install.
 
 # Version
-The master branch now compiles against the Core_V2 framework, see [Core_V1](tree/Core_V1) for older versions. 
+The master branch now compiles against the Core_V2 framework, see [Core_V1](../../tree/Core_V1) for older versions. 
 
 ## Install
 Locate your .platformio directory which it typically in your home directory:
