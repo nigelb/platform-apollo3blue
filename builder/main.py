@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import sys
 from os.path import join, isdir
 from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
 import platform as sys_pf
@@ -42,6 +43,15 @@ if upload_protocol == "svl":
     if len(upload_speed) == 0:
         upload_speed = "921600"
 
+    valid_svl_baud = ["57600", "115200", "230400", "460800", "921600"]
+
+    if upload_speed not in valid_svl_baud:
+        sys.stderr.write(
+            "Error: Invalid SVL baud rate specified: {}. \r\nSelect one of: {}\r\n".format(upload_speed, valid_svl_baud)
+        )
+        env.Exit(1)
+        
+
     uploader_flags=[
         "$UPLOAD_PORT",
         "-b", upload_speed,
@@ -53,6 +63,14 @@ elif upload_protocol == "asb":
     upload_speed = env.subst("$UPLOAD_SPEED")
     if len(upload_speed) == 0:
         upload_speed = "115200"
+
+    valid_asb_baud = ["115200"]
+
+    if upload_speed not in valid_asb_baud:
+        sys.stderr.write(
+            "Error: Invalid ASB baud rate specified: {}. \r\n Select one of: {}\r\n".format(upload_speed, valid_asb_baud)
+        )
+        env.Exit(1)
 
     uploader_flags=[
         "--bin", "$SOURCES",
