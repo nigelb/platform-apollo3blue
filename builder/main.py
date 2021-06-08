@@ -18,6 +18,7 @@ from os.path import join, isdir
 from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
 import platform as sys_pf
 
+
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 
@@ -25,10 +26,16 @@ upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
+def BeforeUpload(target, source, env):
+    upload_port = env.subst("$UPLOAD_PORT")
+    if len(upload_port) == 0:
+        env.AutodetectUploadPort()
 
-upload_port = env.subst("$UPLOAD_PORT")
-if len(upload_port) == 0:
-    env.AutodetectUploadPort()
+upload_actions = [
+    env.VerboseAction(BeforeUpload, "Looking for upload port..."),
+    env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
+]
+
 
 system_type = sys_pf.system().lower()
 if system_type in ["darwin"]:
@@ -139,8 +146,9 @@ target_bin = env.ElfToBin(join("$BUILD_DIR", "firmware"), target_elf)
 #
 # Target: Upload firmware
 #
-upload = env.Alias(["upload"], target_bin, "$UPLOADCMD")
-AlwaysBuild(upload)
+env.AddPlatformTarget("upload", target_bin, upload_actions, "Upload")
+#upload = env.Alias(["upload"], target_bin, "$UPLOADCMD")
+#AlwaysBuild(upload)
 
 #
 # Target: Define targets
