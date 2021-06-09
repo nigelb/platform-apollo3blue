@@ -46,6 +46,16 @@ linker_script = board.get("build.%s_linker_script"%upload_protocol)
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
+EEPROM_LIB_DIR = join(LIBRARY_DIR, "EEPROM", "src")
+PDM_LIB_DIR = join(LIBRARY_DIR, "PDM", "src")
+RTC_LIB_DIR = join(LIBRARY_DIR, "RTC", "src")
+SERVO_LIB_DIR = join(LIBRARY_DIR, "Servo", "src")
+SOFTWARESERIAL_LIB_DIR = join(LIBRARY_DIR, "SoftwareSerial", "src")
+SPI_LIB_DIR = join(LIBRARY_DIR, "SPI", "src")
+WIRE_LIB_DIR = join(LIBRARY_DIR, "Wire", "src")
+
+
+
 # Set paramaters for CheckUploadSize in platformio/builder/tools/pioupload.py
 env.Replace(
     SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
@@ -67,6 +77,13 @@ env.Append(
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-symbols"),
+        "-I%s"%EEPROM_LIB_DIR,
+        "-I%s"%PDM_LIB_DIR,
+        "-I%s"%RTC_LIB_DIR,
+        "-I%s"%SERVO_LIB_DIR,
+        "-I%s"%SOFTWARESERIAL_LIB_DIR,
+        "-I%s"%SPI_LIB_DIR,
+        "-I%s"%WIRE_LIB_DIR,
     ],
 
     CPPFLAGS=[
@@ -81,6 +98,13 @@ env.Append(
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-symbols"),
+        "-I%s"%EEPROM_LIB_DIR,
+        "-I%s"%PDM_LIB_DIR,
+        "-I%s"%RTC_LIB_DIR,
+        "-I%s"%SERVO_LIB_DIR,
+        "-I%s"%SOFTWARESERIAL_LIB_DIR,
+        "-I%s"%SPI_LIB_DIR,
+        "-I%s"%WIRE_LIB_DIR,
     ],
 
     CPPDEFINES=[
