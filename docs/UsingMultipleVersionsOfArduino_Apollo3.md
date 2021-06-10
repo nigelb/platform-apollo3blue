@@ -222,81 +222,81 @@ Compile project:
     Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_ctimer.c.o
     Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_debug.c.o
     Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_flash.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_global.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_gpio.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_interrupt.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_iom.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_ios.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_itm.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_mcuctrl.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_mspi.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_pdm.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_pwrctrl.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_queue.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_reset.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_rtc.c.o
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libFrameworkArduino.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libFrameworkArduino.a
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_scard.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_secure_ota.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_security.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_stimer.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_sysctrl.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_systick.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_tpiu.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_uart.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_wdt.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_devices/am_devices_button.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_devices/am_devices_led.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_ble.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_debug.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_delay.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_faultisr.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_id.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_regdump.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_stdio.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_string.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_time.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/bsp/am_bsp.c.o
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_devices.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_devices.a
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/bsp/am_bsp_pins.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/config/variant.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/startup/startup_gcc.c.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/EEPROM/EEPROM.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/PDM/PDM.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/RTC/RTC.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/Servo/Servo.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/SoftwareSerial/SoftwareSerial.cpp.o
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/SPI/SPI.cpp.o
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_utils.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_mcu.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_utils.a
-Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/Wire/Wire.cpp.o
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_mcu.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libvariant.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libvariant.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libRTC.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libRTC.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libEEPROM.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libEEPROM.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libServo.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libServo.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libWire.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libPDM.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libWire.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libPDM.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libSPI.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libSPI.a
-Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libSoftwareSerial.a
-Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libSoftwareSerial.a
-Linking .pio/build/SparkFun_RedBoard_Artemis_ATP/program
-Checking size .pio/build/SparkFun_RedBoard_Artemis_ATP/program
-Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
-RAM:   [===       ]  29.4% (used 115716 bytes from 393216 bytes)
-Flash: [          ]   0.8% (used 7404 bytes from 983040 bytes)
-arm-none-eabi-objcopy -O binary .pio/build/SparkFun_RedBoard_Artemis_ATP/program .pio/build/SparkFun_RedBoard_Artemis_ATP/firmware.bin
-======================================================================= [SUCCESS] Took 1.39 seconds =======================================================================
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_global.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_gpio.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_interrupt.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_iom.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_ios.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_itm.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_mcuctrl.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_mspi.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_pdm.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_pwrctrl.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_queue.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_reset.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_rtc.c.o
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libFrameworkArduino.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libFrameworkArduino.a
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_scard.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_secure_ota.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_security.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_stimer.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_sysctrl.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_systick.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_tpiu.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_uart.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_mcu/apollo3/hal/am_hal_wdt.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_devices/am_devices_button.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_devices/am_devices_led.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_ble.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_debug.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_delay.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_faultisr.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_id.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_regdump.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_stdio.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_string.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/apollo3_sdk_utils/am_util_time.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/bsp/am_bsp.c.o
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_devices.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_devices.a
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/bsp/am_bsp_pins.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/config/variant.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/variant/startup/startup_gcc.c.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/EEPROM/EEPROM.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/PDM/PDM.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/RTC/RTC.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/Servo/Servo.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/SoftwareSerial/SoftwareSerial.cpp.o
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/SPI/SPI.cpp.o
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_utils.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_mcu.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_utils.a
+    Compiling .pio/build/SparkFun_RedBoard_Artemis_ATP/Wire/Wire.cpp.o
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libapollo3_sdk_mcu.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libvariant.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libvariant.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libRTC.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libRTC.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libEEPROM.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libEEPROM.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libServo.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libServo.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libWire.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libPDM.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libWire.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libPDM.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libSPI.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libSPI.a
+    Archiving .pio/build/SparkFun_RedBoard_Artemis_ATP/libSoftwareSerial.a
+    Indexing .pio/build/SparkFun_RedBoard_Artemis_ATP/libSoftwareSerial.a
+    Linking .pio/build/SparkFun_RedBoard_Artemis_ATP/program
+    Checking size .pio/build/SparkFun_RedBoard_Artemis_ATP/program
+    Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+    RAM:   [===       ]  29.4% (used 115716 bytes from 393216 bytes)
+    Flash: [          ]   0.8% (used 7404 bytes from 983040 bytes)
+    arm-none-eabi-objcopy -O binary .pio/build/SparkFun_RedBoard_Artemis_ATP/program .pio/build/SparkFun_RedBoard_Artemis_ATP/firmware.bin
+    ======================================================================= [SUCCESS] Took 1.39 seconds =======================================================================
 
 
 ## Compile Project 2
