@@ -1,6 +1,6 @@
 # Using Multiple Versions of Arduino_Apollo3
 
-## Install framework-arduinoapollo3@2.1.2
+## Install framework-arduinoapollo3@2.1.0
 
 Locate your .platformio directory which it typically in your home directory:
 
