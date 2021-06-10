@@ -5,7 +5,7 @@ This is an experimantal platform to allow the use of [SparkFun's Arduino framewo
 As this is experimental, it requires a manual install.
 
 # Supported Versions of [sparkfun/Arduino_Apollo3](/sparkfun/Arduino_Apollo3)
-The master branch now supports both the Core_V2 and the Core_V1 versions. See [below](#specifying-the-version-of-sparkfunarduino_apollo3) .
+The master branch now supports both the Core_V2 and the Core_V1 versions. See [below](#specifying-the-version-of-sparkfunarduino_apollo3) or a more detailed [example](docs/UsingMultipleVersionsOfArduino_Apollo3.md).
 
 ## Install
 Locate your .platformio directory which it typically in your home directory:
