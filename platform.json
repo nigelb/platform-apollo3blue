@@ -13,18 +13,6 @@
     "url": "https://github.com/nigelb/platform-apollo3blue.git"
   },
   "version": "0.0.2",
-  "packageRepositories": [
-    "https://dl.bintray.com/platformio/dl-packages/manifest.json",
-    "http://dl.platformio.org/packages/manifest.json",
-    {
-      "framework-arduinoapollo3": [
-        {
-          "url": "https://github.com/sparkfun/Arduino_Apollo3/archive/v1.0.22_ble-beta.tar.gz",
-          "version": "1.0.22"
-        }
-      ]
-    }
-  ],
   "frameworks": {
     "arduino": {
       "package": "framework-arduinoapollo3",
