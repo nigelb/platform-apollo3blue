@@ -172,6 +172,7 @@ void loop()
 
 Compile project:
 
+    $> cd Serial_V1
     $>platformio run
     Processing SparkFun_RedBoard_Artemis_ATP (platform: apollo3blue; board: SparkFun_RedBoard_Artemis_ATP; framework: arduino)
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -303,6 +304,7 @@ Compile project:
 
 Compile project:
 
+    $> cd Serial_V2
     $> platformio run
     Processing SparkFun_RedBoard_Artemis_ATP (platform: apollo3blue; board: SparkFun_RedBoard_Artemis_ATP; framework: arduino)
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
