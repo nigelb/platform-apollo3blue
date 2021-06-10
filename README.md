@@ -90,9 +90,9 @@ Or query the platform directly:
 	Package framework-arduinoapollo3
 	--------------------------------
 	Type: framework
-	Requirements: 1.2.2
+	Requirements: 2.1.2
 	Installed: Yes
-	Version: 1.2.2
+	Version: 2.1.2
 	Original version: None
 	Description: Arduino Wiring-based Framework (Apollo3 Core)
 
