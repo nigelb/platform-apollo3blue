@@ -53,6 +53,8 @@ SERVO_LIB_DIR = join(LIBRARY_DIR, "Servo", "src")
 SOFTWARESERIAL_LIB_DIR = join(LIBRARY_DIR, "SoftwareSerial", "src")
 SPI_LIB_DIR = join(LIBRARY_DIR, "SPI", "src")
 WIRE_LIB_DIR = join(LIBRARY_DIR, "Wire", "src")
+WDT_LIB_DIR = join(LIBRARY_DIR, "WDT", "src")
+BURSTMODE_LIB_DIR = join(LIBRARY_DIR, "BurstMode", "src")
 
 
 
@@ -84,6 +86,8 @@ env.Append(
         "-I%s"%SOFTWARESERIAL_LIB_DIR,
         "-I%s"%SPI_LIB_DIR,
         "-I%s"%WIRE_LIB_DIR,
+        "-I%s"%WDT_LIB_DIR,
+        "-I%s"%BURSTMODE_LIB_DIR,
     ],
 
     CPPFLAGS=[
@@ -105,6 +109,8 @@ env.Append(
         "-I%s"%SOFTWARESERIAL_LIB_DIR,
         "-I%s"%SPI_LIB_DIR,
         "-I%s"%WIRE_LIB_DIR,
+        "-I%s"%WDT_LIB_DIR,
+        "-I%s"%BURSTMODE_LIB_DIR,
     ],
 
     CPPDEFINES=[
@@ -133,11 +139,12 @@ env.Append(
         join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
         "-Wl,--no-whole-archive",
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
-        "--specs=nano.specs",
+        "--specs=nosys.specs",
+#        "--specs=nano.specs",
 
     ],
 
-    LIBS=["stdc++", "supc++", "libmbed-os.a", "arm_cortexM4lf_math"],
+    LIBS=["stdc++", "supc++", "libmbed-os.a", "arm_cortexM4lf_math", "m"],
 
     LIBPATH=[
         join(BOARD_VARIANTS_DIR, "mbed"),
@@ -156,6 +163,12 @@ libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "mbed_bridge"),
     BRIDGE_DIR,
 ))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "core-implement"),
+    join(CORE_DIR, "sdk", "core-implement"),
+))
+
 
 # Libraries
 libs.append(env.BuildLibrary(
@@ -192,5 +205,16 @@ libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "Wire"),
     join(LIBRARY_DIR, "Wire", "src"),
 ))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "WDT"),
+    join(LIBRARY_DIR, "WDT", "src"),
+))
+
+libs.append(env.BuildLibrary(
+    join("$BUILD_DIR", "BurstMode"),
+    join(LIBRARY_DIR, "BurstMode", "src"),
+))
+
 
 env.Prepend(LIBS=libs)
