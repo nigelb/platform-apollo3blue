@@ -3,10 +3,17 @@
     "cpu": "cortex-m4",
     "f_cpu": "48000000L",
     "mcu": "AMA3B1KK",
-    "variant": "TARGET_SFE_ARTEMIS_THING_PLUS",
-    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS",
-    "asb_linker_script": "0xC000.ld",
-    "svl_linker_script": "0x10000.ld"    
+    "v2":{
+      "variant": "TARGET_SFE_ARTEMIS_THING_PLUS",
+      "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS",
+      "asb_linker_script": "0xC000.ld",
+      "svl_linker_script": "0x10000.ld"
+    },
+    "v1":{
+        "variant": "artemis_thing_plus",
+        "extra_flags": "-DAM_AP3_SFE_THING_PLUS",
+        "linker_script": "artemis_sbl_svl_app.ld"
+    }
   },
   "frameworks": [
     "arduino"
