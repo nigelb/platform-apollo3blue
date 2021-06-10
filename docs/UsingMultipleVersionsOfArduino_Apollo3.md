@@ -167,13 +167,13 @@ void loop()
 {
 };
 ```
-
+# Compile Projects
 ## Compile Project 1
 
 Compile project:
 
     $> cd Serial_V1
-    $>platformio run
+    $> platformio run
     Processing SparkFun_RedBoard_Artemis_ATP (platform: apollo3blue; board: SparkFun_RedBoard_Artemis_ATP; framework: arduino)
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Verbose mode can be enabled via `-v, --verbose` option
