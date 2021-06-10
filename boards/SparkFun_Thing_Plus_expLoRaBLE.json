@@ -15,8 +15,8 @@
   ],
   "name": "SparkFun LoRa Thing Plus - expLoRaBLE",
   "upload": {
-    "maximum_ram_size": 356352,
-    "maximum_size": 960000,
+    "maximum_ram_size": 393216,
+    "maximum_size": 983040,
     "protocol": "svl",
     "protocols": [
       "svl", "asb"
