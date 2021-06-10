@@ -36,12 +36,28 @@ upload_actions = [
     env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
 ]
 
-
 system_type = sys_pf.system().lower()
 if system_type in ["darwin"]:
     system_type = "macosx"
 
-upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, upload_protocol)
+framework_version = platform.get_package_version("framework-arduinoapollo3")
+major, minor, patch = framework_version.split(".")
+
+framework_major_version = int(major)
+framework_minor_version = int(minor)
+framework_patch_version = int(patch)
+
+if framework_major_version == 1:
+    upload_program = join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl")
+    if upload_protocol != "svl":
+        sys.stderr.write("Error: Upload protocol %s is not supported on Core V1\n")
+        env.Exit(1)
+elif framework_major_version == 2:
+    upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, upload_protocol)
+else:
+    sys.stderr.write("Error: cannot determine the uploader program\n")
+    env.Exit(1)
+
 if  system_type == "windows":
     upload_program += ".exe"
 
@@ -54,7 +70,7 @@ if upload_protocol == "svl":
 
     if upload_speed not in valid_svl_baud:
         sys.stderr.write(
-            "Error: Invalid SVL baud rate specified: {}. \r\nSelect one of: {}\r\n".format(upload_speed, valid_svl_baud)
+            "Error: Invalid SVL baud rate specified: {}. \nSelect one of: {}\n".format(upload_speed, valid_svl_baud)
         )
         env.Exit(1)
         
@@ -75,7 +91,7 @@ elif upload_protocol == "asb":
 
     if upload_speed not in valid_asb_baud:
         sys.stderr.write(
-            "Error: Invalid ASB baud rate specified: {}. \r\n Select one of: {}\r\n".format(upload_speed, valid_asb_baud)
+            "Error: Invalid ASB baud rate specified: {}. \n Select one of: {}\n".format(upload_speed, valid_asb_baud)
         )
         env.Exit(1)
 
