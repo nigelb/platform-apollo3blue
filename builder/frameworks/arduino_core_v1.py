@@ -22,6 +22,8 @@ platform = env.PioPlatform()
 board = env.BoardConfig()
 build_mcu = env.get("BOARD_MCU", board.get("build.mcu", ""))
 
+env.ProcessFlags(board.get("build.v1.extra_flags"))
+
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
@@ -33,7 +35,7 @@ EXACTLE_DIR = join(THIRD_PARTY_DIR, "exactle")
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
-BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant"))
+BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.v1.variant"))
 
 env.Append(
     ASFLAGS=[
@@ -71,6 +73,9 @@ env.Append(
     CPPDEFINES=[
         ("F_CPU", "$BOARD_F_CPU"),
         ("ARDUINO", "10809"),
+        "AM_PACKAGE_BGA",
+        "AM_PART_APOLLO3",
+        "PART_apollo3"
     ],
 
     CPPPATH=[
@@ -79,7 +84,7 @@ env.Append(
         join(CORE_DIR, "ard_sup"),
         join(CORE_DIR, "ard_sup", "ard_supers"),
         join(CORE_DIR),
-        join(VARIANTS_DIR, board.get("build.variant")),
+        join(VARIANTS_DIR, board.get("build.v1.variant")),
         join(SDK_DIR, "mcu", "apollo3"),
         join(SDK_DIR, "mcu", "apollo3", "hal"),
         join(SDK_DIR, "mcu", "apollo3", "regs"),
@@ -119,7 +124,7 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-T%s" % join(VARIANTS_DIR, board.get("build.variant"), "linker_scripts", "gcc", board.get("build.linker_script")),
+        "-T%s" % join(VARIANTS_DIR, board.get("build.v1.variant"), "linker_scripts", "gcc", board.get("build.v1.linker_script")),
         # "-Os",
         "-mthumb",
         "-mcpu=%s" % board.get("build.cpu"),
@@ -142,7 +147,7 @@ env.Append(
     LIBS=["m", "arm_cortexM4lf_math", "gcc", "stdc++", "nosys", "c"],
 
     LIBPATH=[
-        join(VARIANTS_DIR, board.get("build.variant")),
+        join(VARIANTS_DIR, board.get("build.v1.variant")),
         join(CMSIS_DIR, "ARM", "Lib", "ARM")
     ]
 )

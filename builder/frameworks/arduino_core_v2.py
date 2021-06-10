@@ -22,6 +22,8 @@ platform = env.PioPlatform()
 board = env.BoardConfig()
 build_mcu = env.get("BOARD_MCU", board.get("build.mcu", ""))
 
+env.ProcessFlags(board.get("build.v2.extra_flags"))
+
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
@@ -31,18 +33,16 @@ MBED_DIR = join(FRAMEWORK_DIR, "cores", "mbed-os")
 BRIDGE_DIR = join(CORE_DIR, "mbed-bridge") 
 TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "TARGET_Apollo3")
 SDK_DIR    = join(TARGETS_DIR, "sdk")
-#SDK_TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "sdk")
 CMSIS_DIR = join(SDK_DIR, "CMSIS") 
 
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
-BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.variant").replace("TARGET_", "", 1))
-#BOARD_TARGET_DIR = join(TARGETS_DIR, board.get("build.variant"))
+BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.v2.variant").replace("TARGET_", "", 1))
 
 
 upload_protocol = board.get("upload.protocol")
-linker_script = board.get("build.%s_linker_script"%upload_protocol)
+linker_script = board.get("build.v2.%s_linker_script"%upload_protocol)
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
