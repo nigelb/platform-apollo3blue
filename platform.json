@@ -27,7 +27,12 @@
     "framework-arduinoapollo3": {
       "type": "framework",
       "optional": true,
-      "version": ">=2.0.0"
+      "version": "1.2.2"
+    },
+    "framework-arduinoapollo3": {
+      "type": "framework",
+      "optional": true,
+      "version": "2.1.0"
     }
   }
 }
