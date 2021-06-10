@@ -21,6 +21,7 @@ import sys
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
+board = env.BoardConfig()
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
 
@@ -40,12 +41,24 @@ script_fn = None
 if major == 1:
     script_fn = join(builder_dir, "arduino_core_v1.py")
     scriptname = "arduino_core_v1"
+    try:
+        board.get("build.v1")
+    except:
+        sys.stderr.write('Error: Board: "%s" not supported by Arduino_Apollo3-%s\n'%(board.get("name"), framework_version))
+        env.Exit(1)
 elif major == 2:
     script_fn = join(builder_dir, "arduino_core_v2.py")
     scriptname = "arduino_core_v2"
+    try:
+        board.get("build.v2")
+    except:
+        sys.stderr.write('Error: Board: "%s" not supported by Arduino_Apollo3-%s\n'%(board.get("name"), framework_version))
+        env.Exit(1)
+
+
 
 if script_fn is None:
-    sys.stderr.write("Error: Builder script count not be found\r\n")
+    sys.stderr.write("Error: Builder script count not be found\n")
     env.Exit(1)
 
 with open(script_fn, "r") as script_in:
