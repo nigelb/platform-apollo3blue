@@ -1,6 +1,6 @@
 # Using Multiple Versions of Arduino_Apollo3
 
-## Install framework-arduinoapollo3@2.1.2
+## Install framework-arduinoapollo3@2.1.0
 
 Locate your .platformio directory which it typically in your home directory:
 
@@ -167,13 +167,13 @@ void loop()
 {
 };
 ```
-
+# Compile Projects
 ## Compile Project 1
 
 Compile project:
 
     $> cd Serial_V1
-    $>platformio run
+    $> platformio run
     Processing SparkFun_RedBoard_Artemis_ATP (platform: apollo3blue; board: SparkFun_RedBoard_Artemis_ATP; framework: arduino)
     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     Verbose mode can be enabled via `-v, --verbose` option
