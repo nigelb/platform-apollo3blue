@@ -17,7 +17,10 @@
                 }
             },
             "ambiqsdk_sfe": {
-                "variant": "['boards_sfe', 'artemis_thing_plus']",
+                "variant": [
+                    "boards_sfe",
+                    "artemis_thing_plus"
+                ],
                 "extra_flags": ""
             }
         }

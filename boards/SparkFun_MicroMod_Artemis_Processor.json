@@ -19,8 +19,7 @@
         }
     },
     "frameworks": [
-        "arduino",
-        "ambiqsdk-sfe"
+        "arduino"
     ],
     "name": "SparkFun MicroMod Artemis Processor",
     "upload": {

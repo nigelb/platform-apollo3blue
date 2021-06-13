@@ -15,8 +15,7 @@
         }
     },
     "frameworks": [
-        "arduino",
-        "ambiqsdk-sfe"
+        "arduino"
     ],
     "name": "SparkFun LoRa Thing Plus - expLoRaBLE",
     "upload": {
