@@ -22,7 +22,7 @@ platform = env.PioPlatform()
 board = env.BoardConfig()
 build_mcu = env.get("BOARD_MCU", board.get("build.mcu", ""))
 
-env.ProcessFlags(board.get("build.v2.extra_flags"))
+env.ProcessFlags(board.get("build.framework.arduino.v2.extra_flags"))
 
 FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
 assert isdir(FRAMEWORK_DIR)
@@ -38,11 +38,15 @@ CMSIS_DIR = join(SDK_DIR, "CMSIS")
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
-BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.v2.variant").replace("TARGET_", "", 1))
+BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v2.variant").replace("TARGET_", "", 1))
 
-
-upload_protocol = board.get("upload.protocol")
-linker_script = board.get("build.v2.%s_linker_script"%upload_protocol)
+linker_scripts = {
+    "asb": "0xC000.ld",
+    "svl": "0x10000.ld"
+}
+#upload_protocol = board.get("upload.protocol")
+upload_protocol = env.subst("$UPLOAD_PROTOCOL")
+linker_script = linker_scripts[upload_protocol]
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
@@ -118,7 +122,6 @@ env.Append(
         ("ARDUINO", "10811"),
         "ARDUINO_ARCH_APOLLO3"
         "ARDUINO_ARCH_MBED",
-        "ARDUINO_ARCH_APOLLO3",
         "MBED_NO_GLOBAL_USING_DIRECTIVE",
         "CORDIO_ZERO_COPY_HCI",
     ] ,
