@@ -1,27 +1,33 @@
 {
-  "build": {
-    "cpu": "cortex-m4",
-    "f_cpu": "48000000L",
-    "mcu": "AMA3B1KK",
-    "v2":{
-      "variant": "LoRa_THING_PLUS_expLoRaBLE",
-      "extra_flags": "-DARDUINO_AM_AP3_THING_PLUS_expLoRaBLE",
-      "asb_linker_script": "0xC000.ld",
-      "svl_linker_script": "0x10000.ld"
-    }
-  },
-  "frameworks": [
-    "arduino"
-  ],
-  "name": "SparkFun LoRa Thing Plus - expLoRaBLE",
-  "upload": {
-    "maximum_ram_size": 393216,
-    "maximum_size": 983040,
-    "protocol": "svl",
-    "protocols": [
-      "svl", "asb"
-    ]
-  },
-  "url": "https://www.sparkfun.com/products/17506",
-  "vendor": "SparkFun"
+    "build": {
+        "cpu": "cortex-m4",
+        "f_cpu": "48000000L",
+        "mcu": "AMA3B1KK",
+        "part": "apollo3",
+        "fabi": "hard",
+        "framework": {
+            "arduino": {
+                "v2": {
+                    "variant": "TARGET_LoRa_THING_PLUS_expLoRaBLE",
+                    "extra_flags": "-DARDUINO_AM_AP3_THING_PLUS_expLoRaBLE"
+                }
+            }
+        }
+    },
+    "frameworks": [
+        "arduino",
+        "ambiqsdk-sfe"
+    ],
+    "name": "SparkFun LoRa Thing Plus - expLoRaBLE",
+    "upload": {
+        "maximum_ram_size": 393216,
+        "maximum_size": 983040,
+        "protocol": "svl",
+        "protocols": [
+            "svl",
+            "asb"
+        ]
+    },
+    "url": "https://www.sparkfun.com/products/17506",
+    "vendor": "SparkFun"
 }

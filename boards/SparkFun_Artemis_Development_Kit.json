@@ -1,32 +1,41 @@
 {
-  "build": {
-    "cpu": "cortex-m4",
-    "f_cpu": "48000000L",
-    "mcu": "AMA3B1KK",
-    "v2":{
-      "variant": "TARGET_SFE_ARTEMIS_DK",
-      "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK",
-      "asb_linker_script": "0xC000.ld",
-      "svl_linker_script": "0x10000.ld"
+    "build": {
+        "cpu": "cortex-m4",
+        "f_cpu": "48000000L",
+        "mcu": "AMA3B1KK",
+        "part": "apollo3",
+        "fabi": "hard",
+        "framework": {
+            "arduino": {
+                "v1": {
+                    "variant": "artemis_dk",
+                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_DK"
+                },
+                "v2": {
+                    "variant": "TARGET_SFE_ARTEMIS_DK",
+                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK"
+                }
+            },
+            "ambiqsdk_sfe": {
+                "variant": "['boards_sfe', 'artemis_dk']",
+                "extra_flags": ""
+            }
+        }
     },
-    "v1":{
-        "variant": "artemis_dk",
-        "extra_flags": "-DAM_AP3_SFE_ARTEMIS_DK",
-        "linker_script": "artemis_sbl_svl_app.ld"
-    }
-  },
-  "frameworks": [
-    "arduino"
-  ],
-  "name": "SparkFun Artemis Development Kit",
-  "upload": {
-    "maximum_ram_size": 393216,
-    "maximum_size": 983040,
-    "protocol": "svl",
-    "protocols": [
-      "svl", "asb"
-    ]
-  },
-  "url": "https://www.sparkfun.com/products/16828",
-  "vendor": "SparkFun"
+    "frameworks": [
+        "arduino",
+        "ambiqsdk-sfe"
+    ],
+    "name": "SparkFun Artemis Development Kit",
+    "upload": {
+        "maximum_ram_size": 393216,
+        "maximum_size": 983040,
+        "protocol": "svl",
+        "protocols": [
+            "svl",
+            "asb"
+        ]
+    },
+    "url": "https://www.sparkfun.com/products/16828",
+    "vendor": "SparkFun"
 }
