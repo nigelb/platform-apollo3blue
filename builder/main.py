@@ -21,10 +21,7 @@ import platform as sys_pf
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
-
-upload_protocol = env.subst("$UPLOAD_PROTOCOL")
-FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
-assert isdir(FRAMEWORK_DIR)
+board = env.BoardConfig()
 
 def BeforeUpload(target, source, env):
     upload_port = env.subst("$UPLOAD_PORT")
@@ -36,33 +33,13 @@ upload_actions = [
     env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
 ]
 
-system_type = sys_pf.system().lower()
-if system_type in ["darwin"]:
-    system_type = "macosx"
-
-framework_version = platform.get_package_version("framework-arduinoapollo3")
-major, minor, patch = framework_version.split(".")
-
-framework_major_version = int(major)
-framework_minor_version = int(minor)
-framework_patch_version = int(patch)
-
-if framework_major_version == 1:
-    upload_program = join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl")
-    if upload_protocol != "svl":
-        sys.stderr.write("Error: Upload protocol %s is not supported on Core V1\n")
-        env.Exit(1)
-elif framework_major_version == 2:
-    upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, upload_protocol)
-else:
-    sys.stderr.write("Error: cannot determine the uploader program\n")
-    env.Exit(1)
-
-if  system_type == "windows":
-    upload_program += ".exe"
-
+#
+#
+#
+upload_flags = []
+upload_protocol = env.subst("$UPLOAD_PROTOCOL")
+upload_speed = env.subst("$UPLOAD_SPEED")
 if upload_protocol == "svl":
-    upload_speed = env.subst("$UPLOAD_SPEED")
     if len(upload_speed) == 0:
         upload_speed = "921600"
 
@@ -73,14 +50,7 @@ if upload_protocol == "svl":
             "Error: Invalid SVL baud rate specified: {}. \nSelect one of: {}\n".format(upload_speed, valid_svl_baud)
         )
         env.Exit(1)
-        
-
-    uploader_flags=[
-        "$UPLOAD_PORT",
-        "-b", upload_speed,
-        "-f", "$SOURCES",
-        "-v",
-    ]
+    upload_flags = ["$UPLOAD_PORT", "-b", "$UPLOAD_SPEED", "-f", "$SOURCES", "-v"],
 
 elif upload_protocol == "asb":
     upload_speed = env.subst("$UPLOAD_SPEED")
@@ -91,24 +61,27 @@ elif upload_protocol == "asb":
 
     if upload_speed not in valid_asb_baud:
         sys.stderr.write(
-            "Error: Invalid ASB baud rate specified: {}. \n Select one of: {}\n".format(upload_speed, valid_asb_baud)
+            "Error: Invalid ASB baud rate specified: {}. \n Select one of: {}\n".format(upload_speed,
+                                                                                        valid_asb_baud)
         )
         env.Exit(1)
+    upload_flags = [
+            "--bin", "$SOURCES",
+            "--load-address-blob", "0x20000",
+            "--magic-num", "0xCB",
+            "-o", "${SOURCES}.ASB",
+            "--version", "0x0",
+            "--load-address-wired", "0xC000",
+            "-i", "6",
+            "--options", "0x1",
+            "-b", "$UPLOAD_SPEED",
+            "-port", "$UPLOAD_PORT", "-r", "2", "-v"]
+else:
+    sys.stderr.write("Error: Unknown Upload Protocol: {}. \nSelect one of: {}\n".format(upload_protocol, board.get(
+        "upload.protocols")))
+    env.Exit(1)
 
-    uploader_flags=[
-        "--bin", "$SOURCES",
-        "--load-address-blob", "0x20000", 
-        "--magic-num", "0xCB", 
-        "-o", "${SOURCES}",
-        "--version", "0x0", 
-        "--load-address-wired", "0xC000", 
-        "-i", "6", 
-        "--options", "0x1", 
-        "-b", upload_speed, 
-        "-port", "$UPLOAD_PORT", "-r", "2", "-v"
-    ]
 
-    
 # A full list with the available variables
 # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
 env.Replace(
@@ -123,8 +96,8 @@ env.Replace(
 
     ARFLAGS=["rc"],
 
-    UPLOADER=upload_program,
-    UPLOADERFLAGS=uploader_flags,
+    UPLOADERFLAGS = upload_flags,
+    UPLOAD_SPEED=upload_speed,
     UPLOADCMD="$UPLOADER $UPLOADERFLAGS"
 )
 
@@ -134,7 +107,7 @@ env.Append(
     CCFLAGS=[],
     CXXFLAGS=[],
     LINKFLAGS=[],
-    CPPDEFINES=[ "ARDUINO_ARCH_APOLLO3"],
+    CPPDEFINES=[],
     LIBS=[],
     BUILDERS=dict(
         ElfToBin=Builder(
@@ -162,10 +135,8 @@ target_bin = env.ElfToBin(join("$BUILD_DIR", "firmware"), target_elf)
 #
 # Target: Upload firmware
 #
-env.AddPlatformTarget("upload", target_bin, upload_actions, "Upload")
-#upload = env.Alias(["upload"], target_bin, "$UPLOADCMD")
-#AlwaysBuild(upload)
-
+upload = env.AddPlatformTarget("upload", target_bin, upload_actions, "Upload")
+env.AlwaysBuild(upload)
 #
 # Target: Define targets
 #

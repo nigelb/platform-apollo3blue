@@ -17,6 +17,10 @@
     "arduino": {
       "package": "framework-arduinoapollo3",
       "script": "builder/frameworks/arduino.py"
+    },
+    "ambiqsdk-sfe": {
+      "package": "framework-ambiqsuitesdkapollo3-sfe",
+      "script": "builder/frameworks/ambiqsuitesdk-sfe.py"
     }
   },
   "packages": {
@@ -27,12 +31,12 @@
     "framework-arduinoapollo3": {
       "type": "framework",
       "optional": true,
-      "version": "1.2.2"
+      "version": "2.1.0"
     },
-    "framework-arduinoapollo3": {
+    "framework-ambiqsuitesdkapollo3-sfe": {
       "type": "framework",
       "optional": true,
-      "version": "2.1.0"
+      "version": "2.4.2"
     }
   }
 }
