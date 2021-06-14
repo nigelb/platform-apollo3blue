@@ -60,9 +60,7 @@ def configure_base_arduino_environment(env, platform, board):
     FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
     assert isdir(FRAMEWORK_DIR)
 
-    system_type = sys_pf.system().lower()
-    if system_type in ["darwin"]:
-        system_type = "macosx"
+    system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 
     framework_version = platform.get_package_version("framework-arduinoapollo3")
     major, minor, patch = framework_version.split(".")

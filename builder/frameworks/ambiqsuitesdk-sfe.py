@@ -37,9 +37,7 @@ MCU_DIR               = join(FRAMEWORK_DIR, "mcu", board.get("build.part"))
 
 TOOLS_DIR             = join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe")
 
-system_type = sys_pf.system().lower()
-if system_type in ["darwin"]:
-    system_type = "macosx"
+system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 uploader = join(TOOLS_DIR, upload_protocol, "dist", system_type, upload_protocol)
