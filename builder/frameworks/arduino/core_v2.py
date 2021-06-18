@@ -42,11 +42,14 @@ BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v2.va
 
 linker_scripts = {
     "asb": "0xC000.ld",
-    "svl": "0x10000.ld"
+    "svl": "0x10000.ld",
+    "jlink": "0x10000.ld",
 }
 #upload_protocol = board.get("upload.protocol")
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 linker_script = linker_scripts[upload_protocol]
+
+if upload_protocol == "jlink": upload_protocol = "svl"
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
@@ -138,7 +141,8 @@ env.Append(
         "-T%s" % join(TOOLS_DIR, "uploaders", upload_protocol, linker_script),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-symbols"),
-        "-Wl,--no-whole-archive", "-Wl,--whole-archive",
+        # "-Wl,--no-whole-archive",
+        "-Wl,--whole-archive",
         join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
         "-Wl,--no-whole-archive",
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),

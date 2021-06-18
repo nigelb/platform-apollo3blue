@@ -14,9 +14,10 @@
 # limitations under the License.
 
 import sys
+import os
 from os.path import join, isdir
 from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
-import platform as sys_pf
+from platform import system
 
 
 env = DefaultEnvironment()
@@ -76,6 +77,48 @@ elif upload_protocol == "asb":
             "--options", "0x1",
             "-b", "$UPLOAD_SPEED",
             "-port", "$UPLOAD_PORT", "-r", "2", "-v"]
+
+elif upload_protocol.startswith("jlink"):
+    # ------------------START------------------------
+    # Code segment borrowed and modified from:
+    # https://github.com/platformio/platform-atmelsam/blob/798b40a14807e2e9874b2f39c50b0b89781d29ae/builder/main.py#L179
+    #
+    # The original code (as well as this project) is distributed under
+    # an Apache2.0 License: https://www.apache.org/licenses/LICENSE-2.0.html
+    def __jlink_cmd_script(env, source):
+        build_dir = env.subst("$BUILD_DIR")
+        if not isdir(build_dir):
+            os.makedirs(build_dir)
+        script_path = join(build_dir, "upload.jlink")
+        commands = [
+            "h",
+            "loadbin %s, %s" % (source, board.get(
+                "upload.jlink_offset_address")),
+            "r",
+            "q"
+        ]
+        with open(script_path, "w") as fp:
+            fp.write("\n".join(commands))
+        return script_path
+
+    UPLOADER="JLinkExe"
+    debug = board.get("debug", {})
+    if system() == "Windows":
+        UPLOADER+=".exe"
+    upload_flags = [
+        "-device", debug.get("jlink_device"),
+        "-speed", "4000",
+        "-if", "swd",
+        "-autoconnect", "1",
+        "-CommanderScript", '"${__jlink_cmd_script(__env__, SOURCE)}"'
+    ]
+    env.Replace(
+        __jlink_cmd_script=__jlink_cmd_script,
+        UPLOADER=join(platform.get_package_dir("tool-jlink"), UPLOADER)
+    )
+    # -------------------END-------------------------
+
+
 else:
     sys.stderr.write("Error: Unknown Upload Protocol: {}. \nSelect one of: {}\n".format(upload_protocol, board.get(
         "upload.protocols")))
@@ -136,8 +179,7 @@ target_bin = env.ElfToBin(join("$BUILD_DIR", "firmware"), target_elf)
 # Target: Upload firmware
 #
 upload = env.AddPlatformTarget("upload", target_bin, upload_actions, "Upload")
-env.AlwaysBuild(upload)
 #
 # Target: Define targets
 #
-Default(target_bin)
+Default([target_bin, upload])

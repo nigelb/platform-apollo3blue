@@ -26,6 +26,7 @@
   "packages": {
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
+      "optional": false,
       "version": ">=1.9"
     },
     "framework-arduinoapollo3": {
@@ -37,6 +38,12 @@
       "type": "framework",
       "optional": true,
       "version": "2.4.2"
+    },
+    "tool-jlink": {
+      "type": "uploader",
+      "optional": true,
+      "owner": "platformio",
+      "version": "^1.63208.0"
     }
   }
 }

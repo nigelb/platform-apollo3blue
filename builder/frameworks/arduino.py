@@ -69,25 +69,29 @@ def configure_base_arduino_environment(env, platform, board):
     framework_minor_version = int(minor)
     framework_patch_version = int(patch)
 
-    upload_program = ""
+    if upload_protocol in ["svl", "asb"]:
+        upload_program = None
 
-    if framework_major_version == 1:
-        if upload_protocol == "svl":
-            upload_program = join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl")
-        elif upload_protocol == "asb":
-            upload_program = join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board")
-        #if upload_protocol != "svl":
-        #    sys.stderr.write("Error: Upload protocol %s is not supported on Core V1\n")
-        #    env.Exit(1)
-    elif framework_major_version == 2:
-        upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type,
-                              upload_protocol)
-    else:
-        sys.stderr.write("Error: cannot determine the uploader program\n")
-        env.Exit(1)
+        if framework_major_version == 1:
+            if upload_protocol == "svl":
+                upload_program = join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl")
+            elif upload_protocol == "asb":
+                upload_program = join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board")
+            #if upload_protocol != "svl":
+            #    sys.stderr.write("Error: Upload protocol %s is not supported on Core V1\n")
+            #    env.Exit(1)
+        elif framework_major_version == 2:
+            if upload_protocol in ["svl", "asb"]:
+                upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type,
+                                  upload_protocol)
+        else:
+            sys.stderr.write("Error: cannot determine the uploader program\n")
+            env.Exit(1)
 
-    if system_type == "windows":
-        upload_program += ".exe"
+        if system_type == "windows":
+            upload_program += ".exe"
+
+        env.Replace(UPLOADER=upload_program)
 
     # A full list with the available variables
     # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
@@ -103,7 +107,6 @@ def configure_base_arduino_environment(env, platform, board):
 
         ARFLAGS=["rc"],
 
-        UPLOADER=upload_program,
     )
 
 
