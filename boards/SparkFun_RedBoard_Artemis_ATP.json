@@ -16,7 +16,7 @@
                     "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_ATP"
                 }
             },
-            "ambiqsdk_sfe": {
+            "ambiqsdk-sfe": {
                 "variant": [
                     "boards_sfe",
                     "redboard_artemis_atp"

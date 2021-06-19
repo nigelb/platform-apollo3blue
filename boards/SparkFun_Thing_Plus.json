@@ -16,7 +16,7 @@
                     "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS"
                 }
             },
-            "ambiqsdk_sfe": {
+            "ambiqsdk-sfe": {
                 "variant": [
                     "boards_sfe",
                     "artemis_thing_plus"

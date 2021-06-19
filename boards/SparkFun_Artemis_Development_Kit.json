@@ -16,7 +16,7 @@
                     "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK"
                 }
             },
-            "ambiqsdk_sfe": {
+            "ambiqsdk-sfe": {
                 "variant": [
                     "boards_sfe",
                     "artemis_dk"

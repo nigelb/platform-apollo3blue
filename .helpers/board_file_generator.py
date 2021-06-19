@@ -79,8 +79,8 @@ sub_templates = {
         'template': arduino_v2,
         'fields': ['arduino_v2_variant', 'arduino_v2_extra_flags']
     },
-    "ambiqsdk_sfe": {
-        'path': "build/framework/ambiqsdk_sfe",
+    "ambiqsdk-sfe": {
+        'path': "build/framework/ambiqsdk-sfe",
         'template': ambiqsdk_sfe,
         'fields': ['ambiq_variant', 'ambiq_extra_flags']
     }
