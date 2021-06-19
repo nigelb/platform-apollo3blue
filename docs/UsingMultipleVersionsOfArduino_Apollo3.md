@@ -10,7 +10,7 @@ Locate your .platformio directory which it typically in your home directory:
     ~/.platformio/packages> tar -xzf Arduino_Apollo3.tar.gz
     ~/.platformio/packages> mv Arduino_Apollo3 framework-arduinoapollo3@2.1.0
 
-Create a the file `~/.platformio/packages/framework-arduinoapollo3@2.1.2/package.json` with the following contents:
+Create the file `~/.platformio/packages/framework-arduinoapollo3@2.1.2/package.json` with the following contents:
 ```json
 {
     "name": "framework-arduinoapollo3",
