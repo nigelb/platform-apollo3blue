@@ -6,9 +6,11 @@ Locate your .platformio directory which it typically in your home directory:
 
     $> cd ~/.platformio
     ~/.platformio> cd packages
-    ~/.platformio> wget https://github.com/sparkfun/AmbiqSuiteSDK/archive/refs/tags/v2.5.1.zip
-    ~/.platformio> unzip v2.5.1.zip
-    ~/.platformio> mv AmbiqSuiteSDK-2.5.1 framework-ambiqsuitesdkapollo3@2.5.1
+    ~/.platformio> git clone https://github.com/sparkfun/AmbiqSuiteSDK.git framework-ambiqsuitesdkapollo3-sfe@2.4.2
+    ~/.platformio> cd framework-ambiqsuitesdkapollo3-sfe@2.4.2
+    ~/.platformio> git checkout 2.4.2-sfe
+    ~/.platformio> git submodule init 
+    ~/.platformio> git submodule update --init --recursive 
 
 Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/package.json` with the following contents:
 
@@ -16,7 +18,7 @@ Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/pac
 {
     "name": "framework-ambiqsuitesdkapollo3-sfe",
     "description": "SparkFun's AmbiqSuiteSDK repository.",
-    "version": "2.5.1",
+    "version": "2.4.2",
     "url": "https://github.com/sparkfun/AmbiqSuiteSDK"
 }
 ```
@@ -42,7 +44,18 @@ Project has been successfully initialized! Useful commands:
 `pio run --help` - additional information
 ```
 
-Add `platform_packages = framework-ambiqsuitesdkapollo3@2.5.1` to `platformio.ini`
+Add the following to `platformio.ini`
+```ini
+framework = ambiqsdk-sfe
+platform_packages = framework-ambiqsuitesdkapollo3-sfe@2.4.2
+```
+
+Copy the blinky example into the src directory:
+```bash
+$> cp ~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/boards_sfe/common/examples/blinky/main.c src/
+```
+
+
 
 
 
