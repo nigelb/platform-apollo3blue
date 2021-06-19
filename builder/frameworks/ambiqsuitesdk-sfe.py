@@ -40,16 +40,19 @@ TOOLS_DIR             = join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe")
 system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
-uploader = join(TOOLS_DIR, upload_protocol, "dist", system_type, upload_protocol)
+if not upload_protocol.startswith("jlink"):
+    uploader = join(TOOLS_DIR, upload_protocol, "dist", system_type, upload_protocol)
+    if system_type == "windows":
+        uploader += ".exe"
+    env.Replace(
+        UPLOADER=uploader,
+    )
 
-if system_type == "windows":
-    uploader += ".exe"
 
 env.Replace(
     SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
     SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
     SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
-    UPLOADER=uploader,
 )
 
 env.Append(
