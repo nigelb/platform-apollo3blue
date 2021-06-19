@@ -18,25 +18,54 @@ import os
 from os.path import join, isdir
 from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
 from platform import system
-
+from platformio.project.config import ProjectOptions
 
 env = DefaultEnvironment()
-platform = env.PioPlatform()
-board = env.BoardConfig()
 
+# The Apollo3bluePlatform object from this projects platform.py file.
+platform_apollo3blue = env.PioPlatform()
+
+currently_configured_board = env.BoardConfig()
+
+# The project configuration, derived from the projects platform.ini file.
+project_config = env.GetProjectConfig()
+
+# A list of all of the specified build targets
+all_build_targets = BUILD_TARGETS
+
+# The currently building build target
+build_type = env.GetBuildType()
+
+# The env:<NAME> from the projects platformio.ini file
+build_environment = env["PIOENV"]
+
+# The options specified in the `build_environment` section of the platform.ini file.
+options = env.GetProjectOptions()
+
+# I have found that using the debug_build_flags defaults of
+# ["-Og", "-g2", "-ggdb2"] produces some serious
+# "Spooky Action At A Distance", specifically the "-Og" flag.
+# It seems to happen when calling functions in libmbed-os.a,
+# which has not been compiled with the "-Og". So we clear
+# out the default values of debug_build_flags and set it to "-g".
+debug_build_flags = ProjectOptions.get("env.debug_build_flags")
+debug_build_flags.default.clear()
+debug_build_flags.default.append("-g")
+
+
+# This lets us run the auto-port-detect to find an upload port
+# just before we issue the upload command.
 def BeforeUpload(target, source, env):
     upload_port = env.subst("$UPLOAD_PORT")
     if len(upload_port) == 0:
         env.AutodetectUploadPort()
+
 
 upload_actions = [
     env.VerboseAction(BeforeUpload, "Looking for upload port..."),
     env.VerboseAction("$UPLOADCMD", "Uploading $SOURCE"),
 ]
 
-#
-#
-#
 upload_flags = []
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 upload_speed = env.subst("$UPLOAD_SPEED")
@@ -92,7 +121,7 @@ elif upload_protocol.startswith("jlink"):
         script_path = join(build_dir, "upload.jlink")
         commands = [
             "h",
-            "loadbin %s, %s" % (source, board.get(
+            "loadbin %s, %s" % (source, currently_configured_board.get(
                 "upload.jlink_offset_address")),
             "r",
             "q"
@@ -102,7 +131,7 @@ elif upload_protocol.startswith("jlink"):
         return script_path
 
     UPLOADER="JLinkExe"
-    debug = board.get("debug", {})
+    debug = currently_configured_board.get("debug", {})
     if system() == "Windows":
         UPLOADER+=".exe"
     upload_flags = [
@@ -114,14 +143,15 @@ elif upload_protocol.startswith("jlink"):
     ]
     env.Replace(
         __jlink_cmd_script=__jlink_cmd_script,
-        UPLOADER=join(platform.get_package_dir("tool-jlink"), UPLOADER)
+        UPLOADER=join(platform_apollo3blue.get_package_dir("tool-jlink"), UPLOADER)
     )
     # -------------------END-------------------------
 
 
 else:
-    sys.stderr.write("Error: Unknown Upload Protocol: {}. \nSelect one of: {}\n".format(upload_protocol, board.get(
-        "upload.protocols")))
+    sys.stderr.write("Error: Unknown Upload Protocol: {}. \nSelect one of: {}\n".format(
+        upload_protocol,
+        currently_configured_board.get("upload.protocols")))
     env.Exit(1)
 
 
@@ -138,7 +168,6 @@ env.Replace(
     SIZETOOL="arm-none-eabi-size",
 
     ARFLAGS=["rc"],
-
     UPLOADERFLAGS = upload_flags,
     UPLOAD_SPEED=upload_speed,
     UPLOADCMD="$UPLOADER $UPLOADERFLAGS"
