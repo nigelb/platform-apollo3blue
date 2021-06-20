@@ -4,10 +4,9 @@ This is an experimental platform to allow the use of [SparkFun's Arduino framewo
 # How To Use This
 As this is experimental, it requires a manual install.
 
-# Supported Versions of [sparkfun/Arduino_Apollo3](/sparkfun/Arduino_Apollo3)
-The master branch now supports both the Core_V2 and the Core_V1 versions. 
+# Supported Frameworks
 
-platform-apollo3blue now supports the following 
+Platform-apollo3blue now supports the following: 
 
 1. Frameworks:
     * Arduino - [sparkfun/Arduino_Apollo3](https://github.com/sparkfun/Arduino_Apollo3)
