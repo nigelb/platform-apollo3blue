@@ -1,7 +1,7 @@
 # Using a SEGGER JLink with platform-apollo3
 With platform-apollo3 you can use your SEGGER JLink to both upload your firmware to your device and as a debugger.
 
-#Upload Firmware
+# Upload Firmware
 To use your SEGGER JLink to upload your firmware to your apollo3 device you need to add `upload_protocol = jlink` to your projects `platformio.ini` file
 
 For example from this:
@@ -43,7 +43,7 @@ platform_packages = framework-arduinoapollo3@2.1.0
 upload_protocol = jlink
 ```
 
-Then, once we have connected our SEGGER JLink to our board, we can upload the firmware:
+Once we have connected our SEGGER JLink to our board, we can upload the firmware:
 ```
 $> platformio run 
 Processing SparkFun_RedBoard_Artemis_ATP (platform: apollo3blue; board: SparkFun_RedBoard_Artemis_ATP; framework: arduino)
@@ -220,7 +220,7 @@ Script processing completed.
 en
 ```
 
-#Debug Firmware
+# Debug Firmware
 We need to add `debug_tool = jlink` to our `platformio.ini` file, so that this:
 ```ini
 ; PlatformIO Project Configuration File
