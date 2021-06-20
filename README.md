@@ -16,8 +16,8 @@ platform-apollo3blue now supports the following
     * Ambiq Suit SDK - [sparkfun/AmbiqSuiteSDK](https://github.com/sparkfun/AmbiqSuiteSDK.git)
 2. Tools:
     * Segger [JLink](https://www.segger.com/products/debug-probes/j-link/) or [platformio](https://docs.platformio.org/en/latest/plus/debug-tools/jlink.html)
-        * [Upload protocol](docs/platform-apollp3blue/UsingSeggerJLink.md#upload-firmware) 
-        * [Debugger](docs/platform-apollp3blue/UsingSeggerJLink.md#debug-firmware)
+        * [Upload protocol](docs/platform-apollp3blue/docs/platform-apollo3blue/UsingSeggerJLink.md#upload-firmware) 
+        * [Debugger](docs/platform-apollp3blue/docs/platform-apollo3blue/UsingSeggerJLink.md#debug-firmware)
 
 To specify which framework and version to use, see [below](#specifying-the-version-of-sparkfunarduino_apollo3) or a more detailed [example](docs/platform-apollo3blue/UsingMultipleVersionsOfArduino_Apollo3.md).
     
