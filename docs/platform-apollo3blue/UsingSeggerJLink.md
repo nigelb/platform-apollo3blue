@@ -4,7 +4,7 @@ With platform-apollo3 you can use your SEGGER JLink to both upload your firmware
 # Upload Firmware
 To use your SEGGER JLink to upload your firmware to your apollo3 device you need to add `upload_protocol = jlink` to your projects `platformio.ini` file
 
-For example from this:
+For example, this:
 ```ini
 ; PlatformIO Project Configuration File
 ;
