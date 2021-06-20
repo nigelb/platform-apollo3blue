@@ -51,6 +51,7 @@ options = env.GetProjectOptions()
 debug_build_flags = ProjectOptions.get("env.debug_build_flags")
 debug_build_flags.default.clear()
 debug_build_flags.default.append("-g")
+debug_build_flags.default.append("-ggdb")
 
 
 # This lets us run the auto-port-detect to find an upload port
