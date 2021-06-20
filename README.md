@@ -4,7 +4,7 @@ This is an experimental platform to allow the use of [SparkFun's Arduino framewo
 # How To Use This
 As this is experimental, it requires a manual install.
 
-# Supported Frameworks
+# Supported Frameworks and Tools
 
 Platform-apollo3blue now supports the following: 
 
