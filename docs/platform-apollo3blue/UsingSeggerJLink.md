@@ -1,4 +1,4 @@
-#Using a SEGGER JLink with platform-apollo3
+# Using a SEGGER JLink with platform-apollo3
 With platform-apollo3 you can use your SEGGER JLink to both upload your firmware to your device and as a debugger.
 
 #Upload Firmware
