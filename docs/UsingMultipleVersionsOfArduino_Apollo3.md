@@ -6,9 +6,7 @@ Locate your .platformio directory which it typically in your home directory:
 
     $> cd ~/.platformio
     ~/.platformio> cd packages
-    ~/.platformio/packages> wget https://github.com/sparkfun/Arduino_Apollo3/releases/download/v2.1.0/Arduino_Apollo3.tar.gz
-    ~/.platformio/packages> tar -xzf Arduino_Apollo3.tar.gz
-    ~/.platformio/packages> mv Arduino_Apollo3 framework-arduinoapollo3@2.1.0
+    ~/.platformio/packages> git clone --recurse-submodules --branch v2.1.0 https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3@2.1.0
 
 Create the file `~/.platformio/packages/framework-arduinoapollo3@2.1.2/package.json` with the following contents:
 ```json
@@ -26,9 +24,7 @@ Locate your .platformio directory which it typically in your home directory:
 
     $> cd ~/.platformio
     ~/.platformio> cd packages
-    ~/.platformio/packages> wget https://github.com/sparkfun/Arduino_Apollo3/archive/refs/tags/v1.2.3.tar.gz
-    ~/.platformio/packages> tar -xzf v1.2.3.tar.gz
-    ~/.platformio/packages> mv Arduino_Apollo3-1.2.3 framework-arduinoapollo3@1.2.3
+    ~/.platformio/packages> git clone --recurse-submodules --branch v1.2.3 https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3@1.2.3
 
 Bump the version in the `~/.platformio/packages/framework-arduinoapollo3@1.2.3/package.json` file from
 

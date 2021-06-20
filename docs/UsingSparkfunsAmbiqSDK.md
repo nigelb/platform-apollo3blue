@@ -6,11 +6,7 @@ Locate your .platformio directory which it typically in your home directory:
 
     $> cd ~/.platformio
     ~/.platformio> cd packages
-    ~/.platformio> git clone https://github.com/sparkfun/AmbiqSuiteSDK.git framework-ambiqsuitesdkapollo3-sfe@2.4.2
-    ~/.platformio> cd framework-ambiqsuitesdkapollo3-sfe@2.4.2
-    ~/.platformio> git checkout 2.4.2-sfe
-    ~/.platformio> git submodule init 
-    ~/.platformio> git submodule update --init --recursive 
+    ~/.platformio> git clone --recurse-submodules --branch 2.4.2-sfe https://github.com/sparkfun/AmbiqSuiteSDK.git framework-ambiqsuitesdkapollo3-sfe@2.4.2 
 
 Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/package.json` with the following contents:
 
