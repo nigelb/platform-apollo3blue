@@ -84,7 +84,7 @@ uint32_t *CHIPPN = (uint32_t*)0x40020000;
 #define CHIPPN_QUALIFIED (((*CHIPPN) & CHIPPN_QUALIFIED_MASK) >> CHIPPN_QUALIFIED_OFFSET)
 
 //======================================================================================================
-uint32_t *CHIPREV = (uint32_t*)0x40020008;
+uint32_t *CHIPREV = (uint32_t*)0x4002000C;
 
 #define CHIPREV_SIPART_MASK 0xFFF00
 #define CHIPREV_SIPART_OFFSET 0x8
