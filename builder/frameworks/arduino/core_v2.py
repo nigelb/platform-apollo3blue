@@ -141,13 +141,12 @@ env.Append(
         "-T%s" % join(TOOLS_DIR, "uploaders", upload_protocol, linker_script),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".ld-symbols"),
-        # "-Wl,--no-whole-archive",
         "-Wl,--whole-archive",
         join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
         "-Wl,--no-whole-archive",
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
-        "--specs=nosys.specs",
-#        "--specs=nano.specs",
+        # "--specs=nosys.specs",
+       "--specs=nano.specs",
 
     ],
 
