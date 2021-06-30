@@ -134,7 +134,7 @@ elif upload_protocol.startswith("jlink"):
     UPLOADER="JLinkExe"
     debug = currently_configured_board.get("debug", {})
     if system() == "Windows":
-        UPLOADER+="JLink.exe"
+        UPLOADER="JLink.exe"
     upload_flags = [
         "-device", debug.get("jlink_device"),
         "-speed", "4000",
