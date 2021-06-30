@@ -51,11 +51,18 @@ class Apollo3bluePlatform(PlatformBase):
         board = self.board_config(variables.get("board"))
         upload_protocol = variables.get("upload_protocol",
                                         board.get("upload.protocol", ""))
+        debug_tool = variables.get("debug_tool", None)
 
         if "arduino" in variables.get("pioframework", []):
             self.packages["framework-arduinoapollo3"]["optional"] = False
         elif "ambiqsdk-sfe" in variables.get("pioframework", []):
             self.packages["framework-ambiqsuitesdkapollo3-sfe"]["optional"] = False
+
+        # If jlink is used, mark tool-jlink as non-optional
+        if "jlink" in upload_protocol:
+            self.packages["tool-jlink"]["optional"] = False
+        if debug_tool is not None and "jlink" in debug_tool:
+            self.packages["tool-jlink"]["optional"] = False
 
         return PlatformBase.configure_default_packages(self, variables, targets)
 
