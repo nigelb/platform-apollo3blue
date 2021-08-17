@@ -134,7 +134,7 @@ env.Append(
         BOARD_VARIANTS_DIR,
         BRIDGE_DIR,
         join(BRIDGE_DIR, "core-api"),
-        join(BRIDGE_DIR, "core-api", "api", "depricated"),
+        join(BRIDGE_DIR, "core-api", "api", "deprecated"),
     ],
 
     LINKFLAGS=[
