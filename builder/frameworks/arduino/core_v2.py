@@ -155,7 +155,9 @@ env.Append(
     LIBPATH=[
         join(BOARD_VARIANTS_DIR, "mbed"),
         join(CMSIS_DIR, "ARM", "Lib", "ARM")
-    ]
+    ],
+
+    LIBSOURCE_DIRS=[LIBRARY_DIR]
 )
 
 libs = []
@@ -177,50 +179,50 @@ libs.append(env.BuildLibrary(
 
 
 # Libraries
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "EEPROM"),
-    join(LIBRARY_DIR, "EEPROM", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "PDM"),
-    join(LIBRARY_DIR, "PDM", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "RTC"),
-    join(LIBRARY_DIR, "RTC", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "Servo"),
-    join(LIBRARY_DIR, "Servo", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "SoftwareSerial"),
-    join(LIBRARY_DIR, "SoftwareSerial", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "SPI"),
-    join(LIBRARY_DIR, "SPI", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "Wire"),
-    join(LIBRARY_DIR, "Wire", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "WDT"),
-    join(LIBRARY_DIR, "WDT", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "BurstMode"),
-    join(LIBRARY_DIR, "BurstMode", "src"),
-))
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "EEPROM"),
+#    join(LIBRARY_DIR, "EEPROM", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "PDM"),
+#    join(LIBRARY_DIR, "PDM", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "RTC"),
+#    join(LIBRARY_DIR, "RTC", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "Servo"),
+#    join(LIBRARY_DIR, "Servo", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "SoftwareSerial"),
+#    join(LIBRARY_DIR, "SoftwareSerial", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "SPI"),
+#    join(LIBRARY_DIR, "SPI", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "Wire"),
+#    join(LIBRARY_DIR, "Wire", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "WDT"),
+#    join(LIBRARY_DIR, "WDT", "src"),
+#))
+#
+#libs.append(env.BuildLibrary(
+#    join("$BUILD_DIR", "BurstMode"),
+#    join(LIBRARY_DIR, "BurstMode", "src"),
+#))
 
 
 env.Prepend(LIBS=libs)
