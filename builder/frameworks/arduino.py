@@ -26,7 +26,8 @@ def launch_arduino_core_builder(env, platform, board):
     assert isdir(FRAMEWORK_DIR)
 
     framework_version = platform.get_package_version("framework-arduinoapollo3")
-    major, minor, patch = framework_version.split(".")
+    framework_semantic_version, framework_commit = framework_version.split("+")
+    major, minor, patch = framework_semantic_version.split(".")
 
     major = int(major)
     minor = int(minor)
@@ -63,7 +64,8 @@ def configure_base_arduino_environment(env, platform, board):
     system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 
     framework_version = platform.get_package_version("framework-arduinoapollo3")
-    major, minor, patch = framework_version.split(".")
+    framework_semantic_version, framework_commit = framework_version.split("+")
+    major, minor, patch = framework_semantic_version.split(".")
 
     framework_major_version = int(major)
     framework_minor_version = int(minor)
