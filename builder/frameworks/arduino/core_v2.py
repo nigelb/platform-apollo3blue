@@ -65,7 +65,7 @@ BURSTMODE_LIB_DIR = join(LIBRARY_DIR, "BurstMode", "src")
 
 
 
-# Set paramaters for CheckUploadSize in platformio/builder/tools/pioupload.py
+# Set parameters for CheckUploadSize in platformio/builder/tools/pioupload.py
 env.Replace(
     SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
     SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
