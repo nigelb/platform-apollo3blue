@@ -65,7 +65,7 @@ BURSTMODE_LIB_DIR = join(LIBRARY_DIR, "BurstMode", "src")
 
 
 
-# Set paramaters for CheckUploadSize in platformio/builder/tools/pioupload.py
+# Set parameters for CheckUploadSize in platformio/builder/tools/pioupload.py
 env.Replace(
     SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
     SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
@@ -146,8 +146,7 @@ env.Append(
         "-Wl,--no-whole-archive",
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
         # "--specs=nosys.specs",
-       "--specs=nano.specs",
-
+        "--specs=nano.specs",
     ],
 
     LIBS=["stdc++", "supc++", "libmbed-os.a", "arm_cortexM4lf_math", "m"],
@@ -176,53 +175,5 @@ libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "core-implement"),
     join(CORE_DIR, "sdk", "core-implement"),
 ))
-
-
-# Libraries
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "EEPROM"),
-#    join(LIBRARY_DIR, "EEPROM", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "PDM"),
-#    join(LIBRARY_DIR, "PDM", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "RTC"),
-#    join(LIBRARY_DIR, "RTC", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "Servo"),
-#    join(LIBRARY_DIR, "Servo", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "SoftwareSerial"),
-#    join(LIBRARY_DIR, "SoftwareSerial", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "SPI"),
-#    join(LIBRARY_DIR, "SPI", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "Wire"),
-#    join(LIBRARY_DIR, "Wire", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "WDT"),
-#    join(LIBRARY_DIR, "WDT", "src"),
-#))
-#
-#libs.append(env.BuildLibrary(
-#    join("$BUILD_DIR", "BurstMode"),
-#    join(LIBRARY_DIR, "BurstMode", "src"),
-#))
-
 
 env.Prepend(LIBS=libs)
