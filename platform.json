@@ -26,18 +26,19 @@
   "packages": {
     "toolchain-gccarmnoneeabi": {
       "type": "toolchain",
+      "owner": "platformio",
       "optional": false,
-      "version": ">=1.9"
+      "version": "1.90201.191206"
     },
     "framework-arduinoapollo3": {
       "type": "framework",
       "optional": true,
-      "version": "2.1.0"
+      "version": ">1"
     },
     "framework-ambiqsuitesdkapollo3-sfe": {
       "type": "framework",
       "optional": true,
-      "version": "2.4.2"
+      "version": ">2.4.0"
     },
     "tool-jlink": {
       "type": "uploader",
