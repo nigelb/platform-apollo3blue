@@ -78,6 +78,7 @@ env.Append(
     ],
 
     CXXFLAGS=[
+        "-include", "Arduino.h",
         "-std=gnu++11",
         "-fno-threadsafe-statics",
         "-fno-rtti",
@@ -92,47 +93,27 @@ env.Append(
     ],
 
     CPPPATH=[
-        join(BOARD_VARIANTS_DIR, "config"),
-        join(BOARD_VARIANTS_DIR, "bsp"),
+
+        # core
         join(CORE_DIR, "ard_sup"),
         join(CORE_DIR, "ard_sup", "ard_supers"),
         join(CORE_DIR),
+
+        # Varient
         join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant")),
+        join(BOARD_VARIANTS_DIR, "config"),
+        join(BOARD_VARIANTS_DIR, "bsp"),
+
+        # ambiq_sdk
         join(SDK_DIR, "mcu", "apollo3"),
         join(SDK_DIR, "mcu", "apollo3", "hal"),
         join(SDK_DIR, "mcu", "apollo3", "regs"),
         join(SDK_DIR, "utils"),
         join(SDK_DIR, "devices"),
+
+        # CMSIS
         join(CMSIS_DIR, "AmbiqMicro", "Include"),
         join(CMSIS_DIR, "ARM", "Include"),
-        join(THIRD_PARTY_DIR, "uecc", "micro-ecc"),
-        join(EXACTLE_DIR, "sw", "hci", "ambiq"),
-        join(EXACTLE_DIR, "sw", "hci", "include"),
-        join(EXACTLE_DIR, "sw", "hci", "ambiq", "apollo3"),
-        join(EXACTLE_DIR, "sw", "apps", "app"),
-        join(EXACTLE_DIR, "sw", "apps", "app", "include"),
-        join(EXACTLE_DIR, "sw", "services"),
-        join(EXACTLE_DIR, "sw", "stack", "hci"),
-        join(EXACTLE_DIR, "sw", "stack", "cfg"),
-        join(EXACTLE_DIR, "sw", "sec", "include"),
-        join(EXACTLE_DIR, "sw", "sec", "common"),
-        join(EXACTLE_DIR, "sw", "services"),
-        join(EXACTLE_DIR, "ws-core", "include"),
-        join(EXACTLE_DIR, "ws-core", "sw", "util"),
-        join(EXACTLE_DIR, "ws-core", "sw", "wsf", "ambiq"),
-        join(EXACTLE_DIR, "ws-core", "sw", "wsf", "include"),
-        join(EXACTLE_DIR, "sw", "stack", "include"),
-        join(EXACTLE_DIR, "sw", "profiles"),
-        join(EXACTLE_DIR, "sw", "profiles", "gatt"),
-        join(EXACTLE_DIR, "sw", "profiles", "gap"),
-
-        join(LIBRARY_DIR, "EEPROM", "src"),
-        join(LIBRARY_DIR, "PDM", "src"),
-        join(LIBRARY_DIR, "RTC", "src"),
-        join(LIBRARY_DIR, "Servo", "src"),
-        join(LIBRARY_DIR, "SoftwareSerial", "src"),
-        join(LIBRARY_DIR, "SPI", "src"),
-        join(LIBRARY_DIR, "Wire", "src"),
 
     ],
 
@@ -162,7 +143,8 @@ env.Append(
     LIBPATH=[
         join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant")),
         join(CMSIS_DIR, "ARM", "Lib", "ARM")
-    ]
+    ],
+    LIBSOURCE_DIRS=[LIBRARY_DIR]
 )
 
 libs = []
@@ -193,42 +175,6 @@ libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "variant"),
     join(BOARD_VARIANTS_DIR),
 
-))
-
-# Libraries
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "EEPROM"),
-    join(LIBRARY_DIR, "EEPROM", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "PDM"),
-    join(LIBRARY_DIR, "PDM", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "RTC"),
-    join(LIBRARY_DIR, "RTC", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "Servo"),
-    join(LIBRARY_DIR, "Servo", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "SoftwareSerial"),
-    join(LIBRARY_DIR, "SoftwareSerial", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "SPI"),
-    join(LIBRARY_DIR, "SPI", "src"),
-))
-
-libs.append(env.BuildLibrary(
-    join("$BUILD_DIR", "Wire"),
-    join(LIBRARY_DIR, "Wire", "src"),
 ))
 
 env.Prepend(LIBS=libs)
