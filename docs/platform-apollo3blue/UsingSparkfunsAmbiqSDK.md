@@ -1,12 +1,12 @@
 # Using Sparkfun's AmbiqSuiteSDK
 
-## Install framework-ambiqsuitesdkapollo3-sfe@2.4.2
+## Install framework-ambiqsuitesdkapollo3-sfe@2.5.1
 
 Locate your .platformio directory which it typically in your home directory:
 
     $> cd ~/.platformio
     ~/.platformio> cd packages
-    ~/.platformio> git clone --recurse-submodules --branch 2.4.2-sfe https://github.com/sparkfun/AmbiqSuiteSDK.git framework-ambiqsuitesdkapollo3-sfe@2.4.2 
+    ~/.platformio> git clone --recurse-submodules --branch 2.5.1-sfe https://github.com/sparkfun/AmbiqSuiteSDK.git framework-ambiqsuitesdkapollo3-sfe@2.5.1 
 
 Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/package.json` with the following contents:
 
@@ -14,7 +14,7 @@ Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/pac
 {
     "name": "framework-ambiqsuitesdkapollo3-sfe",
     "description": "SparkFun's AmbiqSuiteSDK repository.",
-    "version": "2.4.2",
+    "version": "2.5.1",
     "url": "https://github.com/sparkfun/AmbiqSuiteSDK"
 }
 ```
@@ -43,7 +43,7 @@ Project has been successfully initialized! Useful commands:
 Add the following to `platformio.ini`
 ```ini
 framework = ambiqsdk-sfe
-platform_packages = framework-ambiqsuitesdkapollo3-sfe@2.4.2
+platform_packages = framework-ambiqsuitesdkapollo3-sfe@2.5.1
 ```
 
 Copy the blinky example into the src directory:
