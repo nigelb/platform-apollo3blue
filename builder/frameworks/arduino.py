@@ -59,48 +59,7 @@ def launch_arduino_core_builder(env, platform, board):
     env.SConscript(join("arduino", "%s.py" % script_name))
 
 
-def configure_base_arduino_environment(env, platform, board):
-    upload_protocol = env.subst("$UPLOAD_PROTOCOL")
-    FRAMEWORK_DIR = platform.get_package_dir("framework-arduinoapollo3")
-    assert isdir(FRAMEWORK_DIR)
-
-    system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
-
-    framework_version = platform.get_package_version("framework-arduinoapollo3")
-    if "+" in framework_version:
-        framework_semantic_version, framework_commit = framework_version.split("+")
-        major, minor, patch = framework_semantic_version.split(".")
-    else:
-        major, minor, patch = framework_version.split(".")
-
-    framework_major_version = int(major)
-    framework_minor_version = int(minor)
-    framework_patch_version = int(patch)
-
-    if upload_protocol in ["svl", "asb"]:
-        upload_program = None
-
-        if framework_major_version == 1:
-            if upload_protocol == "svl":
-                upload_program = join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl")
-            elif upload_protocol == "asb":
-                upload_program = join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board")
-            #if upload_protocol != "svl":
-            #    sys.stderr.write("Error: Upload protocol %s is not supported on Core V1\n")
-            #    env.Exit(1)
-        elif framework_major_version == 2:
-            if upload_protocol in ["svl", "asb"]:
-                upload_program = join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type,
-                                  upload_protocol)
-        else:
-            sys.stderr.write("Error: cannot determine the uploader program\n")
-            env.Exit(1)
-
-        if system_type == "windows":
-            upload_program += ".exe"
-
-        env.Replace(UPLOADER=upload_program)
-
+def configure_base_arduino_environment(env):
     # A full list with the available variables
     # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
     env.Replace(
@@ -117,24 +76,38 @@ def configure_base_arduino_environment(env, platform, board):
 
     )
 
+def configure_uploader(env):
+    upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
-# if script_fn is None:
-#     sys.stderr.write("Error: Builder script count not be found\n")
-#     env.Exit(1)
+    system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 
-# with open(script_fn, "r") as script_in:
-#     exec(compile(script_in.read(), scriptname, 'exec'), __globals)
-# print(join(builder_dir, "arduino", "%s.py" % scriptname))
-# env.SConscript(join(builder_dir, "arduino", "%s.py" % scriptname))
+    if upload_protocol in ["svl", "asb"]:
+        upload_program = None
+        if upload_protocol == "svl":
+            upload_program = env.subst("$SVL_UPLOADER")
+        elif upload_protocol == "asb":
+            upload_program = env.subst("$ASB_UPLOADER")
 
+        else:
+            sys.stderr.write("Error: cannot determine the uploader program\n")
+            env.Exit(1)
+
+        if system_type == "windows":
+            upload_program += ".exe"
+
+        env.Replace(UPLOADER=upload_program)
 
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 board = env.BoardConfig()
 
-configure_base_arduino_environment(env, platform, board)
+configure_base_arduino_environment(env)
 launch_arduino_core_builder(env, platform, board)
+configure_uploader(env)
+
+
+
 
 
 

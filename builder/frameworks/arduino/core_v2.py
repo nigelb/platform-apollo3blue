@@ -14,8 +14,8 @@
 # limitations under the License.
 
 from os.path import isdir, join
-
 from SCons.Script import DefaultEnvironment
+import platform as system_platform
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
@@ -63,7 +63,9 @@ WIRE_LIB_DIR = join(LIBRARY_DIR, "Wire", "src")
 WDT_LIB_DIR = join(LIBRARY_DIR, "WDT", "src")
 BURSTMODE_LIB_DIR = join(LIBRARY_DIR, "BurstMode", "src")
 
-
+system_type = system_platform.system().lower() if system_platform.system() != "Darwin" else "macosx"
+env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, "svl"))
+env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, "asb"))
 
 # Set parameters for CheckUploadSize in platformio/builder/tools/pioupload.py
 env.Replace(

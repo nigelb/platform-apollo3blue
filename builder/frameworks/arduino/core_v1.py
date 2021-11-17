@@ -15,8 +15,8 @@
 
 
 from os.path import isdir, join
-
 from SCons.Script import DefaultEnvironment
+import platform as sys_pf
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
@@ -46,6 +46,9 @@ linker_scripts = {
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 linker_script = linker_scripts[upload_protocol]
 
+system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
+env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl"))
+env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board"))
 
 env.Append(
     ASFLAGS=[
