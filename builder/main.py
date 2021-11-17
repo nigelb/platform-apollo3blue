@@ -137,7 +137,7 @@ elif upload_protocol.startswith("jlink"):
         UPLOADER="JLink.exe"
     upload_flags = [
         "-device", debug.get("jlink_device"),
-        "-speed", "4000",
+        "-speed", env.GetProjectOption("debug_speed", "4000"),
         "-if", "swd",
         "-autoconnect", "1",
         "-CommanderScript", '"${__jlink_cmd_script(__env__, SOURCE)}"'
