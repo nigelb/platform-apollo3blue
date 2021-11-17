@@ -14,7 +14,7 @@ Create the file `~/.platformio/packages/framework-ambiqsuitesdkapollo3@2.5.1/pac
 {
     "name": "framework-ambiqsuitesdkapollo3-sfe",
     "description": "SparkFun's AmbiqSuiteSDK repository.",
-    "version": "2.5.1,
+    "version": "2.5.1",
     "url": "https://github.com/sparkfun/AmbiqSuiteSDK"
 }
 ```
