@@ -27,7 +27,8 @@ template = """{{
     "framework": {{}}
   }},
     "debug": {{
-    "jlink_device": "AMA3B1KK-KBR"
+    "jlink_device": "AMA3B1KK-KBR",
+    "svd_path": "apollo3.svd"
     }},  
   "frameworks": {frameworks},
   "name": "{board_name}",
