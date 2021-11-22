@@ -24,6 +24,7 @@ template = """{{
     "mcu": "AMA3B1KK",
     "part": "apollo3",
     "fabi": "hard",
+    "specs": "nano.specs",
     "framework": {{}}
   }},
     "debug": {{

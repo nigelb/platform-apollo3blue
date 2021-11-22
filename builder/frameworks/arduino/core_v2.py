@@ -148,7 +148,8 @@ env.Append(
         "-Wl,--no-whole-archive",
         "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
         # "--specs=nosys.specs",
-        "--specs=nano.specs",
+        # "--specs=nano.specs",
+        "--specs={}".format(board.get("build.specs"))
     ],
 
     LIBS=["stdc++", "supc++", "libmbed-os.a", "arm_cortexM4lf_math", "m"],
