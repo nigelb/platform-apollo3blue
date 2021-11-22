@@ -212,4 +212,4 @@ upload = env.AddPlatformTarget("upload", target_bin, upload_actions, "Upload")
 #
 # Target: Define targets
 #
-Default([target_bin, upload])
+Default([target_bin])
