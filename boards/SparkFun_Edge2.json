@@ -5,6 +5,7 @@
         "mcu": "AMA3B1KK",
         "part": "apollo3",
         "fabi": "hard",
+        "specs": "nano.specs",
         "framework": {
             "arduino": {
                 "v1": {
@@ -26,7 +27,8 @@
         }
     },
     "debug": {
-        "jlink_device": "AMA3B1KK-KBR"
+        "jlink_device": "AMA3B1KK-KBR",
+        "svd_path": "apollo3.svd"
     },
     "frameworks": [
         "arduino",
