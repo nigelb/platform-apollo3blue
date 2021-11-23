@@ -28,15 +28,15 @@ Locate your .platformio directory which it typically in your home directory:
 Clone [SparkFun's Arduino framework](https://github.com/sparkfun/Arduino_Apollo3):
 
     ~/.platformio> cd packages
-    ~/.platformio>/packages> git clone --recurse-submodules --branch v2.1.0 https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3@2.1.0
+    ~/.platformio>/packages> git clone --recurse-submodules --branch v2.1.1 https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3@2.1.1
 
-Create a `package.json` file in the directory you just cloned `.platformio/packages/framework-arduinoapollo3@2.1.0/` with the following contents:
+Create a `package.json` file in the directory you just cloned `.platformio/packages/framework-arduinoapollo3@2.1.1/` with the following contents:
 
 ```json
 {
     "name": "framework-arduinoapollo3",
     "description": "An mbed-os enabled Arduino core for Ambiq Apollo3 based boards",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "url": "https://github.com/sparkfun/Arduino_Apollo3"
 }
 ```
@@ -103,9 +103,9 @@ Or query the platform directly:
     Package framework-arduinoapollo3
     --------------------------------
     Type: framework
-    Requirements: 2.1.0
+    Requirements: 2.1.1
     Installed: Yes
-    Version: 2.1.0
+    Version: 2.1.1
     Original version: None
     Description: An mbed-os enabled Arduino core for Ambiq Apollo3 based boards
     
@@ -185,7 +185,7 @@ board = SparkFun_Artemis_Nano
 framework = arduino
 ```
 
-To specify which version of sparkfun/Arduino_Apollo3 to use we need to add a `platform_packages` directive:
+If we want to specify a version other than the latest version of sparkfun/Arduino_Apollo3 to use we need to add a `platform_packages` directive:
 
 ```ini
 ; PlatformIO Project Configuration File
