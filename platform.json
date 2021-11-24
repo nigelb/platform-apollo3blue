@@ -33,7 +33,7 @@
     "framework-arduinoapollo3": {
       "type": "framework",
       "optional": true,
-      "version": ">1"
+      "version": ">=1"
     },
     "framework-ambiqsuitesdkapollo3-sfe": {
       "type": "framework",
