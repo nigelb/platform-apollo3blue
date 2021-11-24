@@ -38,7 +38,7 @@
     "framework-ambiqsuitesdkapollo3-sfe": {
       "type": "framework",
       "optional": true,
-      "version": ">2.4.0"
+      "version": ">=2.4.0"
     },
     "tool-jlink": {
       "type": "uploader",
