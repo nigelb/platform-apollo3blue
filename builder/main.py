@@ -58,7 +58,8 @@ debug_build_flags.default.append("-ggdb")
 # just before we issue the upload command.
 def BeforeUpload(target, source, env):
     upload_port = env.subst("$UPLOAD_PORT")
-    if len(upload_port) == 0:
+    upload_protocol = env.subst("$UPLOAD_PROTOCOL")
+    if "jlink" not in upload_protocol and len(upload_port) == 0:
         env.AutodetectUploadPort()
 
 
@@ -169,7 +170,7 @@ env.Replace(
     SIZETOOL="arm-none-eabi-size",
 
     ARFLAGS=["rc"],
-    UPLOADERFLAGS = upload_flags,
+    UPLOADERFLAGS=upload_flags,
     UPLOAD_SPEED=upload_speed,
     UPLOADCMD="$UPLOADER $UPLOADERFLAGS"
 )
@@ -193,6 +194,12 @@ env.Append(
             suffix=".bin"
         )
     )
+)
+
+env.Replace(
+    SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
+    SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
+    SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
 )
 
 #

@@ -49,12 +49,6 @@ if not upload_protocol.startswith("jlink"):
     )
 
 
-env.Replace(
-    SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
-    SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
-    SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
-)
-
 env.Append(
     ASFLAGS=[
         "-c", "-g", "-MMD",

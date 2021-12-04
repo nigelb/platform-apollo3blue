@@ -53,13 +53,6 @@ system_type = system_platform.system().lower() if system_platform.system() != "D
 env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, "svl"))
 env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, "asb"))
 
-# Set parameters for CheckUploadSize in platformio/builder/tools/pioupload.py
-env.Replace(
-    SIZEPROGREGEXP=r"^(?:\.text)\s+([0-9]+).*",
-    SIZEDATAREGEXP=r"^(?:\.data|\.bss)\s+([0-9]+).*",
-    SIZECHECKCMD="$SIZETOOL -A -d $SOURCES",
-)
-
 env.Append(
     ASFLAGS=[
         "-c", "-g", "-MMD",
