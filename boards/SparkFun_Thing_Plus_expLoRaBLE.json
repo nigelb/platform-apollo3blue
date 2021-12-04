@@ -10,7 +10,8 @@
             "arduino": {
                 "v2": {
                     "variant": "TARGET_LoRa_THING_PLUS_expLoRaBLE",
-                    "extra_flags": "-DARDUINO_AM_AP3_THING_PLUS_expLoRaBLE"
+                    "extra_flags": "-DARDUINO_AM_AP3_THING_PLUS_expLoRaBLE",
+                    "linker_script": "0x10000.ld"
                 }
             }
         }

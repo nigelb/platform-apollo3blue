@@ -52,13 +52,15 @@ template = """{{
 arduino_v1 = """
 {{
     "variant": "{arduino_v1_variant}",
-    "extra_flags": "{arduino_v1_extra_flags}"
+    "extra_flags": "{arduino_v1_extra_flags}",
+    "linker_script": "artemis_sbl_svl_app.ld"
 }}
 """
 arduino_v2 = """
 {{
     "variant": "{arduino_v2_variant}",
-    "extra_flags": "{arduino_v2_extra_flags}"
+    "extra_flags": "{arduino_v2_extra_flags}",
+    "linker_script": "0x10000.ld"
 }}
 
 """

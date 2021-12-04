@@ -10,11 +10,13 @@
             "arduino": {
                 "v1": {
                     "variant": "artemis_micromod",
-                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_MICROMOD"
+                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_MICROMOD",
+                    "linker_script": "artemis_sbl_svl_app.ld"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_ARTEMIS_MM_PB",
-                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_MM_PB"
+                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_MM_PB",
+                    "linker_script": "0x10000.ld"
                 }
             }
         }

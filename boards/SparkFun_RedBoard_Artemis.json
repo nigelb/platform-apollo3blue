@@ -10,11 +10,13 @@
             "arduino": {
                 "v1": {
                     "variant": "redboard_artemis",
-                    "extra_flags": "-DAM_AP3_SFE_BB_ARTEMIS"
+                    "extra_flags": "-DAM_AP3_SFE_BB_ARTEMIS",
+                    "linker_script": "artemis_sbl_svl_app.ld"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_ARTEMIS",
-                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS"
+                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS",
+                    "linker_script": "0x10000.ld"
                 }
             },
             "ambiqsdk-sfe": {

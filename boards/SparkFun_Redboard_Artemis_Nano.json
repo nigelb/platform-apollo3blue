@@ -10,11 +10,13 @@
             "arduino": {
                 "v1": {
                     "variant": "redboard_artemis_nano",
-                    "extra_flags": "-DAM_AP3_SFE_BB_ARTEMIS_NANO"
+                    "extra_flags": "-DAM_AP3_SFE_BB_ARTEMIS_NANO",
+                    "linker_script": "artemis_sbl_svl_app.ld"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_ARTEMIS_NANO",
-                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_NANO"
+                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_NANO",
+                    "linker_script": "0x10000.ld"
                 }
             },
             "ambiqsdk-sfe": {

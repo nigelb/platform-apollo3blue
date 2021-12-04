@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from os.path import isdir, join
+from os.path import isdir, join, exists
 from SCons.Script import DefaultEnvironment
 import platform as sys_pf
+import sys
 
 env = DefaultEnvironment()
 platform = env.PioPlatform()
@@ -38,23 +38,58 @@ LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant"))
 
-linker_scripts = {
-    "asb": "ambiq_sbl_app.ld",
-    "svl": "artemis_sbl_svl_app.ld"
-}
+PROJECT_DIR = env.subst("$PROJECT_DIR")
 
-upload_protocol = env.subst("$UPLOAD_PROTOCOL")
-linker_script = linker_scripts[upload_protocol]
+# =======================================================
+# Linker Script
+linker_script = None
+linker_script_fn = board.get("build.framework.arduino.v1.linker_script")
+user_linker_script_fn = board.get("build.linker_script", "")
 
+if len(user_linker_script_fn) == 0:
+    user_linker_script_fn = None
+
+framework_linker_dir = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant"), "linker_scripts", "gcc")
+if user_linker_script_fn is not None:
+    if exists(join(PROJECT_DIR, user_linker_script_fn)):
+        linker_script = join(PROJECT_DIR, user_linker_script_fn)
+        sys.stderr.write("Using linker script: %s\n"%user_linker_script_fn)
+    else:
+        sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script_fn)
+        sys.stderr.write("Searched in:\n")
+        sys.stderr.write("\t%s\n" % PROJECT_DIR)
+        env.Exit(1)
+
+elif exists(join(framework_linker_dir, linker_script_fn)):
+    linker_script = join(framework_linker_dir, linker_script_fn)
+    if not exists(linker_script):
+        sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script)
+        env.Exit(1)
+else:
+    sys.stderr.write("Error: Could not find linker script: %s\n"%linker_script_fn)
+    sys.stderr.write("\tSearched in:\n")
+    sys.stderr.write("\t\t%s\n"%framework_linker_dir)
+    env.Exit(1)
+
+env.Replace(LDSCRIPT_PATH=linker_script)
+# =======================================================
+
+# =======================================================
+# Uploader Binary Locations
 system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
 env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl"))
 env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board"))
+# =======================================================
+
+# =======================================================
+# Bootloader location
+env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "tools", "bootloaders", "artemis", "artemis_svl.bin"))
+# =======================================================
 
 env.Append(
     ASFLAGS=[
         "-c", "-g", "-MMD",
         "-x", "assembler-with-cpp",
-
     ],
 
     CFLAGS=[
@@ -69,10 +104,8 @@ env.Append(
         "-fdata-sections",
         "-Os",
         "-ffunction-sections",
-
         "-nostdlib",
         "--param", "max-inline-insns-single=500",
-
         "-fno-exceptions",
         "-mcpu=%s" % board.get("build.cpu")
     ],
@@ -118,7 +151,6 @@ env.Append(
     ],
 
     LINKFLAGS=[
-        "-T%s" % join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant"), "linker_scripts", "gcc", linker_script),
         # "-Os",
         "-mthumb",
         "-mcpu=%s" % board.get("build.cpu"),
@@ -158,7 +190,6 @@ libs.append(env.BuildLibrary(
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "apollo3_sdk_mcu"),
     join(SDK_DIR, "mcu"),
-    # join(SDK_DIR, "devices")]
 ))
 
 libs.append(env.BuildLibrary(

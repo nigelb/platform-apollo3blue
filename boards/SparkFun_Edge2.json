@@ -10,11 +10,13 @@
             "arduino": {
                 "v1": {
                     "variant": "edge2",
-                    "extra_flags": "-DSFE_EDGE2"
+                    "extra_flags": "-DSFE_EDGE2",
+                    "linker_script": "artemis_sbl_svl_app.ld"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_EDGE2",
-                    "extra_flags": "-DARDUINO_APOLLO3_SFE_EDGE"
+                    "extra_flags": "-DARDUINO_APOLLO3_SFE_EDGE",
+                    "linker_script": "0x10000.ld"
                 }
             },
             "ambiqsdk-sfe": {
