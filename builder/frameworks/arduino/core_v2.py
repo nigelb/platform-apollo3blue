@@ -29,11 +29,8 @@ assert isdir(FRAMEWORK_DIR)
 
 BASE_CORE_DIR = join(FRAMEWORK_DIR, "cores")
 CORE_DIR = join(BASE_CORE_DIR, "arduino")
-MBED_DIR = join(FRAMEWORK_DIR, "cores", "mbed-os")
-BRIDGE_DIR = join(CORE_DIR, "mbed-bridge") 
-TARGETS_DIR = join(MBED_DIR, "targets", "TARGET_Ambiq_Micro", "TARGET_Apollo3")
-SDK_DIR    = join(TARGETS_DIR, "sdk")
-CMSIS_DIR = join(SDK_DIR, "CMSIS") 
+BRIDGE_DIR = join(CORE_DIR, "mbed-bridge")
+CMSIS_DIR = join(FRAMEWORK_DIR, "cores", "mbed-os", "targets", "TARGET_Ambiq_Micro", "TARGET_Apollo3", "sdk", "CMSIS")
 
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
@@ -45,23 +42,12 @@ linker_scripts = {
     "svl": "0x10000.ld",
     "jlink": "0x10000.ld",
 }
-#upload_protocol = board.get("upload.protocol")
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 linker_script = linker_scripts[upload_protocol]
 
 if upload_protocol == "jlink": upload_protocol = "svl"
 
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
-
-EEPROM_LIB_DIR = join(LIBRARY_DIR, "EEPROM", "src")
-PDM_LIB_DIR = join(LIBRARY_DIR, "PDM", "src")
-RTC_LIB_DIR = join(LIBRARY_DIR, "RTC", "src")
-SERVO_LIB_DIR = join(LIBRARY_DIR, "Servo", "src")
-SOFTWARESERIAL_LIB_DIR = join(LIBRARY_DIR, "SoftwareSerial", "src")
-SPI_LIB_DIR = join(LIBRARY_DIR, "SPI", "src")
-WIRE_LIB_DIR = join(LIBRARY_DIR, "Wire", "src")
-WDT_LIB_DIR = join(LIBRARY_DIR, "WDT", "src")
-BURSTMODE_LIB_DIR = join(LIBRARY_DIR, "BurstMode", "src")
 
 system_type = system_platform.system().lower() if system_platform.system() != "Darwin" else "macosx"
 env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", upload_protocol, "dist", system_type, "svl"))
@@ -83,20 +69,10 @@ env.Append(
     CFLAGS=[
         "-MMD", 
         "-include", join(BOARD_VARIANTS_DIR, "mbed", "mbed_config.h"),
-        #"-include", join(CORE_DIR, "sdk", "ArduinoSDK.h"),
         "-iprefix{}/".format(BASE_CORE_DIR),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-symbols"),
-        "-I%s"%EEPROM_LIB_DIR,
-        "-I%s"%PDM_LIB_DIR,
-        "-I%s"%RTC_LIB_DIR,
-        "-I%s"%SERVO_LIB_DIR,
-        "-I%s"%SOFTWARESERIAL_LIB_DIR,
-        "-I%s"%SPI_LIB_DIR,
-        "-I%s"%WIRE_LIB_DIR,
-        "-I%s"%WDT_LIB_DIR,
-        "-I%s"%BURSTMODE_LIB_DIR,
     ],
 
     CPPFLAGS=[
@@ -111,15 +87,6 @@ env.Append(
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-flags"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
         join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-symbols"),
-        "-I%s"%EEPROM_LIB_DIR,
-        "-I%s"%PDM_LIB_DIR,
-        "-I%s"%RTC_LIB_DIR,
-        "-I%s"%SERVO_LIB_DIR,
-        "-I%s"%SOFTWARESERIAL_LIB_DIR,
-        "-I%s"%SPI_LIB_DIR,
-        "-I%s"%WIRE_LIB_DIR,
-        "-I%s"%WDT_LIB_DIR,
-        "-I%s"%BURSTMODE_LIB_DIR,
     ],
 
     CPPDEFINES=[
