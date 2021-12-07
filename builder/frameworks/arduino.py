@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# __globals = dict(globals())
 from os.path import isdir, split, join
 from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
 import sys
@@ -59,23 +58,6 @@ def launch_arduino_core_builder(env, platform, board):
     env.SConscript(join("arduino", "%s.py" % script_name))
 
 
-def configure_base_arduino_environment(env):
-    # A full list with the available variables
-    # http://www.scons.org/doc/production/HTML/scons-user.html#app-variables
-    env.Replace(
-        AR="arm-none-eabi-ar",
-        AS="arm-none-eabi-as",
-        CC="arm-none-eabi-gcc",
-        CXX="arm-none-eabi-g++",
-        GDB="arm-none-eabi-gdb",
-        OBJCOPY="arm-none-eabi-objcopy",
-        RANLIB="arm-none-eabi-ranlib",
-        SIZETOOL="arm-none-eabi-size",
-
-        ARFLAGS=["rc"],
-
-    )
-
 def configure_uploader(env):
     upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
@@ -102,7 +84,6 @@ env = DefaultEnvironment()
 platform = env.PioPlatform()
 board = env.BoardConfig()
 
-configure_base_arduino_environment(env)
 launch_arduino_core_builder(env, platform, board)
 configure_uploader(env)
 
