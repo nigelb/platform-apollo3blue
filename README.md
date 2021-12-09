@@ -41,16 +41,16 @@ $ cd new_project
 And then
 ### Core V2
 ```
-$ pio init -b SparkFun_RedBoard_Artemis_ATP --ide vscode -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v2.1.1_pio"
+$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v2.1.1_pio"
 ```
 
 ### Core V1
 ```
-$ pio init -b SparkFun_RedBoard_Artemis_ATP --ide vscode -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
+$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
 ```
 
 # Manual install of sparkfun/Arduino_Apollo3
-If you don't want to use my forked repo, or you want to be able to have concurrent projects that use core v1 and core v2
+If you don't want to use my forked repo, or you want to be able to have concurrent projects that use `core v1` and `core v2`
 without having platformio reinstall Arduino_Apollo each time, you can manually install both version
 of the cores.
 
