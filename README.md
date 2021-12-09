@@ -38,12 +38,13 @@ $ mkdir new_project
 $ cd new_project
 ```
 
-And then
+And then either:
 ### Core V2
 ```
 $ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v2.1.1_pio"
 ```
 
+or:
 ### Core V1
 ```
 $ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
