@@ -23,7 +23,7 @@ To specify which framework and version to use, see [below](#specifying-the-versi
 # Quick Start
 Here we document the quickest way to get started using `platform-apollo3blue`. 
 Until all the necessary updates required to use platformio and platform-apollo3blue with [sparkfun/Arduino_Apollo3](https://github.com/sparkfun/Arduino_Apollo3) have made it into the [sparkfun/Arduino_Apollo3](https://github.com/sparkfun/Arduino_Apollo3) repository 
-I am maintaining a fork of it [here](https://github.com/sparkfun/Arduino_Apollo3) with the required updates.
+I am maintaining a fork of it [here](https://github.com/nigelb/Arduino_Apollo3) with the required updates.
 
 ## 1. Install `platform-apollo3blue`
 ````
