@@ -22,8 +22,6 @@ To specify which framework and version to use, see [below](#specifying-the-versi
     
 # Quick Start
 Here we document the quickest way to get started using `platform-apollo3blue`. 
-Until all the necessary updates required to use platformio and platform-apollo3blue with [sparkfun/Arduino_Apollo3](https://github.com/sparkfun/Arduino_Apollo3) have made it into the [sparkfun/Arduino_Apollo3](https://github.com/sparkfun/Arduino_Apollo3) repository 
-I am maintaining a fork of it [here](https://github.com/nigelb/Arduino_Apollo3) with the required updates.
 
 ## 1. Install `platform-apollo3blue`
 ````
@@ -41,11 +39,12 @@ $ cd new_project
 And then either:
 ### Core V2
 ```
-$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v2.1.1_pio"
+$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/sparkfun/Arduino_Apollo3#v2.2.0""
 ```
 
 or:
 ### Core V1
+Until the version number is bumped for the core v1 branch, I am maintaining a fork of it [here](https://github.com/nigelb/Arduino_Apollo3) with the required updates.
 ```
 $ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
 ```
