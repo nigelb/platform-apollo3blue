@@ -39,7 +39,7 @@ $ cd new_project
 And then either:
 ### Core V2
 ```
-$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/sparkfun/Arduino_Apollo3#v2.2.0""
+$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/sparkfun/Arduino_Apollo3#v2.2.0"
 ```
 
 or:
