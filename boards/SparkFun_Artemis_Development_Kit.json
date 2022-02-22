@@ -10,13 +10,11 @@
             "arduino": {
                 "v1": {
                     "variant": "artemis_dk",
-                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_DK",
-                    "linker_script": "artemis_sbl_svl_app.ld"
+                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_DK"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_ARTEMIS_DK",
-                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK",
-                    "linker_script": "0x10000.ld"
+                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK"
                 }
             },
             "ambiqsdk-sfe": {
@@ -30,7 +28,10 @@
     },
     "debug": {
         "jlink_device": "AMA3B1KK-KBR",
-        "svd_path": "apollo3.svd"
+        "svd_path": "apollo3.svd",
+        "init": {
+            "break": "tbreak setup"
+        }
     },
     "frameworks": [
         "arduino",
@@ -40,7 +41,6 @@
     "upload": {
         "maximum_ram_size": 393216,
         "maximum_size": 983040,
-        "jlink_offset_address": "0x10000",
         "protocol": "svl",
         "protocols": [
             "svl",

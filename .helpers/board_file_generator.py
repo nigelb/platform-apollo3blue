@@ -29,14 +29,16 @@ template = """{{
   }},
     "debug": {{
     "jlink_device": "AMA3B1KK-KBR",
-    "svd_path": "apollo3.svd"
+    "svd_path": "apollo3.svd",
+    "init": {{
+        "break": "tbreak setup"
+      }}
     }},  
   "frameworks": {frameworks},
   "name": "{board_name}",
   "upload": {{
     "maximum_ram_size": 393216,
     "maximum_size": 983040,
-    "jlink_offset_address": "0x10000",
     "protocol": "svl",
     "protocols": [
       "svl",
@@ -52,15 +54,13 @@ template = """{{
 arduino_v1 = """
 {{
     "variant": "{arduino_v1_variant}",
-    "extra_flags": "{arduino_v1_extra_flags}",
-    "linker_script": "artemis_sbl_svl_app.ld"
+    "extra_flags": "{arduino_v1_extra_flags}"
 }}
 """
 arduino_v2 = """
 {{
     "variant": "{arduino_v2_variant}",
-    "extra_flags": "{arduino_v2_extra_flags}",
-    "linker_script": "0x10000.ld"
+    "extra_flags": "{arduino_v2_extra_flags}"
 }}
 
 """

@@ -10,13 +10,11 @@
             "arduino": {
                 "v1": {
                     "variant": "artemis_thing_plus",
-                    "extra_flags": "-DAM_AP3_SFE_THING_PLUS",
-                    "linker_script": "artemis_sbl_svl_app.ld"
+                    "extra_flags": "-DAM_AP3_SFE_THING_PLUS"
                 },
                 "v2": {
                     "variant": "TARGET_SFE_ARTEMIS_THING_PLUS",
-                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS",
-                    "linker_script": "0x10000.ld"
+                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS"
                 }
             },
             "ambiqsdk-sfe": {
@@ -30,7 +28,10 @@
     },
     "debug": {
         "jlink_device": "AMA3B1KK-KBR",
-        "svd_path": "apollo3.svd"
+        "svd_path": "apollo3.svd",
+        "init": {
+            "break": "tbreak setup"
+        }
     },
     "frameworks": [
         "arduino",
@@ -40,7 +41,6 @@
     "upload": {
         "maximum_ram_size": 393216,
         "maximum_size": 983040,
-        "jlink_offset_address": "0x10000",
         "protocol": "svl",
         "protocols": [
             "svl",
