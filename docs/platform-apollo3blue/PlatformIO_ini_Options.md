@@ -21,27 +21,45 @@ For example, if you had your custom linker script in `<PROJECT_DIR>/linker/my_li
 
     board_build.linker_script = linker/my_linker_script.ld
 
-### Core V2
-
-The Arduino_Apollo3 v2 distribution comes with two linker scripts, one to load the firmware at `0xC000` and the other 
-to load the firmware at `0x10000`. With `board_build.linker_script` left unspecified the default is `0x10000`. 
-To change this one can specify:
-
-    board_build.framework.arduino.v2.linker_script = 0xC000.ld
-
-Or the default:
-
-    board_build.framework.arduino.v2.linker_script = 0x10000.ld
-
-### Core V1
-The Arduino_Apollo3 v1 distribution also comes with two linker scripts, one to load the firmware at `0xC000` and the other 
-to load the firmware at `0x10000`. With `board_build.linker_script` left unspecified the default is `artemis_sbl_svl_app.ld`. 
-To change this one can specify:
-
-    board_build.framework.arduino.v1.linker_script = 0xC000.ld
-
-Or the default:
-
-    board_build.framework.arduino.v1.linker_script = artemis_sbl_svl_app.ld
-
 ## Upload Address
+### Background
+
+The address tin the MCU's flash that the program is loaded must match what is specified in the linker file.
+
+When the linker script [`tools/uploaders/svl/0x10000.ld`](https://github.com/sparkfun/Apollo3_Uploader_SVL/blob/54a37d5009fd8bb4e5c9770cabd4bed984ac7c98/0x10000.ld) is used:
+```
+MEMORY
+{
+  FLASH (rx) : ORIGIN = 0x00010000, LENGTH = 0x000F0000
+  RAM_NVIC (rwx) : ORIGIN = 0x10000000, LENGTH = 0x100
+  RAM (rwx) : ORIGIN = (0x10000000 + 0x100), LENGTH = (384K - (0x100))
+}
+.
+.
+.
+```
+The upload address is automatically set to `0x10000` to match the address from the line `FLASH (rx) : ORIGIN = 0x00010000`.
+
+When the linker script [`tools/uploaders/asb/0xC000.ld`](https://github.com/sparkfun/Apollo3_Uploader_ASB/blob/454fc619ce9371016f7bbdbb875aed2e197ea1ce/0xC000.ld) is used:
+```
+MEMORY
+{
+  FLASH (rx) : ORIGIN = 0x0000C000, LENGTH = 0x000F4000
+  RAM_NVIC (rwx) : ORIGIN = 0x10000000, LENGTH = 0x100
+  RAM (rwx) : ORIGIN = (0x10000000 + 0x100), LENGTH = (384K - (0x100))
+}
+.
+.
+.
+```
+The upload address is automatically set to `0xC000` to match the address from the line `FLASH (rx) : ORIGIN = 0x0000C000`.
+
+### Custom Upload Address
+
+Used with the `asb` and `jlink` upload protocols, this lets you specify the location in the FLASH that the program
+is loaded into. Typically, this is used if you are using a modified linker script.
+
+To specify a custom upload address of `0x20000` in your `platform.ini` file:
+
+    board_build.upload.address = 0x20000
+
