@@ -24,7 +24,7 @@ For example, if you had your custom linker script in `<PROJECT_DIR>/linker/my_li
 ## Upload Address
 ### Background
 
-The address tin the MCU's flash that the program is loaded must match what is specified in the linker file.
+The address that the program is loaded to in the MCU's flash must match what is specified in the linker file.
 
 When the linker script [`tools/uploaders/svl/0x10000.ld`](https://github.com/sparkfun/Apollo3_Uploader_SVL/blob/54a37d5009fd8bb4e5c9770cabd4bed984ac7c98/0x10000.ld) is used:
 ```
