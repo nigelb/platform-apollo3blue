@@ -9,20 +9,20 @@
         "framework": {
             "arduino": {
                 "v1": {
-                    "variant": "artemis_thing_plus",
-                    "extra_flags": "-DAM_AP3_SFE_THING_PLUS"
+                    "variant": "edge",
+                    "extra_flags": "-DSFE_EDGE"
                 },
                 "v2": {
-                    "variant": "TARGET_SFE_ARTEMIS_THING_PLUS",
-                    "extra_flags": "-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS"
+                    "variant": "TARGET_SFE_EDGE",
+                    "extra_flags": "-DARDUINO_APOLLO3_SFE_EDGE"
                 }
             },
             "ambiqsdk-sfe": {
                 "variant": [
                     "boards_sfe",
-                    "artemis_thing_plus"
+                    ""
                 ],
-                "extra_flags": ""
+                "extra_flags": "edge"
             }
         }
     },
@@ -37,7 +37,7 @@
         "arduino",
         "ambiqsdk-sfe"
     ],
-    "name": "SparkFun Artemis Thing Plus",
+    "name": "SparkFun Edge Development Board",
     "upload": {
         "maximum_ram_size": 393216,
         "maximum_size": 983040,
@@ -48,6 +48,6 @@
             "jlink"
         ]
     },
-    "url": "https://www.sparkfun.com/products/15574",
+    "url": "https://www.sparkfun.com/products/15170",
     "vendor": "SparkFun"
 }

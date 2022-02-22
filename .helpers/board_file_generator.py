@@ -114,7 +114,7 @@ paramaters = {
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
-    "SparkFun_Redboard_Artemis_Nano.json":
+    "SparkFun_RedBoard_Artemis_Nano.json":
         {
             'board_url': 'https://www.sparkfun.com/products/15443',
             'board_name': 'SparkFun RedBoard Artemis Nano',
@@ -127,9 +127,9 @@ paramaters = {
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
-    "SparkFun_Edge.json":
+    "SparkFun_Edge_Development_Board.json":
         {
-            'board_url': 'https://www.sparkfun.com/products/15170', 'board_name': 'SparkFun Edge',
+            'board_url': 'https://www.sparkfun.com/products/15170', 'board_name': 'SparkFun Edge Development Board',
             'arduino_v1_variant': 'edge', 'arduino_v1_extra_flags': '-DSFE_EDGE',
             'arduino_v2_variant': 'TARGET_SFE_EDGE',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE', 'ambiq_variant': ['boards_sfe', ''],
@@ -137,9 +137,9 @@ paramaters = {
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
-    "SparkFun_Edge2.json":
+    "SparkFun_Edge_2_Development_Board.json":
         {
-            'board_url': 'https://www.sparkfun.com/products/15170', 'board_name': 'SparkFun Edge2',
+            'board_url': 'https://www.sparkfun.com/products/15420', 'board_name': 'SparkFun Edge 2 Development Board',
             'arduino_v1_variant': 'edge2', 'arduino_v1_extra_flags': '-DSFE_EDGE2',
             'arduino_v2_variant': 'TARGET_SFE_EDGE2',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE', 'ambiq_variant': ['boards_sfe', ''],
@@ -183,10 +183,10 @@ paramaters = {
             'frameworks': ['arduino', 'ambiqsdk-sfe']
         },
 
-    "SparkFun_Thing_Plus.json":
+    "SparkFun_Thing_Plus_Artemis.json":
         {
             'board_url': 'https://www.sparkfun.com/products/15574',
-            'board_name': 'SparkFun Artemis Thing Plus',
+            'board_name': 'SparkFun Thing Plus - Artemis',
             'arduino_v1_variant': 'artemis_thing_plus',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_THING_PLUS',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_THING_PLUS',

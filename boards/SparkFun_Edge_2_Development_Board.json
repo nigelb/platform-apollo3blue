@@ -37,7 +37,7 @@
         "arduino",
         "ambiqsdk-sfe"
     ],
-    "name": "SparkFun Edge2",
+    "name": "SparkFun Edge 2 Development Board",
     "upload": {
         "maximum_ram_size": 393216,
         "maximum_size": 983040,
@@ -48,6 +48,6 @@
             "jlink"
         ]
     },
-    "url": "https://www.sparkfun.com/products/15170",
+    "url": "https://www.sparkfun.com/products/15420",
     "vendor": "SparkFun"
 }
