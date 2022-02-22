@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from os.path import isdir, split, join
-from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment
+from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment, ARGUMENTS, COMMAND_LINE_TARGETS
 import sys
 import platform as sys_pf
 
@@ -62,14 +62,12 @@ def configure_uploader(env):
     upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
     system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
-
     if upload_protocol in ["svl", "asb"]:
         upload_program = None
         if upload_protocol == "svl":
             upload_program = env.subst("$SVL_UPLOADER")
         elif upload_protocol == "asb":
             upload_program = env.subst("$ASB_UPLOADER")
-
         else:
             sys.stderr.write("Error: cannot determine the uploader program\n")
             env.Exit(1)
@@ -80,12 +78,33 @@ def configure_uploader(env):
         env.Replace(UPLOADER=upload_program)
 
 
+def configure_upload_address(env, board):
+    upload_protocol = env.subst("$UPLOAD_PROTOCOL")
+    upload_address = ""
+    if upload_protocol == "svl":
+        upload_address = "0x10000"
+    elif upload_protocol == "asb":
+        upload_address = "0xC000"
+    elif upload_protocol == "jlink":
+        upload_address = "0x10000"
+    user_upload_address = board.get("build.upload.address", "").strip()
+    if len(user_upload_address) > 0:
+        upload_address = user_upload_address
+    env.Replace(UPLOAD_ADDRESS=upload_address)
+
+
 env = DefaultEnvironment()
 platform = env.PioPlatform()
 board = env.BoardConfig()
 
 launch_arduino_core_builder(env, platform, board)
 configure_uploader(env)
+configure_upload_address(env, board)
+
+if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
+    print("Upload Address: %s"%env.subst("$UPLOAD_ADDRESS"))
+    print("Linker Script: %s" % env.subst("$LDSCRIPT_PATH"))
+
 
 
 

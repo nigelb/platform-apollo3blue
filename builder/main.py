@@ -103,7 +103,7 @@ elif upload_protocol == "asb":
             "--magic-num", "0xCB",
             "-o", "${SOURCES}.ASB",
             "--version", "0x0",
-            "--load-address-wired", "0xC000",
+            "--load-address-wired", "$UPLOAD_ADDRESS",
             "-i", "6",
             "--options", "0x1",
             "-b", "$UPLOAD_SPEED",
@@ -123,8 +123,7 @@ elif upload_protocol.startswith("jlink"):
         script_path = join(build_dir, "upload.jlink")
         commands = [
             "h",
-            "loadbin %s, %s" % (source, currently_configured_board.get(
-                "upload.jlink_offset_address")),
+            "loadbin %s, %s" % (source, env.subst("$UPLOAD_ADDRESS")),
             "r",
             "q"
         ]

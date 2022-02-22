@@ -45,12 +45,11 @@ upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
 # =======================================================
 # Linker Script
-linker_script_dir = {
-     "0xC000.ld": "asb",
-     "0x10000.ld": "svl",
+linker_script_paths = {
+     "asb": "0xC000.ld",
+     "svl": "0x10000.ld",
 }
 
-linker_script_fn = board.get("build.framework.arduino.v2.linker_script")
 user_linker_script_fn = board.get("build.linker_script", "")
 
 if len(user_linker_script_fn) == 0:
@@ -68,14 +67,16 @@ if user_linker_script_fn is not None:
         sys.stderr.write("\t%s\n" % PROJECT_DIR)
         env.Exit(1)
 
-elif linker_script_fn in linker_script_dir:
-    linker_script = join(TOOLS_DIR, "uploaders", linker_script_dir[linker_script_fn], linker_script_fn)
+else:
+    if upload_protocol in linker_script_paths:
+        linker_script = join(TOOLS_DIR, "uploaders", upload_protocol, linker_script_paths[upload_protocol])
+    elif upload_protocol == "jlink":
+        pretend_upload_protocol = "svl"
+        linker_script = join(TOOLS_DIR, "uploaders", pretend_upload_protocol, linker_script_paths[pretend_upload_protocol])
+
     if not exists(linker_script):
         sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script)
         env.Exit(1)
-else:
-    sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script_fn)
-    env.Exit(1)
 
 env.Replace(LDSCRIPT_PATH=linker_script)
 

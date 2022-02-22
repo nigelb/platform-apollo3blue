@@ -40,10 +40,15 @@ BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.va
 
 PROJECT_DIR = env.subst("$PROJECT_DIR")
 
+upload_protocol = env.subst("$UPLOAD_PROTOCOL")
+
 # =======================================================
 # Linker Script
+linker_script_paths = {
+     "asb": "ambiq_sbl_app.ld",
+     "svl": "artemis_sbl_svl_app.ld",
+}
 linker_script = None
-linker_script_fn = board.get("build.framework.arduino.v1.linker_script")
 user_linker_script_fn = board.get("build.linker_script", "")
 
 if len(user_linker_script_fn) == 0:
@@ -55,21 +60,17 @@ if user_linker_script_fn is not None:
         linker_script = join(PROJECT_DIR, user_linker_script_fn)
         sys.stderr.write("Using linker script: %s\n"%user_linker_script_fn)
     else:
-        sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script_fn)
+        sys.stderr.write("\nError: Could not find linker script: %s\n" % user_linker_script_fn)
         sys.stderr.write("Searched in:\n")
         sys.stderr.write("\t%s\n" % PROJECT_DIR)
         env.Exit(1)
 
-elif exists(join(framework_linker_dir, linker_script_fn)):
-    linker_script = join(framework_linker_dir, linker_script_fn)
-    if not exists(linker_script):
-        sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script)
-        env.Exit(1)
 else:
-    sys.stderr.write("Error: Could not find linker script: %s\n"%linker_script_fn)
-    sys.stderr.write("\tSearched in:\n")
-    sys.stderr.write("\t\t%s\n"%framework_linker_dir)
-    env.Exit(1)
+    if upload_protocol in linker_script_paths:
+        linker_script = join(framework_linker_dir, linker_script_paths[upload_protocol])
+    elif upload_protocol == "jlink":
+        pretend_upload_protocol = "svl"
+        linker_script = join(framework_linker_dir, linker_script_paths[pretend_upload_protocol])
 
 env.Replace(LDSCRIPT_PATH=linker_script)
 # =======================================================
