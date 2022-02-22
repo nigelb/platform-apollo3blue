@@ -59,7 +59,7 @@ See the [Manual Installation](docs/install/Manual.md) and [Using Multiple Versio
 # More Information
 
 1. [Verify Installation](docs/platform-apollo3blue/Install/Verify.md)
-2. [Manually Create a project](docs/platform-apollo3blue/Install/Create a project.md)
+2. [Manually Create a project](docs/platform-apollo3blue/Install/Create%20a%20project.md)
 3. [Upload over USB](docs/platform-apollo3blue/Install/Upload.md)
 4. [`platformio.ini` customization options](docs/platform-apollo3blue/PlatformIO_ini_Options.md)
 5. [Using a Segger JLink](docs/platform-apollo3blue/UsingSeggerJLink.md)
