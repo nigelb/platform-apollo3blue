@@ -39,5 +39,8 @@ $> stty -F /dev/ttyUSB0 hupcl
 I also made a [pull request](https://github.com/sparkfun/Apollo3_Uploader_SVL/pull/6) for the uploader, so that it would be able to fix the port settings as well
 
 
-
+Corrupted/Overwritten SVL Bootloader
+========================
+I have on occasion managed to corrupt the SVL bootloader. 
+It can be re-flashed with [Arduino](https://learn.sparkfun.com/tutorials/designing-with-the-sparkfun-artemis/troubleshooting).
 
