@@ -5,10 +5,10 @@ I thought I would document all the ways in which I have remedied uploading issue
 
 Relevant issues and pull requests:
 
-* sparkfun/Apollo3_Uploader_SVL#4
-* sparkfun/Apollo3_Uploader_SVL#6
-* sparkfun/Arduino_Apollo3#94
-* nigelb/platform-apollo3blue#17
+* [sparkfun/Apollo3_Uploader_SVL#4](https://github.com/sparkfun/Apollo3_Uploader_SVL/issues/4)
+* [sparkfun/Apollo3_Uploader_SVL#6](https://github.com/sparkfun/Apollo3_Uploader_SVL/pull/6)
+* [sparkfun/Arduino_Apollo3#94](https://github.com/sparkfun/Arduino_Apollo3/issues/94)
+* [nigelb/platform-apollo3blue#17](https://github.com/nigelb/platform-apollo3blue/issues/17)
 
 
 Upload Speed
