@@ -63,3 +63,4 @@ See the [Manual Installation](docs/install/Manual.md) and [Using Multiple Versio
 3. [Upload over USB](docs/platform-apollo3blue/Install/Upload.md)
 4. [`platformio.ini` customization options](docs/platform-apollo3blue/PlatformIO_ini_Options.md)
 5. [Using a Segger JLink](docs/platform-apollo3blue/UsingSeggerJLink.md)
+6. [Debugging](docs/platform-apollo3blue/Debug/Debugging.md)
