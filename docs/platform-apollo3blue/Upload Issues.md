@@ -13,7 +13,7 @@ Relevant issues and pull requests:
 
 Upload Speed
 ============
-As pointer out by @cadeo111 [here](https://github.com/nigelb/platform-apollo3blue/issues/17#issuecomment-1062971881) sometimes changing the upload speed can fix the issue.
+As pointed out by @cadeo111 [here](https://github.com/nigelb/platform-apollo3blue/issues/17#issuecomment-1062971881) sometimes changing the upload speed can fix the issue.
 
 Add `upload_speed=115200` to your platform.ini file.
 
