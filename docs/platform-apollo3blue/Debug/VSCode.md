@@ -1,5 +1,5 @@
 # VSCode Debugging
-Once you have added the `debug_tool` directive to your `platformio.ini` file we are ready to debug:
+Once you have added the `debug_tool` directive to your `platformio.ini` ([see here](../UsingSeggerJLink.md)) file we are ready to debug:
 
  1. Select `Run and Debug` from the Activity Bar:
     ![Create GDB Remote Debug](../images/VSCode_Debug_Step_1.png)

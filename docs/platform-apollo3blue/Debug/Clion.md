@@ -1,4 +1,7 @@
 # Clion Debugging
+
+After starting `platformio debug --interface=gdb -x .pioinit` ([see here](../UsingSeggerJLink.md#debug-firmware))
+
 In the Run/Debug Configurations window add a new GDB Remote Debug configuration:
 ![Create GDB Remote Debug](../images/CreateGDBRemoteDebug.png)
 ![Fill in GDB Remote Debug parameters](../images/PlatformIO_GDB.png)
