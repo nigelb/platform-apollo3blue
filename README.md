@@ -54,7 +54,7 @@ If you don't want to use my forked repo, or you want to be able to have concurre
 without having platformio reinstall Arduino_Apollo each time, you can manually install both version
 of the cores.
 
-See the [Manual Installation](docs/install/Manual.md) and [Using Multiple Versions of Arduino_Apollo3](docs/UsingMultipleVersionsOfArduino_Apollo3).
+See the [Manual Installation](docs/platform-apollo3blue/install/Manual.md) and [Using Multiple Versions of Arduino_Apollo3](docs/platform-apollo3blue/UsingMultipleVersionsOfArduino_Apollo3).
 
 # More Information
 
