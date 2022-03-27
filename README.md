@@ -46,7 +46,7 @@ or:
 ### Core V1
 Until the version number is bumped for the core v1 branch, I am maintaining a fork of it [here](https://github.com/nigelb/Arduino_Apollo3) with the required updates.
 ```
-$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo3@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
+$ pio init -b SparkFun_RedBoard_Artemis_ATP -O"platform_packages=framework-arduinoapollo@https://github.com/nigelb/Arduino_Apollo3#v1.2.1_pio"
 ```
 
 # Manual install of sparkfun/Arduino_Apollo3
