@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from os.path import isdir, join, exists
-from SCons.Script import DefaultEnvironment
+from SCons.Script import DefaultEnvironment, COMMAND_LINE_TARGETS
 import platform as system_platform
 import sys
 
@@ -101,10 +101,6 @@ env.Append(
     CFLAGS=[
         "-MMD",
         "-include", join(BOARD_VARIANTS_DIR, "mbed", "mbed_config.h"),
-        "-iprefix{}/".format(BASE_CORE_DIR),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-symbols"),
     ],
 
     CPPFLAGS=[
@@ -115,10 +111,6 @@ env.Append(
         "-MMD",
         "-include", join(BOARD_VARIANTS_DIR, "mbed", "mbed_config.h"),
         "-include", join(CORE_DIR, "sdk", "ArduinoSDK.h"),
-        "-iprefix{}/".format(BASE_CORE_DIR),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-flags"),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
-        join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-symbols"),
     ],
 
     CPPDEFINES=[
@@ -159,6 +151,85 @@ env.Append(
 
     LIBSOURCE_DIRS=[LIBRARY_DIR]
 )
+
+if '_idedata' in COMMAND_LINE_TARGETS:
+    def grab_includes(fn, prefix):
+        result = []
+        with open(fn, "r") as fin:
+            lines = fin.readlines()
+            for line in lines:
+                line = line.strip()
+                if line.startswith('"'):
+                    line = line[1:]
+                if line.endswith('"'):
+                    line = line[:-1]
+                if line.startswith("-iwithprefixbefore"):
+                    line = line.replace("-iwithprefixbefore", "")
+                    result.append(join("{}".format(prefix), line))
+                else:
+                    result.append(line)
+        return result
+
+    def grab_flags(fn):
+        print(fn)
+        result = []
+        with open(fn, "r") as fin:
+            lines = fin.readlines()
+            for line in lines:
+                line = line.strip()
+                result += line.split()
+        return result
+
+    def grab_defines(fn):
+        print(fn)
+        result = []
+        with open(fn, "r") as fin:
+            lines = fin.readlines()
+            for line in lines:
+                line = line.strip()
+                d = env.ParseFlags(line)
+                for k,v in d.items():
+                    if k == "CPPDEFINES":
+                        for i in v:
+                            if type(i) == list:
+                                result.append(tuple(i))
+                            else:
+                                result.append(i)
+
+        return result
+
+    d = env.ParseFlags(           "-iprefix{}/".format(BASE_CORE_DIR),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-symbols"))
+
+    includes = grab_includes(join(BOARD_VARIANTS_DIR, "mbed", ".includes"), BASE_CORE_DIR)
+    c_flags = grab_flags(join(BOARD_VARIANTS_DIR, "mbed", ".c-flags"))
+    c_symbols = grab_defines(join(BOARD_VARIANTS_DIR, "mbed", ".c-symbols"))
+    cxx_flags = grab_flags(join(BOARD_VARIANTS_DIR, "mbed", ".cxx-flags"))
+    cxx_symbols = grab_defines(join(BOARD_VARIANTS_DIR, "mbed", ".cxx-symbols"))
+
+    env.Append(CPPPATH=includes, CFLAGS=c_flags, CXXFLAGS=cxx_flags, CPPDEFINES=list(set(cxx_symbols + c_symbols)))
+
+else:
+    env.Append(
+        CFLAGS=
+        [
+            "-iprefix{}/".format(BASE_CORE_DIR),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-flags"),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
+            join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".c-symbols"),
+
+        ],
+
+        CXXFLAGS=
+        [
+           "-iprefix{}/".format(BASE_CORE_DIR),
+           join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-flags"),
+           join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".includes"),
+           join("@{}".format(BOARD_VARIANTS_DIR), "mbed", ".cxx-symbols"),
+        ],
+    )
 
 libs = []
 
