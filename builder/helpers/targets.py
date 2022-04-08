@@ -31,6 +31,8 @@ def add_svl_bootloader(env):
         env.Replace(UPLOAD_ADDRESS="0xC000")
         if upload_protocol == "svl":
             env.Replace(UPLOAD_PROTOCOL="asb")
+            env.Replace(UPLOADER=env.subst("$ASB_UPLOADER"))
+            env.Replace(UPLOAD_SPEED="115200")
     env.AddPlatformTarget("svl_bootloader", env.subst("$SVL_BOOTLOADER_BIN"),
                           [BeforeUpload, env.VerboseAction("$UPLOADCMD", "Uploading SVL Bootloader: $SOURCE")],
                           "Sparkfun SVL", "Upload the Sparkfun SVL Bootloader."
@@ -80,11 +82,8 @@ def add_jlink_rtt(env):
 
 
 # Removes IDE linting errors :-(
-def getenv():
-    return env
+env = env
 
-
-env = getenv()
 add_svl_bootloader(env)
 add_jlink_swo(env)
 add_jlink_rtt(env)
