@@ -120,16 +120,16 @@ target_bin = env.ElfToBin(join("$BUILD_DIR", "firmware"), target_elf)
 env.Replace(TARGET_BIN=target_bin)
 
 #
-# Configure the uploader
-#
-env.SConscript(join("helpers", "uploader.py"), exports="env")
-
-#
 # Add extra targets
 #
 env.SConscript(join("helpers", "targets.py"), exports="env")
 
-if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
+#
+# Configure the uploader
+#
+env.SConscript(join("helpers", "uploader.py"), exports="env")
+
+if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1 and len(all_build_targets) == 0:
     print("Upload Address: %s"%env.subst("$UPLOAD_ADDRESS"))
     print("Linker Script: %s" % env.subst(env.subst("$LDSCRIPT_PATH")))
 #
