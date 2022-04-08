@@ -14,13 +14,17 @@
 # limitations under the License.
 
 import sys
-from SCons.Script import DefaultEnvironment, Import
+from SCons.Script import DefaultEnvironment, Import, BUILD_TARGETS
 from os.path import join, isdir
 import os
 
 Import("env")
 
 def get_valid_upload_speed(upload_protocol, upload_speed):
+    # We don't need a baud rate for jlink items
+    if any([x in BUILD_TARGETS for x in ["jlink_swo", "jlink_rtt"]]):
+        return
+
     valid_bauds = dict(
         svl = ["57600", "115200", "230400", "460800", "921600"],
         asb = ["115200"]
