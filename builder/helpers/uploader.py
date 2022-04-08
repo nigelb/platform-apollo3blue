@@ -14,9 +14,11 @@
 # limitations under the License.
 
 import sys
-from SCons.Script import DefaultEnvironment
+from SCons.Script import DefaultEnvironment, Import
 from os.path import join, isdir
 import os
+
+Import("env")
 
 def get_valid_upload_speed(upload_protocol, upload_speed):
     valid_bauds = dict(
@@ -124,7 +126,10 @@ def configure_upload(env):
         UPLOAD_SPEED=upload_speed,
     )
 
-env = DefaultEnvironment()
+
+# Removes IDE linting errors :-(
+env = env
+
 configure_upload(env)
 upload_actions = [
     env.VerboseAction(BeforeUpload, "Looking for upload port..."),
