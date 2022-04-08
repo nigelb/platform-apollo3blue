@@ -14,7 +14,7 @@
 # limitations under the License.
 
 from os.path import isdir, split, join
-from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment, ARGUMENTS, COMMAND_LINE_TARGETS
+from SCons.Script import AlwaysBuild, Builder, Default, DefaultEnvironment, COMMAND_LINE_TARGETS
 import sys
 import platform as sys_pf
 
@@ -100,12 +100,6 @@ board = env.BoardConfig()
 launch_arduino_core_builder(env, platform, board)
 configure_uploader(env)
 configure_upload_address(env, board)
-
-if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
-    print("Upload Address: %s"%env.subst("$UPLOAD_ADDRESS"))
-    print("Linker Script: %s" % env.subst("$LDSCRIPT_PATH"))
-
-
 
 
 

@@ -15,7 +15,6 @@
 
 from os.path import isdir, join
 from SCons.Script import DefaultEnvironment
-import platform as sys_pf
 
 
 env = DefaultEnvironment()
@@ -34,10 +33,15 @@ AMBIQMICRO_CMSIS_DIR = join(CMSIS_DIR, "AmbiqMicro")
 DEVICES_DIR           = join(FRAMEWORK_DIR, "devices")
 UTILS_DIR             = join(FRAMEWORK_DIR, "utils")
 MCU_DIR               = join(FRAMEWORK_DIR, "mcu", board.get("build.part"))
-
 TOOLS_DIR             = join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe")
 
-system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
+system_type = env.subst("$SYSTEM_TYPE")
+env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe", "asb", "dist", system_type, "asb"))
+env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe", "svl", "dist", system_type, "svl"))
+env.Replace(SVL_LINKER_SCRIPT=join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe", "templates", "asb_svl_linker.ld"))
+env.Replace(ASB_LINKER_SCRIPT=join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe", "templates", "asb_linker.ld"))
+env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "boards_sfe", "common", "tools_sfe", "svl", "bootloader", "gcc", "artemis_module", "bin", "svl.bin"))
+
 
 upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 if not upload_protocol.startswith("jlink"):

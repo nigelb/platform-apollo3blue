@@ -15,7 +15,6 @@
 
 from os.path import isdir, join, exists
 from SCons.Script import DefaultEnvironment
-import platform as sys_pf
 import sys
 
 env = DefaultEnvironment()
@@ -44,47 +43,24 @@ upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
 # =======================================================
 # Linker Script
-linker_script_paths = {
-     "asb": "ambiq_sbl_app.ld",
-     "svl": "artemis_sbl_svl_app.ld",
-}
-linker_script = None
-user_linker_script_fn = board.get("build.linker_script", "")
-
-if len(user_linker_script_fn) == 0:
-    user_linker_script_fn = None
-
 framework_linker_dir = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant"), "linker_scripts", "gcc")
-if user_linker_script_fn is not None:
-    if exists(join(PROJECT_DIR, user_linker_script_fn)):
-        linker_script = join(PROJECT_DIR, user_linker_script_fn)
-        sys.stderr.write("Using linker script: %s\n"%user_linker_script_fn)
-    else:
-        sys.stderr.write("\nError: Could not find linker script: %s\n" % user_linker_script_fn)
-        sys.stderr.write("Searched in:\n")
-        sys.stderr.write("\t%s\n" % PROJECT_DIR)
-        env.Exit(1)
 
-else:
-    if upload_protocol in linker_script_paths:
-        linker_script = join(framework_linker_dir, linker_script_paths[upload_protocol])
-    elif upload_protocol == "jlink":
-        pretend_upload_protocol = "svl"
-        linker_script = join(framework_linker_dir, linker_script_paths[pretend_upload_protocol])
-
-env.Replace(LDSCRIPT_PATH=linker_script)
+# =======================================================
+# Bootloader location
+env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "tools", "bootloaders", "artemis", "artemis_svl.bin"))
 # =======================================================
 
 # =======================================================
 # Uploader Binary Locations
-system_type = sys_pf.system().lower() if sys_pf.system() != "Darwin" else "macosx"
+system_type = env.subst("$SYSTEM_TYPE")
 env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "artemis", system_type, "artemis_svl"))
 env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "ambiq", system_type, "ambiq_bin2board"))
 # =======================================================
 
 # =======================================================
-# Bootloader location
-env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "tools", "bootloaders", "artemis", "artemis_svl.bin"))
+# Linker Script Locations
+env.Replace(SVL_LINKER_SCRIPT=join(framework_linker_dir, "artemis_sbl_svl_app.ld"))
+env.Replace(ASB_LINKER_SCRIPT=join(framework_linker_dir, "ambiq_sbl_app.ld"))
 # =======================================================
 
 env.Append(

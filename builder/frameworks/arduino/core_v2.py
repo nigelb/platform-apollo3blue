@@ -15,7 +15,6 @@
 
 from os.path import isdir, join, exists
 from SCons.Script import DefaultEnvironment, COMMAND_LINE_TARGETS
-import platform as system_platform
 import sys
 
 env = DefaultEnvironment()
@@ -41,44 +40,6 @@ BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v2.va
 PROJECT_DIR = env.subst("$PROJECT_DIR")
 TOOLS_DIR = join(FRAMEWORK_DIR, "tools")
 
-upload_protocol = env.subst("$UPLOAD_PROTOCOL")
-
-# =======================================================
-# Linker Script
-linker_script_paths = {
-     "asb": "0xC000.ld",
-     "svl": "0x10000.ld",
-}
-
-user_linker_script_fn = board.get("build.linker_script", "")
-
-if len(user_linker_script_fn) == 0:
-    user_linker_script_fn = None
-
-linker_script = None
-
-if user_linker_script_fn is not None:
-    if exists(join(PROJECT_DIR, user_linker_script_fn)):
-        linker_script = join(PROJECT_DIR, user_linker_script_fn)
-        sys.stderr.write("Using linker script: %s\n" % user_linker_script_fn)
-    else:
-        sys.stderr.write("\nError: Could not find linker script: %s\n" % user_linker_script_fn)
-        sys.stderr.write("Searched in:\n")
-        sys.stderr.write("\t%s\n" % PROJECT_DIR)
-        env.Exit(1)
-
-else:
-    if upload_protocol in linker_script_paths:
-        linker_script = join(TOOLS_DIR, "uploaders", upload_protocol, linker_script_paths[upload_protocol])
-    elif upload_protocol == "jlink":
-        pretend_upload_protocol = "svl"
-        linker_script = join(TOOLS_DIR, "uploaders", pretend_upload_protocol, linker_script_paths[pretend_upload_protocol])
-
-    if not exists(linker_script):
-        sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script)
-        env.Exit(1)
-
-env.Replace(LDSCRIPT_PATH=linker_script)
 
 # =======================================================
 # Bootloader location
@@ -87,10 +48,17 @@ env.Replace(SVL_BOOTLOADER_BIN=join(TOOLS_DIR, "uploaders", "svl", "bootloader",
 
 # =======================================================
 # Uploader Binary Locations
-system_type = system_platform.system().lower() if system_platform.system() != "Darwin" else "macosx"
+system_type = env.subst("$SYSTEM_TYPE")
 env.Replace(SVL_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", "svl", "dist", system_type, "svl"))
 env.Replace(ASB_UPLOADER=join(FRAMEWORK_DIR, "tools", "uploaders", "asb", "dist", system_type, "asb"))
 # =======================================================
+
+# =======================================================
+# Linker Script Locations
+env.Replace(SVL_LINKER_SCRIPT=join(TOOLS_DIR, "uploaders", "svl", "0x10000.ld"))
+env.Replace(ASB_LINKER_SCRIPT=join(TOOLS_DIR, "uploaders", "asb", "0xC000.ld"))
+# =======================================================
+
 
 env.Append(
     ASFLAGS=[
