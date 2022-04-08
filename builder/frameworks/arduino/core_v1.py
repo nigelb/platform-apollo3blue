@@ -47,7 +47,7 @@ framework_linker_dir = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.
 
 # =======================================================
 # Bootloader location
-env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "tools", "bootloaders", "artemis", "artemis_svl.bin"))
+env.Replace(SVL_BOOTLOADER_BIN=join(FRAMEWORK_DIR, "bootloaders", "artemis", "artemis_svl.bin"))
 # =======================================================
 
 # =======================================================
