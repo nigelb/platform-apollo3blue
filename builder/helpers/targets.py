@@ -41,12 +41,16 @@ def add_svl_bootloader(env):
 
 def add_jlink_swo(env):
     "JLinkSWOViewerCLExe -device AMA3B1KK-KBR -itmport 0"
+    platform_apollo3blue = env.PioPlatform()
+    jlink_path = platform_apollo3blue.get_package_dir("tool-jlink")
+    if jlink_path is None:
+        return
     currently_configured_board = env.BoardConfig()
     program = "JLinkSWOViewerCLExe"
     if env.subst("SYSTEM_TYPE") == "windows":
         program = "JLinkSWOViewerCLExe.exe"
-    platform_apollo3blue = env.PioPlatform()
-    program = join(platform_apollo3blue.get_package_dir("tool-jlink"), program)
+
+    program = join(jlink_path, program)
     debug = currently_configured_board.get("debug", {})
     swo_flags = [
             "-device", debug.get("jlink_device"),
@@ -62,12 +66,16 @@ def add_jlink_swo(env):
 
 def add_jlink_rtt(env):
     "JLinkRTTViewerExe --device AMA3B1KK-KBR -a -ti 1"
+    platform_apollo3blue = env.PioPlatform()
+    jlink_path = platform_apollo3blue.get_package_dir("tool-jlink")
+    if jlink_path is None:
+        return
     currently_configured_board = env.BoardConfig()
     program = "JLinkRTTViewerExe"
     if env.subst("SYSTEM_TYPE") == "windows":
         program = "JLinkRTTViewerExe.exe"
-    platform_apollo3blue = env.PioPlatform()
-    program = join(platform_apollo3blue.get_package_dir("tool-jlink"), program)
+
+    program = join(jlink_path, program)
     debug = currently_configured_board.get("debug", {})
     swo_flags = [
             "--device", debug.get("jlink_device"),
