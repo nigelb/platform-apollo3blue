@@ -58,6 +58,8 @@ class Apollo3bluePlatform(PlatformBase):
         elif "ambiqsdk-sfe" in variables.get("pioframework", []):
             self.packages["framework-ambiqsuitesdkapollo3-sfe"]["optional"] = False
 
+        if any([x in targets for x in ["jlink_swo", "jlink_rtt"]]):
+            self.packages["tool-jlink"]["optional"] = False
         # If jlink is used, mark tool-jlink as non-optional
         if "jlink" in upload_protocol:
             self.packages["tool-jlink"]["optional"] = False
