@@ -35,13 +35,13 @@ def get_valid_upload_speed(upload_protocol, upload_speed):
     )
     if len(upload_speed) == 0 or upload_speed not in valid_bauds[upload_protocol]:
         if len(upload_speed) == 0:
-            sys.stderr.write("No baud rate specified.")
+            sys.stderr.write("No baud rate specified.\n")
         else:
             sys.stderr.write(
                 "Error: Invalid {} baud rate specified: {}. \nSelect one of: {}\n".format(upload_protocol, upload_speed, valid_bauds[upload_protocol])
             )
         baud_rate = default_bauds[upload_protocol]
-        sys.stderr.write("Using default {} baud rate of {}".format(upload_protocol, baud_rate))
+        sys.stderr.write("Using default {} baud rate of {}\n".format(upload_protocol, baud_rate))
         return baud_rate
     return upload_speed
 
