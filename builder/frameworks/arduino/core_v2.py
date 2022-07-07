@@ -104,7 +104,7 @@ env.Append(
         "-Wl,--whole-archive",
         join("{}".format(BOARD_VARIANTS_DIR), "mbed", "libmbed-os.a"),
         "-Wl,--no-whole-archive",
-        "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map"),
+        "-Wl,-Map=\"%s\"" % join("$BUILD_DIR", "program.map"),
         # "--specs=nosys.specs",
         # "--specs=nano.specs",
         "--specs={}".format(board.get("build.specs"))
