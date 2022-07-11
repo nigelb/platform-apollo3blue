@@ -144,7 +144,7 @@ env.Append(
         "-Wl,--warn-common",
         "-Wl,--warn-section-align",
 
-        "-Wl,-Map=%s" % join("$BUILD_DIR", "program.map")
+        "-Wl,-Map=\"%s\"" % join("$BUILD_DIR", "program.map"),
     ],
 
     LIBS=["m", "arm_cortexM4lf_math", "gcc", "stdc++", "nosys", "c"],
