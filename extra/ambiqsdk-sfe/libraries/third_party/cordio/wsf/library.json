@@ -1,0 +1,23 @@
+{
+  "name": "cordio-wsf",
+  "version": "0.1",
+  "description": "Cordio WSF Library",
+  "frameworks": [
+    "ambiqsdk-sfe"
+  ],
+  "headers": ["wsf_timer.h", "wsf_types.h"],
+  "license": "ARM",
+  "build": {
+    "flags": [
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/wsf/sources/port/freertos",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/wsf/sources/util"
+    ],
+    "libArchive": false,
+    "srcDir": "%(FRAMEWORK_DIR)s/third_party/cordio/wsf/sources",
+    "includeDir": "%(FRAMEWORK_DIR)s/third_party/cordio/wsf/include",
+    "srcFilter": [
+      "+<**/*.c>",
+      "+<*.h>"
+    ]
+  }
+}

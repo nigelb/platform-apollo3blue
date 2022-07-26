@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_apps_beaconscanner",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/beaconscanner",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/beaconscanner",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

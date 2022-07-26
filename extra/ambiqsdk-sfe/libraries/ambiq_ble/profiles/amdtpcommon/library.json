@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_profiles_amdtpcommon",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profiles/amdtpcommon",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profiles/amdtpcommon",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

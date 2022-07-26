@@ -1,0 +1,21 @@
+{
+    "name": "bootloader",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/bootloader",
+        "includeDir": "%(FRAMEWORK_DIR)s/bootloader",
+        "srcFilter": [
+            "+<*.c>",
+            "-<am_uart_boot_handlers.c>",
+            "-<am_ios_boot_handlers.c>",
+            "+<*.h>"
+        ]
+    }
+}

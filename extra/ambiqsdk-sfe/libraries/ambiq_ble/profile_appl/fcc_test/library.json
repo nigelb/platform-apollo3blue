@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_profile_applfcc_test",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profile_appl/fcc_test",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profile_appl/fcc_test",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

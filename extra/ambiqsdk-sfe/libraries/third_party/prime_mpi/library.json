@@ -1,0 +1,19 @@
+{
+    "name": "prime_mpi",
+    "version": "0.1",
+    "description": "Prime MPI",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "LGPL 3.0",
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/third_party/prime_mpi/src",
+        "includeDir": "%(FRAMEWORK_DIR)s/third_party/prime_mpi/src",
+        "srcFilter": [
+            "+<*.c>",
+            "+<*.h>"
+        ]
+    }
+}

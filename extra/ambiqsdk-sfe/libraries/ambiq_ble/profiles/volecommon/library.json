@@ -1,0 +1,33 @@
+{
+    "name": "ambiq_ble_profiles_volecommon",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/ama/gcc",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/ama/iar",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/ama/keil",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/ama/pb",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/ama",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/opus/gcc",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/opus/iar",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/opus/keil",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/opus",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec/sbc",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon/codec",
+            "-I%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon"
+        ],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profiles/volecommon",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

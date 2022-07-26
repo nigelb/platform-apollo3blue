@@ -1,0 +1,29 @@
+{
+  "name": "FreeRTOS",
+  "version": "10.1.1",
+  "description": "Real-time operating system for microcontrollers",
+  "frameworks": [
+    "ambiqsdk-sfe"
+  ],
+  "headers": ["FreeRTOS.h"],
+  "license": "MIT",
+  "build": {
+    "flags": ["-DAM_FREERTOS", "-I%(FRAMEWORK_DIR)s/third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2"],
+    "libArchive": false,
+    "srcDir": "%(FRAMEWORK_DIR)s/third_party/FreeRTOSv10.1.1/Source",
+    "includeDir": "%(FRAMEWORK_DIR)s/third_party/FreeRTOSv10.1.1/Source/include",
+    "srcFilter": [
+      "+<**/*.c>",
+      "-<portable/IAR/**/*.c>",
+      "-<portable/Keil/**/*.c>",
+      "-<portable/Keil6/**/*.c>",
+      "-<portable/GCC/AMapollo/**/*.c>",
+      "-<portable/GCC/ARM_CM4F/**/*.c>",
+      "-<portable/MemMang/heap_1.c>",
+      "-<portable/MemMang/heap_3.c>",
+      "-<portable/MemMang/heap_4.c>",
+      "-<portable/MemMang/heap_5.c>",
+      "+<*.h>"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "ble-host",
+  "version": "0.1",
+  "description": "BLE Host library",
+  "frameworks": [
+    "ambiqsdk-sfe"
+  ],
+  "headers": ["hci_handler.h"],
+  "license": "APACHE-2.0",
+  "dependencies": {
+    "uECC":"^0.1"
+  },
+  "build": {
+    "flags": [
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/hci",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/hci/ambiq",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/hci/ambiq/apollo3",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/hci/common",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/sec",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/sec/common",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/sec/pal",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/sec/uecc",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/att",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/cfg",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/dm",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/hci",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/l2c",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/smp",
+      "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources/stack/cfg"
+    ],
+
+    "srcDir": "%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/sources",
+    "includeDir": "%(FRAMEWORK_DIR)s/third_party/cordio/ble-host/include",
+    "srcFilter": [
+      "+<**/*.c>",
+      "+<**/*.h>",
+      "-<hci/ambiq/em9304/*.c>",
+      "-<hci/common/hci_tr.c>",
+      "-<hci/common/hci_core.c>",
+      "-<sec/common/sec_ccm_hci.c>",
+      "-<sec/pal/sec_ccm.c>"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "uECC",
+    "version": "0.1",
+    "description": "A small and fast ECDH and ECDSA implementation for 8-bit, 32-bit, and 64-bit processors.",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "BSD 2-clause",
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/third_party/uecc",
+        "includeDir": "%(FRAMEWORK_DIR)s/third_party/uecc",
+        "srcFilter": [
+            "+<*.c>",
+            "+<*.h>",
+            "-<uECC_ll.c>"
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_apps_prodtest_datc",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/prodtest_datc",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/prodtest_datc",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

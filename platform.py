@@ -41,9 +41,10 @@ from platform import system
 
 from platformio.managers.platform import PlatformBase
 from platformio.util import get_systype
-
+import os
 
 class Apollo3bluePlatform(PlatformBase):
+    PlatformPath = os.path.split(__file__)[0]
     def configure_default_packages(self, variables, targets):
         if not variables.get("board"):
             return PlatformBase.configure_default_packages(

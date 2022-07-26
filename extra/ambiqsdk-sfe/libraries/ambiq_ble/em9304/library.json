@@ -1,0 +1,19 @@
+{
+    "name": "ambiq_ble_em9304",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/em9304",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/em9304",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<*.h>"
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_services",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "headers": ["svc_amotas.h"],
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/services",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/services",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ]
+    }
+}

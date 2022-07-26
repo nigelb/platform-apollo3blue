@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_apps_amdtpc",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/amdtpc",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/apps/amdtpc",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}

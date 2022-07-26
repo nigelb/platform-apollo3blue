@@ -1,0 +1,19 @@
+{
+    "name": "ambiq_ble_menu",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": false,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/menu",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/menu",
+        "srcFilter": [
+            "+<*.c>",
+            "+<*.h>"
+        ]
+    }
+}

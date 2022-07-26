@@ -1,0 +1,20 @@
+{
+    "name": "ambiq_ble_profile_applancs",
+    "version": "0.1",
+    "description": "",
+    "frameworks": [
+        "ambiqsdk-sfe"
+    ],
+    "license": "Ambiq",
+    "build": {
+        "flags": [],
+        "libArchive": true,
+        "srcDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profile_appl/ancs",
+        "includeDir": "%(FRAMEWORK_DIR)s/ambiq_ble/profile_appl/ancs",
+        "srcFilter": [
+            "+<**/*.c>",
+            "+<**/*.h>"
+        ],
+        "libLDFMode": "deep+"
+    }
+}
