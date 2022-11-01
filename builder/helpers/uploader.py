@@ -103,7 +103,7 @@ def configure_upload(env):
 
         UPLOADER="JLinkExe"
         debug = currently_configured_board.get("debug", {})
-        if env.subst("SYSTEM_TYPE") == "windows":
+        if env.subst("$SYSTEM_TYPE") == "windows":
             UPLOADER="JLink.exe"
         upload_flags = [
             "-device", debug.get("jlink_device"),
