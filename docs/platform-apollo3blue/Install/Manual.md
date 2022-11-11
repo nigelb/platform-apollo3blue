@@ -8,7 +8,7 @@ Locate your .platformio directory which it typically in your home directory:
     ~/.platformio> cd packages
     ~/.platformio/packages> git clone --recurse-submodules --branch v2.1.0 https://github.com/sparkfun/Arduino_Apollo3.git framework-arduinoapollo3@2.1.0
 
-Create the file `~/.platformio/packages/framework-arduinoapollo3@2.1.2/package.json` with the following contents:
+Create the file `~/.platformio/packages/framework-arduinoapollo3@2.1.0/package.json` with the following contents:
 ```json
 {
     "name": "framework-arduinoapollo3",
