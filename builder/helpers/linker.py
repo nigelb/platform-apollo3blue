@@ -58,7 +58,7 @@ def resolve_linker_script(env):
             sys.stderr.write("\nError: Could not find linker script: %s\n" % linker_script)
             env.Exit(1)
 
-    return linker_script
+    return '"{}"'.format(linker_script)
 
 
 # env = DefaultEnvironment()
