@@ -66,14 +66,24 @@ env.Append(
         "-ffunction-sections", "-fdata-sections", "-fomit-frame-pointer",
         "-MMD", "-MP", "-std=c99", "-Wall", "-g",
         "-O0",
-        "-I{}".format(MCU_DIR),
-        "-I{}/Include".format(ARM_CMSIS_DIR),
-        "-I{}/Include".format(AMBIQMICRO_CMSIS_DIR),
-        "-I{}/bsp".format(VARIANT_DIR),
-        "-I{}".format(DEVICES_DIR),
-        "-I{}".format(UTILS_DIR),
-        "-I{}".format(BOOTLOADER_DIR),
-        "-I{}".format(join(env.subst("$PROJECT_DIR"), "src"))
+        # "-I{}".format(MCU_DIR),
+        # "-I{}/Include".format(ARM_CMSIS_DIR),
+        # "-I{}/Include".format(AMBIQMICRO_CMSIS_DIR),
+        # "-I{}/bsp".format(VARIANT_DIR),
+        # "-I{}".format(DEVICES_DIR),
+        # "-I{}".format(UTILS_DIR),
+        # "-I{}".format(BOOTLOADER_DIR),
+        # "-I{}".format(join(env.subst("$PROJECT_DIR"), "src"))
+    ],
+    CPPPATH=[
+        MCU_DIR,
+        "{}/Include".format(ARM_CMSIS_DIR),
+        "{}/Include".format(AMBIQMICRO_CMSIS_DIR),
+        "{}/bsp".format(VARIANT_DIR),
+        DEVICES_DIR,
+        UTILS_DIR,
+        BOOTLOADER_DIR,
+        join(env.subst("$PROJECT_DIR"), "src")
     ],
     CPPDEFINES=[
         "AM_PACKAGE_BGA",
