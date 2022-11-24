@@ -326,5 +326,5 @@ def configure_upload_address(env, board):
     env.Replace(UPLOAD_ADDRESS=upload_address)
 
 configure_upload_address(env, board)
-env.Prepend(LIBS=libs, __PIO_LIB_BUILDERS=env.GetLibBuilders())
-env.Append(__PIO_LIB_BUILDERS=lib_builders)
+env.GetLibBuilders()
+env.Prepend(LIBS=libs, __PIO_LIB_BUILDERS=lib_builders)
