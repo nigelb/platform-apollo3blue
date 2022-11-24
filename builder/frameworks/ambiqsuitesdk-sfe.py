@@ -98,6 +98,7 @@ env.Append(
         "-nostartfiles", "-static",
         "-Wl,--gc-sections,--entry,Reset_Handler,-Map,\"%s\""% join("$BUILD_DIR", "program.map"),
         # "-Wl,-T%s"%join(FRAMEWORK_DIR, "boards_sfe","common","tools_sfe", "templates", "asb_svl_linker.ld")
+        "--specs={}".format(board.get("build.specs"))
     ],
     LIBS=["arm_cortexM4lf_math", "m"],
 
