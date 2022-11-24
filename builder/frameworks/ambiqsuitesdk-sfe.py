@@ -326,5 +326,7 @@ def configure_upload_address(env, board):
     env.Replace(UPLOAD_ADDRESS=upload_address)
 
 configure_upload_address(env, board)
+
+# If we don't add `env.GetLibBuilders()` then other project libraries will not be build. See Issue #41
 env.GetLibBuilders()
-env.Prepend(LIBS=libs, __PIO_LIB_BUILDERS=lib_builders)
+env.Append(LIBS=libs, __PIO_LIB_BUILDERS=lib_builders)
