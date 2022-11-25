@@ -64,16 +64,8 @@ env.Append(
     CFLAGS=[
         "-mthumb", "-mcpu=%s"%board.get("build.cpu"), "-mfpu=fpv4-sp-d16", "-mfloat-abi=%s"%board.get("build.fabi"),
         "-ffunction-sections", "-fdata-sections", "-fomit-frame-pointer",
-        "-MMD", "-MP", "-std=c99", "-Wall", "-g",
+        "-MMD", "-MP", "-std={}".format(board.get("build.standard", "c99")), "-Wall", "-g",
         "-O0",
-        # "-I{}".format(MCU_DIR),
-        # "-I{}/Include".format(ARM_CMSIS_DIR),
-        # "-I{}/Include".format(AMBIQMICRO_CMSIS_DIR),
-        # "-I{}/bsp".format(VARIANT_DIR),
-        # "-I{}".format(DEVICES_DIR),
-        # "-I{}".format(UTILS_DIR),
-        # "-I{}".format(BOOTLOADER_DIR),
-        # "-I{}".format(join(env.subst("$PROJECT_DIR"), "src"))
     ],
     CPPPATH=[
         MCU_DIR,
