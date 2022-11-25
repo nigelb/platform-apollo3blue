@@ -1,7 +1,8 @@
 # platform.ini Options
 Here we document the options you can change in your `platform.ini` file.
 
-## GCC --Specs=
+## All platforms
+### GCC --Specs=
 
 Lets you change the --specs parameter that is passed to the compiler.
 Examples:
@@ -12,17 +13,17 @@ Or:
 
     board_build.specs = nosys.specs
 
-## Linker Script
+### Linker Script
 
-### Custom Linker Script
+#### Custom Linker Script
 
 Lets you specify the location (relative to the project directory) of your custom linker script.
 For example, if you had your custom linker script in `<PROJECT_DIR>/linker/my_linker_script.ld`:
 
     board_build.linker_script = linker/my_linker_script.ld
 
-## Upload Address
-### Background
+### Upload Address
+#### Background
 
 The address that the program is loaded to in the MCU's flash must match what is specified in the linker file.
 
@@ -54,7 +55,7 @@ MEMORY
 ```
 The upload address is automatically set to `0xC000` to match the address from the line `FLASH (rx) : ORIGIN = 0x0000C000`.
 
-### Custom Upload Address
+#### Custom Upload Address
 
 Used with the `asb` and `jlink` upload protocols, this lets you specify the location in the FLASH that the program
 is loaded into. Typically, this is used if you are using a modified linker script.
@@ -63,3 +64,16 @@ To specify a custom upload address of `0x20000` in your `platform.ini` file:
 
     board_build.upload.address = 0x20000
 
+## PLatform: `ambiqsdk-sfe`
+These options are only available in the `ambiqsdk-sfe` platform.
+
+### Compiler Standard
+
+Lets you change the -std parameter that is passed to the compiler.
+For example the default is:
+
+    board_build.standard = c99
+
+Or you can change this:
+
+    board_build.standard = gnu99
