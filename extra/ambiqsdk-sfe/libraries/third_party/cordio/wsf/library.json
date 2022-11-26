@@ -18,6 +18,7 @@
     "srcFilter": [
       "+<**/*.c>",
       "+<*.h>"
-    ]
+    ],
+    "libLDFMode": "deep+"
   }
 }
