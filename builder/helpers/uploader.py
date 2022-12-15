@@ -14,7 +14,7 @@
 # limitations under the License.
 
 import sys
-from SCons.Script import DefaultEnvironment, Import, BUILD_TARGETS
+from SCons.Script import DefaultEnvironment, Import, BUILD_TARGETS, ARGUMENTS
 from os.path import join, isdir
 import os
 
@@ -35,13 +35,16 @@ def get_valid_upload_speed(upload_protocol, upload_speed):
     )
     if len(upload_speed) == 0 or upload_speed not in valid_bauds[upload_protocol]:
         if len(upload_speed) == 0:
-            sys.stderr.write("No baud rate specified.\n")
+            if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
+                sys.stderr.write("No baud rate specified.\n")
         else:
             sys.stderr.write(
                 "Error: Invalid {} baud rate specified: {}. \nSelect one of: {}\n".format(upload_protocol, upload_speed, valid_bauds[upload_protocol])
             )
+            env.Exit(1)
         baud_rate = default_bauds[upload_protocol]
-        sys.stderr.write("Using default {} baud rate of {}\n".format(upload_protocol, baud_rate))
+        if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
+            sys.stderr.write("Using default {} baud rate of {}\n".format(upload_protocol, baud_rate))
         return baud_rate
     return upload_speed
 
