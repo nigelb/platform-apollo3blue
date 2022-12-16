@@ -44,7 +44,11 @@ def get_valid_upload_speed(upload_protocol, upload_speed):
             env.Exit(1)
         baud_rate = default_bauds[upload_protocol]
         if int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1:
-            sys.stderr.write("Using default {} baud rate of {}\n".format(upload_protocol, baud_rate))
+            sys.stderr.write("Using default {} baud rate of {}\r\n".format(upload_protocol, baud_rate))
+            sys.stderr.write("To set, add \"upload_speed=921600\" to your platformio.ini file\n".format(upload_protocol, baud_rate))
+            sys.stderr.write("Valid baud rates are: {}\r\n".format([int(x) for x in valid_bauds['svl']]))
+            sys.stderr.write("More information available at: ")
+            sys.stderr.write("https://docs.platformio.org/en/stable/projectconf/section_env_upload.html#upload-speed\n")
         return baud_rate
     return upload_speed
 
