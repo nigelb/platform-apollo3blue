@@ -241,7 +241,7 @@ paramaters = {
             'vendor': 'Ambiq',
             'ambiq_variant': ['boards', 'apollo3_evb'],
             'ambiq_extra_flags': '',
-            'ambiq_variant_lib_src_filter': '-<examples/**/*>',
+            'ambiq_variant_lib_src_filter': '+<bsp/*> -<examples/**/*>',
             'frameworks': ['ambiqsdk-sfe']
         }
 }

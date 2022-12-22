@@ -13,7 +13,7 @@
                     "apollo3_evb"
                 ],
                 "extra_flags": "",
-                "variant_lib_src_filter": "-<examples/**/*>"
+                "variant_lib_src_filter": "+<bsp/*> -<examples/**/*>"
             }
         }
     },
