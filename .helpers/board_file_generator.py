@@ -30,6 +30,7 @@ template = """{{
     "debug": {{
     "jlink_device": "AMA3B1KK-KBR",
     "svd_path": "apollo3.svd",
+    "swo_freq": 12000000, 
     "init": {{
         "break": "tbreak setup"
       }}

@@ -64,12 +64,12 @@ To specify a custom upload address of `0x20000` in your `platform.ini` file:
 
     board_build.upload.address = 0x20000
 
-## PLatform: `ambiqsdk-sfe`
+## Platform: `ambiqsdk-sfe`
 These options are only available in the `ambiqsdk-sfe` platform.
 
 ### Compiler Standard
 
-Lets you change the -std parameter that is passed to the compiler.
+Lets you change the `-std` parameter that is passed to the compiler.
 For example the default is:
 
     board_build.standard = c99
@@ -77,3 +77,14 @@ For example the default is:
 Or you can change this:
 
     board_build.standard = gnu99
+
+## Other Targets
+
+### Target: `jlink_swo`
+
+#### SWO Clock Speed
+
+Lets you change the `-swofreq` passed to JLinkSWOViewer.
+The default SWO clock speed is 12000000, to change it: 
+
+    board_debug.swo_freq=1000000

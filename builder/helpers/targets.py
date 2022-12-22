@@ -54,7 +54,8 @@ def add_jlink_swo(env):
     debug = currently_configured_board.get("debug", {})
     swo_flags = [
             "-device", debug.get("jlink_device"),
-            "-itmport", "0"
+            "-itmport", "0",
+            "-swofreq", debug.get("swo_freq", 1000000)
     ]
     env.Replace(
         APOLLO3_SWO_PROGRAM=program,
