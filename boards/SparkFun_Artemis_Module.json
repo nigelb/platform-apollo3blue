@@ -22,7 +22,8 @@
                     "boards_sfe",
                     "artemis_module"
                 ],
-                "extra_flags": ""
+                "extra_flags": "",
+                "variant_lib_src_filter": ""
             }
         }
     },

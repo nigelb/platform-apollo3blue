@@ -276,9 +276,14 @@ for ambiq_lib in ambiq_libraries:
 
 libs = []
 
+vlsf = framework_build.get("variant_lib_src_filter")
+if vlsf == "":
+    vlsf = None
+
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "Variant"),
     join(FRAMEWORK_DIR, *framework_build.get("variant")),
+    vlsf
 ))
 
 libs.append(env.BuildLibrary(

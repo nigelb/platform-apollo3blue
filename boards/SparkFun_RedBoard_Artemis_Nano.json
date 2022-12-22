@@ -22,7 +22,8 @@
                     "boards_sfe",
                     "redboard_artemis_nano"
                 ],
-                "extra_flags": ""
+                "extra_flags": "",
+                "variant_lib_src_filter": ""
             }
         }
     },

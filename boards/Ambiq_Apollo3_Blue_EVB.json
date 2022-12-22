@@ -7,23 +7,13 @@
         "fabi": "hard",
         "specs": "nosys.specs",
         "framework": {
-            "arduino": {
-                "v1": {
-                    "variant": "artemis_dk",
-                    "extra_flags": "-DAM_AP3_SFE_ARTEMIS_DK"
-                },
-                "v2": {
-                    "variant": "TARGET_SFE_ARTEMIS_DK",
-                    "extra_flags": "-DAPOLLO3_SFE_ARTEMIS_DK"
-                }
-            },
             "ambiqsdk-sfe": {
                 "variant": [
-                    "boards_sfe",
-                    "artemis_dk"
+                    "boards",
+                    "apollo3_evb"
                 ],
                 "extra_flags": "",
-                "variant_lib_src_filter": ""
+                "variant_lib_src_filter": "-<examples/**/*>"
             }
         }
     },
@@ -36,10 +26,9 @@
         }
     },
     "frameworks": [
-        "arduino",
         "ambiqsdk-sfe"
     ],
-    "name": "SparkFun Artemis Development Kit",
+    "name": "Ambiq Apollo3 Blue EVB",
     "upload": {
         "maximum_ram_size": 393216,
         "maximum_size": 983040,
@@ -50,6 +39,6 @@
             "jlink"
         ]
     },
-    "url": "https://www.sparkfun.com/products/16828",
-    "vendor": "SparkFun"
+    "url": "https://ambiq.com/apollo3-blue/",
+    "vendor": "Ambiq"
 }

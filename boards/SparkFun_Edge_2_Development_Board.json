@@ -22,7 +22,8 @@
                     "boards_sfe",
                     ""
                 ],
-                "extra_flags": "edge2"
+                "extra_flags": "edge2",
+                "variant_lib_src_filter": ""
             }
         }
     },

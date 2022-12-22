@@ -48,7 +48,7 @@ template = """{{
     ]
   }},
   "url": "{board_url}",
-  "vendor": "SparkFun"
+  "vendor": "{vendor}"
 }}
 """
 
@@ -69,7 +69,8 @@ arduino_v2 = """
 ambiqsdk_sfe = """
       {{
         "variant": {ambiq_variant},
-        "extra_flags": "{ambiq_extra_flags}"
+        "extra_flags": "{ambiq_extra_flags}",
+        "variant_lib_src_filter": "{ambiq_variant_lib_src_filter}"
       }}
 """
 
@@ -87,7 +88,7 @@ sub_templates = {
     "ambiqsdk-sfe": {
         'path': "build/framework/ambiqsdk-sfe",
         'template': ambiqsdk_sfe,
-        'fields': ['ambiq_variant', 'ambiq_extra_flags']
+        'fields': ['ambiq_variant', 'ambiq_extra_flags', "ambiq_variant_lib_src_filter"]
     }
 }
 
@@ -96,22 +97,29 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/16828',
             'board_name': 'SparkFun Artemis Development Kit',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'artemis_dk',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_ARTEMIS_DK',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_DK',
             'arduino_v2_extra_flags': '-DAPOLLO3_SFE_ARTEMIS_DK',
-            'ambiq_variant': ['boards_sfe', 'artemis_dk'], 'ambiq_extra_flags': '',
+            'ambiq_variant': ['boards_sfe', 'artemis_dk'],
+            'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
     "SparkFun_Artemis_Module.json":
         {
             'board_url': 'https://www.sparkfun.com/products/15484',
-            'board_name': 'SparkFun Artemis Module', 'arduino_v1_variant': 'artemis',
+            'board_name': 'SparkFun Artemis Module',
+            'vendor': 'SparkFun',
+            'arduino_v1_variant': 'artemis',
             'arduino_v1_extra_flags': '-DSFE_ARTEMIS',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_MODULE',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_ARTEMIS_MODULE',
-            'ambiq_variant': ['boards_sfe', 'artemis_module'], 'ambiq_extra_flags': '',
+            'ambiq_variant': ['boards_sfe', 'artemis_module'],
+            'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
@@ -119,32 +127,44 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/15443',
             'board_name': 'SparkFun RedBoard Artemis Nano',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'redboard_artemis_nano',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_BB_ARTEMIS_NANO',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_NANO',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_ARTEMIS_NANO',
             'ambiq_variant': ['boards_sfe', 'redboard_artemis_nano'],
             'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
     "SparkFun_Edge_Development_Board.json":
         {
-            'board_url': 'https://www.sparkfun.com/products/15170', 'board_name': 'SparkFun Edge Development Board',
-            'arduino_v1_variant': 'edge', 'arduino_v1_extra_flags': '-DSFE_EDGE',
+            'board_url': 'https://www.sparkfun.com/products/15170',
+            'board_name': 'SparkFun Edge Development Board',
+            'vendor': 'SparkFun',
+            'arduino_v1_variant': 'edge',
+            'arduino_v1_extra_flags': '-DSFE_EDGE',
             'arduino_v2_variant': 'TARGET_SFE_EDGE',
-            'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE', 'ambiq_variant': ['boards_sfe', ''],
+            'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE',
+            'ambiq_variant': ['boards_sfe', ''],
             'ambiq_extra_flags': 'edge',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
     "SparkFun_Edge_2_Development_Board.json":
         {
-            'board_url': 'https://www.sparkfun.com/products/15420', 'board_name': 'SparkFun Edge 2 Development Board',
-            'arduino_v1_variant': 'edge2', 'arduino_v1_extra_flags': '-DSFE_EDGE2',
+            'board_url': 'https://www.sparkfun.com/products/15420',
+            'board_name': 'SparkFun Edge 2 Development Board',
+            'vendor': 'SparkFun',
+            'arduino_v1_variant': 'edge2',
+            'arduino_v1_extra_flags': '-DSFE_EDGE2',
             'arduino_v2_variant': 'TARGET_SFE_EDGE2',
-            'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE', 'ambiq_variant': ['boards_sfe', ''],
+            'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE',
+            'ambiq_variant': ['boards_sfe', ''],
             'ambiq_extra_flags': 'edge2',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
@@ -152,6 +172,7 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/16401',
             'board_name': 'SparkFun MicroMod Artemis Processor',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'artemis_micromod',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_ARTEMIS_MICROMOD',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_MM_PB',
@@ -163,11 +184,14 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/15444',
             'board_name': 'SparkFun RedBoard Artemis',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'redboard_artemis',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_BB_ARTEMIS',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_ARTEMIS',
-            'ambiq_variant': ['boards_sfe', 'redboard_artemis'], 'ambiq_extra_flags': '',
+            'ambiq_variant': ['boards_sfe', 'redboard_artemis'],
+            'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter':'',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
 
@@ -175,12 +199,14 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/15442',
             'board_name': 'SparkFun RedBoard Artemis ATP',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'redboard_artemis_atp',
             'arduino_v1_extra_flags': '-DARDUINO_AM_AP3_SFE_BB_ARTEMIS_ATP',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_ATP',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_ARTEMIS_ATP',
             'ambiq_variant': ['boards_sfe', 'redboard_artemis_atp'],
             'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ['arduino', 'ambiqsdk-sfe']
         },
 
@@ -188,11 +214,14 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/15574',
             'board_name': 'SparkFun Thing Plus - Artemis',
+            'vendor': 'SparkFun',
             'arduino_v1_variant': 'artemis_thing_plus',
             'arduino_v1_extra_flags': '-DAM_AP3_SFE_THING_PLUS',
             'arduino_v2_variant': 'TARGET_SFE_ARTEMIS_THING_PLUS',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_ARTEMIS_THING_PLUS',
-            'ambiq_variant': ['boards_sfe', 'artemis_thing_plus'], 'ambiq_extra_flags': '',
+            'ambiq_variant': ['boards_sfe', 'artemis_thing_plus'],
+            'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '',
             'frameworks': ['arduino', 'ambiqsdk-sfe']
         },
 
@@ -200,10 +229,21 @@ paramaters = {
         {
             'board_url': 'https://www.sparkfun.com/products/17506',
             'board_name': 'SparkFun LoRa Thing Plus - expLoRaBLE',
+            'vendor': 'SparkFun',
             'arduino_v2_variant': 'TARGET_LoRa_THING_PLUS_expLoRaBLE',
             'arduino_v2_extra_flags': '-DARDUINO_AM_AP3_THING_PLUS_expLoRaBLE',
             'frameworks': ["arduino"]
         },
+    "Ambiq_Apollo3_Blue_EVB.json":
+        {
+            'board_url': 'https://ambiq.com/apollo3-blue/',
+            'board_name': 'Ambiq Apollo3 Blue EVB',
+            'vendor': 'Ambiq',
+            'ambiq_variant': ['boards', 'apollo3_evb'],
+            'ambiq_extra_flags': '',
+            'ambiq_variant_lib_src_filter': '-<examples/**/*>',
+            'frameworks': ['ambiqsdk-sfe']
+        }
 }
 
 
