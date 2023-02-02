@@ -7,6 +7,10 @@
   ],
   "headers": ["app_api.h"],
   "license": "APACHE-2.0",
+  "dependencies": {
+    "ble-host": "^0.1",
+    "cordio-wsf": "^0.1"
+  },
   "build": {
     "flags": [
       "-I%(FRAMEWORK_DIR)s/third_party/cordio/ble-profiles",

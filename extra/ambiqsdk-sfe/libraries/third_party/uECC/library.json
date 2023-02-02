@@ -6,6 +6,11 @@
         "ambiqsdk-sfe"
     ],
     "license": "BSD 2-clause",
+    "dependencies": {
+        "uECC": "^0.1",
+        "ble-profiles": "^0.1",
+        "cordio-wsf": "^0.1"
+    },
     "build": {
         "flags": [],
         "libArchive": false,

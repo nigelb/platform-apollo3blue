@@ -8,7 +8,8 @@
   "headers": ["hci_handler.h"],
   "license": "APACHE-2.0",
   "dependencies": {
-    "uECC":"^0.1"
+    "uECC":"^0.1",
+    "ble-profiles": "^0.1"
   },
   "build": {
     "flags": [
