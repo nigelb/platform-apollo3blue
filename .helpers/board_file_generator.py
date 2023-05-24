@@ -25,6 +25,7 @@ template = """{{
     "part": "apollo3",
     "fabi": "hard",
     "specs": "nosys.specs",
+    "ambiq_sdk": {{"keys_dir":  "keys"}},
     "framework": {{}}
   }},
     "debug": {{
