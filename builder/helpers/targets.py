@@ -121,4 +121,4 @@ env = env
 add_svl_bootloader(env)
 add_jlink_swo(env)
 add_jlink_rtt(env)
-add_ota_image(env)
+# add_ota_image(env)
