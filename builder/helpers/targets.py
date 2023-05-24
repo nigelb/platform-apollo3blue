@@ -12,6 +12,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import os
 
 from SCons.Script import DefaultEnvironment, Import, BUILD_TARGETS
 from os.path import join
@@ -89,6 +90,16 @@ def add_jlink_rtt(env):
     rtt_actions = [env.VerboseAction("$APOLLO3_RTT_COMMAND", "Start the SEGGER Jlink RTT program."),]
     env.AddPlatformTarget("jlink_rtt", None, rtt_actions, "JLink RTT", "Start the SEGGER Jlink RTT program.")
 
+def ambiq_sdk_keys_message(env, framework_dir, keys_dir):
+
+    print("For the Ambiq SDK CLI tools to work you need to create a `keys_info.py` file.", file=sys.stderr)
+    print("The default location for keys_info.py is in the directory: {}. ".format(join("$PROJECT_DIR", "keys")), file=sys.stderr)
+    print("""You can can change the location of the directory containing the keys_info.py file with 
+    the `board_build.ota.keys_dir = <NEW_DIRECTORY>` option in your `platformio.ini` file.""", file=sys.stderr)
+    print(file=sys.stderr)
+    print("You can copy the example file from '{}' to '{}'".format(
+        join(framework_dir, "tools", "apollo3_scripts", "keys_info0.py"), join(keys_dir, "keys_info.py")), file=sys.stderr)
+    print(file=sys.stderr)
 
 def add_ota_image(env):
     try:
@@ -99,8 +110,23 @@ def add_ota_image(env):
 
     platform_apollo3blue = env.PioPlatform()
     FRAMEWORK_DIR = platform_apollo3blue.get_package_dir("framework-ambiqsuitesdkapollo3-sfe")
+    keys_dir = env.subst(board.get("build.ambiq_sdk.keys_dir", join("$PROJECT_DIR", "keys")))
+    if not os.path.exists(keys_dir):
+        print(file=sys.stderr)
+        if not os.path.exists(keys_dir):
+            print("The directory `{}` does not exist. ".format(keys_dir), file=sys.stderr)
+            print(file=sys.stderr)
+            ambiq_sdk_keys_message(env, FRAMEWORK_DIR, keys_dir)
+            env.Exit(1)
+        elif not os.path.exists(join(keys_dir, "keys_info.py")):
+
+            ambiq_sdk_keys_message(env, FRAMEWORK_DIR, keys_dir)
+            sys.stderr.write('Error: Board: "%s" not supported by Arduino_Apollo3-%s\n')
+            env.Exit(1)
+
+
     env.Replace(
-        APOLLO3_SECURITY_KEYS=board.get("board_build.ota.keys_dir", join("$PROJECT_DIR", "keys")),
+        APOLLO3_SECURITY_KEYS=keys_dir,
         APOLLO3_OTA_IMAGE_STAGE1=join("$BUILD_DIR", "ota_image_stage1"),
         APOLLO3_OTA_IMAGE_STAGE1_BIN=join("$BUILD_DIR", "ota_image_stage1.bin"),
         APOLLO3_OTA_IMAGE=join("$BUILD_DIR", "ota_image.bin"),
