@@ -90,9 +90,35 @@ def add_jlink_rtt(env):
     env.AddPlatformTarget("jlink_rtt", None, rtt_actions, "JLink RTT", "Start the SEGGER Jlink RTT program.")
 
 
+def add_ota_image(env):
+    try:
+        from Crypto.Cipher import AES
+    except:
+        env.Execute("$PYTHONEXE -m pip install pycryptodome")
+    board = env.BoardConfig()
+
+    platform_apollo3blue = env.PioPlatform()
+    FRAMEWORK_DIR = platform_apollo3blue.get_package_dir("framework-ambiqsuitesdkapollo3-sfe")
+    env.Replace(
+        APOLLO3_SECURITY_KEYS=board.get("board_build.ota.keys_dir", join("$PROJECT_DIR", "keys")),
+        APOLLO3_OTA_IMAGE_STAGE1=join("$BUILD_DIR", "ota_image_stage1"),
+        APOLLO3_OTA_IMAGE_STAGE1_BIN=join("$BUILD_DIR", "ota_image_stage1.bin"),
+        APOLLO3_OTA_IMAGE=join("$BUILD_DIR", "ota_image.bin"),
+        APOLLO3_CUSTOM_IMAGE_PROGRAM=join(FRAMEWORK_DIR, "tools", "apollo3_scripts", "create_cust_image_blob.py"),
+        APOLLO3_OTA_BINARY_PROGRAM=join(FRAMEWORK_DIR, "tools", "apollo3_amota", "scripts", "ota_binary_converter.py"),
+        APOLLO3_CUSTOM_IMAGE_COMMAND="PYTHONPATH=$APOLLO3_SECURITY_KEYS $PYTHONEXE $APOLLO3_CUSTOM_IMAGE_PROGRAM --bin $SOURCE --load-address $UPLOAD_ADDRESS --magic-num 0xcb --version 0x0 -o $APOLLO3_OTA_IMAGE_STAGE1",
+        APOLLO3_OTA_IMAGE_COMMAND="$PYTHONEXE $APOLLO3_OTA_BINARY_PROGRAM --appbin $APOLLO3_OTA_IMAGE_STAGE1_BIN -o $APOLLO3_OTA_IMAGE",
+    )
+    ota_image_actions = [
+        env.VerboseAction("$APOLLO3_CUSTOM_IMAGE_COMMAND", "Custom Image."),
+        env.VerboseAction("$APOLLO3_OTA_IMAGE_COMMAND", "OTA Image."),
+    ]
+    env.AddPlatformTarget("ble_ota_image", "$BUILD_DIR/firmware.bin", ota_image_actions, "BLE OTA", "Create a program image to be used by the OTA updater.")
+
 # Removes IDE linting errors :-(
 env = env
 
 add_svl_bootloader(env)
 add_jlink_swo(env)
 add_jlink_rtt(env)
+add_ota_image(env)
