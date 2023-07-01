@@ -64,6 +64,12 @@ To specify a custom upload address of `0x20000` in your `platform.ini` file:
 
     board_build.upload.address = 0x20000
 
+### Variants
+#### Custom Variants Directory
+Lets you specify a project specific variants directory. The default value id `$PROJECT_DIR/variants`:
+
+    board_build.variants_dir = myvariant
+
 ## Platform: `ambiqsdk-sfe`
 These options are only available in the `ambiqsdk-sfe` platform.
 

@@ -14,8 +14,9 @@
 # limitations under the License.
 
 import os
-from os.path import isdir, join
+from os.path import isdir, join, exists
 from SCons.Script import DefaultEnvironment
+from platformio.project.helpers import get_project_dir
 from platformio.builder.tools.piolib import PlatformIOLibBuilder
 from platformio.package.manifest.parser import ManifestParserFactory, ManifestFileType
 
@@ -29,6 +30,10 @@ env.ProcessFlags(framework_build.get("extra_flags"))
 
 FRAMEWORK_DIR        = platform.get_package_dir("framework-ambiqsuitesdkapollo3-sfe")
 VARIANT_DIR          = join(FRAMEWORK_DIR, *framework_build.get("variant"))
+CUSTOM_VARIENTS_DIR = join(get_project_dir(), board.get("build.variants_dir", "variants"))
+if exists(CUSTOM_VARIENTS_DIR):
+    VARIANTS_DIR = CUSTOM_VARIENTS_DIR
+
 CMSIS_DIR            = join(FRAMEWORK_DIR, "CMSIS")
 ARM_CMSIS_DIR        = join(CMSIS_DIR, "ARM")
 AMBIQMICRO_CMSIS_DIR = join(CMSIS_DIR, "AmbiqMicro")

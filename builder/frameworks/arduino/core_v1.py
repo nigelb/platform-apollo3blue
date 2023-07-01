@@ -15,6 +15,7 @@
 
 from os.path import isdir, join, exists
 from SCons.Script import DefaultEnvironment
+from platformio.project.helpers import get_project_dir
 import sys
 
 env = DefaultEnvironment()
@@ -35,6 +36,10 @@ EXACTLE_DIR = join(THIRD_PARTY_DIR, "exactle")
 LIBRARY_DIR = join(FRAMEWORK_DIR, "libraries")
 
 VARIANTS_DIR = join(FRAMEWORK_DIR, "variants")
+CUSTOM_VARIENTS_DIR = join(get_project_dir(), board.get("build.variants_dir", "variants"))
+if exists(CUSTOM_VARIENTS_DIR):
+    VARIANTS_DIR = CUSTOM_VARIENTS_DIR
+
 BOARD_VARIANTS_DIR = join(VARIANTS_DIR, board.get("build.framework.arduino.v1.variant"))
 
 PROJECT_DIR = env.subst("$PROJECT_DIR")
