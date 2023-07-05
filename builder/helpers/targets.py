@@ -47,7 +47,7 @@ def add_jlink_swo(env):
         return
     currently_configured_board = env.BoardConfig()
     program = "JLinkSWOViewerCLExe"
-    if env.subst("SYSTEM_TYPE") == "windows":
+    if env.subst("$SYSTEM_TYPE") == "windows":
         program = "JLinkSWOViewerCLExe.exe"
 
     program = join(jlink_path, program)
@@ -73,7 +73,7 @@ def add_jlink_rtt(env):
         return
     currently_configured_board = env.BoardConfig()
     program = "JLinkRTTViewerExe"
-    if env.subst("SYSTEM_TYPE") == "windows":
+    if env.subst("$SYSTEM_TYPE") == "windows":
         program = "JLinkRTTViewerExe.exe"
 
     program = join(jlink_path, program)
