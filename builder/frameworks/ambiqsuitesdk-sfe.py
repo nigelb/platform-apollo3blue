@@ -114,6 +114,8 @@ def create_lib(src_path, manifest_path, context):
 
 
 context = {"FRAMEWORK_DIR": FRAMEWORK_DIR}
+if env.subst("SYSTEM_TYPE") == "windows":
+    context = {"FRAMEWORK_DIR": FRAMEWORK_DIR.replace("\\", "/")}
 
 ambiq_libraries=[
     dict(
