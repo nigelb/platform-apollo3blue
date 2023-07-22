@@ -98,12 +98,25 @@ def configure_upload(env):
             if not isdir(build_dir):
                 os.makedirs(build_dir)
             script_path = join(build_dir, "upload.jlink")
-            commands = [
-                "h",
-                "loadbin %s, %s" % (source, env.subst("$UPLOAD_ADDRESS")),
-                "r",
-                "q"
-            ]
+
+            # Halt the MCU
+            commands = ["h"]
+
+            # If there are any extra pre-program jlink commands, add them in
+            pre_commands = currently_configured_board.get("build.jlink.extra_commands.pre_program", None)
+            if pre_commands is not None:
+                pre_commands = pre_commands.strip().splitlines()
+                commands += pre_commands
+
+            # Uploaf the firmware to the MCU
+            commands += ["loadbin %s, %s" % (source, env.subst("$UPLOAD_ADDRESS"))]
+
+            # If there are any extra post-program jlink commands, add them in
+            post_commands = currently_configured_board.get("build.jlink.extra_commands.post_program", None)
+            if post_commands is not None:
+                post_commands = post_commands.strip().splitlines()
+                commands += post_commands
+            commands += ["r", "q"]
             with open(script_path, "w") as fp:
                 fp.write("\n".join(commands))
             return script_path

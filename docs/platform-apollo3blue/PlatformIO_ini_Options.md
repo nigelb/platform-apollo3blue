@@ -70,6 +70,50 @@ Lets you specify a project specific variants directory. The default value id `$P
 
     board_build.variants_dir = myvariant
 
+### JLink
+#### Extra Commander Script Commands
+The normal JLink commander upload script looks like this: 
+```
+h
+loadbin .pio/build/dev/firmware.bin, 0x10000
+r
+q
+```
+If we want to insert extra commands we can add them on either side of the `loadbin`
+command with the following options.
+
+##### Pre Upload Commands
+You can add extra commands before the `loadbin` with the following:
+
+    board_build.jlink.extra_commands.pre_program = savebin .pio/build/dev/firmware.bin.bak 0x10000 0x50000
+
+which would yield a commander script:
+```
+h
+savebin .pio/build/dev/firmware.bin.bak 0x10000 0x50000
+loadbin .pio/build/dev/firmware.bin, 0x10000
+r
+q
+```
+Which would download the firmware that is already on the device to the file `.pio/build/dev/firmware.bin.bak`.
+Commands available for the J-Link Commander can be found [here](https://wiki.segger.com/J-Link_Commander).
+
+##### Post Upload Commands
+You can add extra commands after the `loadbin` with the following:
+
+    board_build.jlink.extra_commands.post_program = erase 0x2E000 0x2E400
+
+which would yield a commander script:
+```
+h
+loadbin .pio/build/dev/firmware.bin, 0x10000
+erase 0x2E000 0x2E400
+r
+q
+```
+Which would erase the flash range 0x2E000 to 0x2E400.
+Commands available for the J-Link Commander can be found [here](https://wiki.segger.com/J-Link_Commander).
+
 ## Platform: `ambiqsdk-sfe`
 These options are only available in the `ambiqsdk-sfe` platform.
 
