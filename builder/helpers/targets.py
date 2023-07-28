@@ -92,10 +92,11 @@ def add_jlink_rtt(env):
     env.AddPlatformTarget("jlink_rtt", None, rtt_actions, "JLink RTT", "Start the SEGGER Jlink RTT program.")
 
 
-def add_ambiq_keys_directory(env):
+def add_ambiq_keys_directory(env, FRAMEWORK_DIR):
     board = env.BoardConfig()
     env.Replace(
-        APOLLO3_SECURITY_KEYS=board.get("build.ota.keys_dir", join("$PROJECT_DIR", "keys"))
+        APOLLO3_SECURITY_KEYS=board.get("build.ota.keys_dir", join("$PROJECT_DIR", "keys")),
+        APOLLO3_SCRIPTS_DIR=join(FRAMEWORK_DIR, "tools", "apollo3_scripts"),
     )
 
 
@@ -117,13 +118,12 @@ def add_ota_image(env):
         :param env:
         :return:
         """
-        add_ambiq_keys_directory(env)
         FRAMEWORK_DIR = platform_apollo3blue.get_package_dir("framework-ambiqsuitesdkapollo3-sfe")
+        add_ambiq_keys_directory(env, FRAMEWORK_DIR)
         env.Replace(
             APOLLO3_OTA_IMAGE_STAGE1=join("$BUILD_DIR", "ota_image_stage1"),
             APOLLO3_OTA_IMAGE_STAGE1_BIN=join("$BUILD_DIR", "ota_image_stage1.bin"),
             APOLLO3_OTA_IMAGE=join("$BUILD_DIR", board.get("build.ota.image_name", "ota_image")),
-            APOLLO3_SCRIPTS_DIR=join(FRAMEWORK_DIR, "tools", "apollo3_scripts"),
             APOLLO3_CUSTOM_IMAGE_PROGRAM=join("$APOLLO3_SCRIPTS_DIR", "create_cust_image_blob.py"),
             APOLLO3_OTA_BINARY_PROGRAM=join(FRAMEWORK_DIR, "tools", "apollo3_amota", "scripts",
                                             "ota_binary_converter.py"),
@@ -154,7 +154,9 @@ def _create_keys(target=None, source=None, env=None):
     :param env:
     :return:
     """
-    add_ambiq_keys_directory(env)
+    platform_apollo3blue = env.PioPlatform()
+    FRAMEWORK_DIR = platform_apollo3blue.get_package_dir("framework-ambiqsuitesdkapollo3-sfe")
+    add_ambiq_keys_directory(env, FRAMEWORK_DIR)
     is_verbose = int(ARGUMENTS.get("PIOVERBOSE", 0)) == 1
     key_dir = env.subst("$APOLLO3_SECURITY_KEYS")
     if not os.path.exists(key_dir):
