@@ -66,7 +66,10 @@ class Apollo3bluePlatform(PlatformBase):
             self.packages["tool-jlink"]["optional"] = False
         if debug_tool is not None and "jlink" in debug_tool:
             self.packages["tool-jlink"]["optional"] = False
-
+        ambiq_targets = ['ble_ota_image', 'create_ambiq_keys']
+        for at in ambiq_targets:
+            if at in targets:
+                self.packages["framework-ambiqsuitesdkapollo3-sfe"]["optional"] = False
         return PlatformBase.configure_default_packages(self, variables, targets)
 
     def get_boards(self, id_=None):
