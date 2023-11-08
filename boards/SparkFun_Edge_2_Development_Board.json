@@ -20,9 +20,9 @@
             "ambiqsdk-sfe": {
                 "variant": [
                     "boards_sfe",
-                    ""
+                    "edge2"
                 ],
-                "extra_flags": "edge2",
+                "extra_flags": "",
                 "variant_lib_src_filter": ""
             }
         }

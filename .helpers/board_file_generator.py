@@ -147,8 +147,8 @@ paramaters = {
             'arduino_v1_extra_flags': '-DSFE_EDGE',
             'arduino_v2_variant': 'TARGET_SFE_EDGE',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE',
-            'ambiq_variant': ['boards_sfe', ''],
-            'ambiq_extra_flags': 'edge',
+            'ambiq_variant': ['boards_sfe', 'edge'],
+            'ambiq_extra_flags': '',
             'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
@@ -162,8 +162,8 @@ paramaters = {
             'arduino_v1_extra_flags': '-DSFE_EDGE2',
             'arduino_v2_variant': 'TARGET_SFE_EDGE2',
             'arduino_v2_extra_flags': '-DARDUINO_APOLLO3_SFE_EDGE',
-            'ambiq_variant': ['boards_sfe', ''],
-            'ambiq_extra_flags': 'edge2',
+            'ambiq_variant': ['boards_sfe', 'edge2'],
+            'ambiq_extra_flags': '',
             'ambiq_variant_lib_src_filter': '',
             'frameworks': ["arduino", "ambiqsdk-sfe"]
         },
