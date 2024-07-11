@@ -69,7 +69,13 @@ env.Append(
     CFLAGS=[
         "-mthumb", "-mcpu=%s"%board.get("build.cpu"), "-mfpu=fpv4-sp-d16", "-mfloat-abi=%s"%board.get("build.fabi"),
         "-ffunction-sections", "-fdata-sections", "-fomit-frame-pointer",
-        "-MMD", "-MP", "-std={}".format(board.get("build.standard", "c99")), "-Wall", "-g",
+        "-MMD", "-MP", "-std={}".format(board.get("build.standard.c", "c99")), "-Wall", "-g",
+        "-O0",
+    ],
+    CXXFLAGS=[
+        "-mthumb", "-mcpu=%s"%board.get("build.cpu"), "-mfpu=fpv4-sp-d16", "-mfloat-abi=%s"%board.get("build.fabi"),
+        "-ffunction-sections", "-fdata-sections", "-fomit-frame-pointer",
+        "-MMD", "-MP", "-std={}".format(board.get("build.standard.cxx", "c++11")), "-Wall", "-g",
         "-O0",
     ],
     CPPPATH=[
@@ -97,7 +103,7 @@ env.Append(
         # "-Wl,-T%s"%join(FRAMEWORK_DIR, "boards_sfe","common","tools_sfe", "templates", "asb_svl_linker.ld")
         "--specs={}".format(board.get("build.specs"))
     ],
-    LIBS=["arm_cortexM4lf_math", "m"],
+    LIBS=["stdc++", "arm_cortexM4lf_math", "m"],
 
     LIBPATH=[
         join(CMSIS_DIR, "ARM", "Lib", "ARM")
