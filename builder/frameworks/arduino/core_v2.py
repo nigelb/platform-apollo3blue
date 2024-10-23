@@ -205,6 +205,10 @@ else:
     )
 
 libs = []
+# If the user has not overridden the compiler standards then fall back
+# to the standard defined in the .c-flags and .cxx-flags files.
+# The last specified -std option takes affect: https://stackoverflow.com/a/43956978
+env.Apollo3SetBuildStandards(default_c_std=None, default_cxx_std=None)
 
 libs.append(env.BuildLibrary(
     join("$BUILD_DIR", "variant"),

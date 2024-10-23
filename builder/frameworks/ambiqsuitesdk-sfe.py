@@ -104,6 +104,8 @@ env.Append(
     ],
 )
 
+env.Apollo3SetBuildStandards()
+
 lib_builders = []
 
 

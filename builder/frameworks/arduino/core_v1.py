@@ -75,7 +75,6 @@ env.Append(
     ],
 
     CFLAGS=[
-        "-std=gnu11",
         "--function-sections", "-mfpu=fpv4-sp-d16", "-Wall"
     ],
 
@@ -94,7 +93,6 @@ env.Append(
 
     CXXFLAGS=[
         "-include", "Arduino.h",
-        "-std=gnu++11",
         "-fno-threadsafe-statics",
         "-fno-rtti",
     ],
@@ -148,7 +146,6 @@ env.Append(
         "-Wl,--unresolved-symbols=report-all",
         "-Wl,--warn-common",
         "-Wl,--warn-section-align",
-
         "-Wl,-Map=\"%s\"" % join("$BUILD_DIR", "program.map"),
     ],
 
@@ -160,6 +157,8 @@ env.Append(
     ],
     LIBSOURCE_DIRS=[LIBRARY_DIR]
 )
+
+env.Apollo3SetBuildStandards(default_c_std="gnu11", default_cxx_std="gnu++11")
 
 libs = []
 
