@@ -33,7 +33,7 @@
     "framework-arduinoapollo3": {
       "type": "framework",
       "optional": true,
-      "version": "https://github.com/sparkfun/Arduino_Apollo3#v2.2.1"
+      "version": "https://github.com/sparkfun/Arduino_Apollo3"
     },
     "framework-ambiqsuitesdkapollo3-sfe": {
       "type": "framework",
