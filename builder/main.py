@@ -25,7 +25,7 @@ env = DefaultEnvironment()
 # The Apollo3bluePlatform object from this projects platform.py file.
 platform_apollo3blue = env.PioPlatform()
 
-currently_configured_board = env.BoardConfig()
+board = env.BoardConfig()
 
 # The project configuration, derived from the projects platform.ini file.
 project_config = env.GetProjectConfig()
@@ -101,6 +101,25 @@ env.Replace(
 # Configure LDSCRIPT_PATH to be replaced later by the call to linker.py
 #
 env.Replace(LDSCRIPT_PATH="$$APOLLO3_LDSCRIPT_PATH")
+
+def Apollo3SetBuildStandards(env, default_c_std="c17", default_cxx_std="c++17"):
+    brd = env.BoardConfig()
+    language_std = brd.get("build.standard", None)
+    if language_std is not None and type(language_std) == str:
+        print(f"The board_build.standard option has been deprecated for board_build.standard.c and board_build.standard.cxx options.{os.linesep}Please update your platform.ini file.", file=sys.stderr)
+        sys.exit(1)
+
+    _c_std = brd.get("build.standard.c", default_c_std)
+    if _c_std is not None:
+        C_STD = "-std={}".format(_c_std)
+        env.Append(CFLAGS=[C_STD])
+
+    _cxx_std = brd.get("build.standard.cxx", default_cxx_std)
+    if _cxx_std is not None:
+        CXX_STD = "-std={}".format(_cxx_std)
+        env.Append(CXXFLAGS=[CXX_STD])
+
+env.AddMethod(Apollo3SetBuildStandards)
 
 #
 # Target: Build executable and linkable firmware
