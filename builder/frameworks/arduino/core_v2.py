@@ -125,7 +125,7 @@ env.Append(
     LIBSOURCE_DIRS=[LIBRARY_DIR]
 )
 
-if '_idedata' in COMMAND_LINE_TARGETS:
+if IsIntegrationDump(env):
     def grab_includes(fn, prefix):
         result = []
         with open(fn, "r") as fin:
