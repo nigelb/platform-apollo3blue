@@ -25,7 +25,7 @@ env = DefaultEnvironment()
 # The Apollo3bluePlatform object from this projects platform.py file.
 platform_apollo3blue = env.PioPlatform()
 
-board = env.BoardConfig()
+currently_configured_board = env.BoardConfig()
 
 # The project configuration, derived from the projects platform.ini file.
 project_config = env.GetProjectConfig()
