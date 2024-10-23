@@ -120,13 +120,9 @@ These options are only available in the `ambiqsdk-sfe` platform.
 ### Compiler Standard
 
 Lets you change the `-std` parameter that is passed to the compiler.
-For example the default is:
 
-    board_build.standard = c99
-
-Or you can change this:
-
-    board_build.standard = gnu99
+    board_build.standard.c = gnu99
+    board_build.standard.cxx = c++17
 
 ## Other Targets
 
