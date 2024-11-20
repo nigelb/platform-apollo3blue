@@ -99,8 +99,11 @@ def configure_upload(env):
                 os.makedirs(build_dir)
             script_path = join(build_dir, "upload.jlink")
 
+            # Exit on Error
+            commands = ["EoE 1"]
+
             # Halt the MCU
-            commands = ["h"]
+            commands += ["h"]
 
             # If there are any extra pre-program jlink commands, add them in
             pre_commands = currently_configured_board.get("build.jlink.extra_commands.pre_program", None)
