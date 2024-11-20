@@ -102,6 +102,12 @@ env.Replace(
 #
 env.Replace(LDSCRIPT_PATH="$$APOLLO3_LDSCRIPT_PATH")
 
+if 'PLATFORMIO_UPLOAD_PROTOCOL' in os.environ:
+    env.Replace(UPLOAD_PROTOCOL=os.environ['PLATFORMIO_UPLOAD_PROTOCOL'])
+    print("",file=sys.stderr)
+    print(f"WARNING! UPLOAD_PROTOCOL has been overridden by the environment variable PLATFORMIO_UPLOAD_PROTOCOL and set to: {os.environ['PLATFORMIO_UPLOAD_PROTOCOL']}", file=sys.stderr)
+    print("",file=sys.stderr)
+
 #
 # Target: Build executable and linkable firmware
 #
