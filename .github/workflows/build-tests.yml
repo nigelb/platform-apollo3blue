@@ -1,0 +1,17 @@
+name: Build Tests
+on: push
+permissions:
+  packages: read # Read packages from GitHub Package Registry
+  contents: read  # This is required for actions/checkout
+jobs:
+  all-unit-tests:
+    timeout-minutes: 20
+    runs-on: ghcr.io/nigelb/arduino_apollo3:2.2.1
+    steps:
+      - name: Get repo
+        uses: actions/checkout@v3
+      - name: Ls
+        shell: bash
+        run: |
+          pwd
+          ls -lah
