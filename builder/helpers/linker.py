@@ -27,7 +27,7 @@ def resolve_linker_script(env):
     PROJECT_DIR = env.subst("$PROJECT_DIR")
     upload_protocol = env.subst("$UPLOAD_PROTOCOL")
 
-    user_linker_script_fn = board.get("build.linker_script", "")
+    user_linker_script_fn = env.subst(board.get("build.linker_script", ""))
 
     linker_scripts = dict(
         asb=env.subst("$ASB_LINKER_SCRIPT"),
